@@ -1,0 +1,15 @@
+model Teacher {
+  id         String   @id
+  teacherId  String   @unique
+  joiningYear Int
+  isDeptAdmin Boolean @default(false)
+
+  user User @relation(fields: [id],references: [id],onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([joiningYear])
+  @@index([isDeptAdmin])
+  @@map("teachers")
+}

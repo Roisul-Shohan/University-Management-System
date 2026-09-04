@@ -1,0 +1,13 @@
+model Student {
+  id            String   @id
+  studentId     String   @unique
+  admissionYear Int
+
+  user User @relation( fields: [id], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([admissionYear])
+  @@map("students")
+}
