@@ -25,3 +25,125 @@ export const UserStatus = {
 } as const
 
 export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
+export const DegreeType = {
+  BSC: 'BSC',
+  MSC: 'MSC',
+  PHD: 'PHD'
+} as const
+
+export type DegreeType = (typeof DegreeType)[keyof typeof DegreeType]
+
+
+export const StudentSemesterStatus = {
+  PENDING: 'PENDING',
+  REGISTERED: 'REGISTERED',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type StudentSemesterStatus = (typeof StudentSemesterStatus)[keyof typeof StudentSemesterStatus]
+
+
+export const AcademicPeriodType = {
+  ADMISSION: 'ADMISSION',
+  SEMESTER_REGISTRATION: 'SEMESTER_REGISTRATION',
+  COURSE_REGISTRATION: 'COURSE_REGISTRATION',
+  MIDTERM_EXAM: 'MIDTERM_EXAM',
+  FINAL_EXAM: 'FINAL_EXAM',
+  RESULT_PUBLICATION: 'RESULT_PUBLICATION'
+} as const
+
+export type AcademicPeriodType = (typeof AcademicPeriodType)[keyof typeof AcademicPeriodType]
+
+
+export const AdmissionStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type AdmissionStatus = (typeof AdmissionStatus)[keyof typeof AdmissionStatus]
+
+
+export const TransactionType = {
+  ADMISSION: 'ADMISSION',
+  SEMESTER_REGISTRATION: 'SEMESTER_REGISTRATION',
+  COURSE_REGISTRATION: 'COURSE_REGISTRATION',
+  EXAM: 'EXAM'
+} as const
+
+export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
+
+
+export const TransactionStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
+
+
+export const EnrollmentStatus = {
+  ENROLLED: 'ENROLLED',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED',
+  FAILED: 'FAILED'
+} as const
+
+export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
+
+
+export const AttendanceSessionStatus = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type AttendanceSessionStatus = (typeof AttendanceSessionStatus)[keyof typeof AttendanceSessionStatus]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  LATE: 'LATE',
+  EXCUSED: 'EXCUSED'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const ExamType = {
+  MIDTERM: 'MIDTERM',
+  FINAL: 'FINAL'
+} as const
+
+export type ExamType = (typeof ExamType)[keyof typeof ExamType]
+
+
+export const ExamStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type ExamStatus = (typeof ExamStatus)[keyof typeof ExamStatus]
+
+
+export const NotificationType = {
+  GENERAL: 'GENERAL',
+  ADMISSION: 'ADMISSION',
+  REGISTRATION: 'REGISTRATION',
+  COURSE: 'COURSE',
+  EXAM: 'EXAM',
+  RESULT: 'RESULT',
+  PAYMENT: 'PAYMENT'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

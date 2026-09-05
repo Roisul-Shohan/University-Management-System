@@ -28,16 +28,24 @@ export type AggregateStudent = {
 
 export type StudentAvgAggregateOutputType = {
   admissionYear: number | null
+  currentYear: number | null
+  currentSemester: number | null
 }
 
 export type StudentSumAggregateOutputType = {
   admissionYear: number | null
+  currentYear: number | null
+  currentSemester: number | null
 }
 
 export type StudentMinAggregateOutputType = {
   id: string | null
   studentId: string | null
   admissionYear: number | null
+  programId: string | null
+  currentYear: number | null
+  currentSemester: number | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -46,6 +54,10 @@ export type StudentMaxAggregateOutputType = {
   id: string | null
   studentId: string | null
   admissionYear: number | null
+  programId: string | null
+  currentYear: number | null
+  currentSemester: number | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +66,10 @@ export type StudentCountAggregateOutputType = {
   id: number
   studentId: number
   admissionYear: number
+  programId: number
+  currentYear: number
+  currentSemester: number
+  isActive: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -62,16 +78,24 @@ export type StudentCountAggregateOutputType = {
 
 export type StudentAvgAggregateInputType = {
   admissionYear?: true
+  currentYear?: true
+  currentSemester?: true
 }
 
 export type StudentSumAggregateInputType = {
   admissionYear?: true
+  currentYear?: true
+  currentSemester?: true
 }
 
 export type StudentMinAggregateInputType = {
   id?: true
   studentId?: true
   admissionYear?: true
+  programId?: true
+  currentYear?: true
+  currentSemester?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -80,6 +104,10 @@ export type StudentMaxAggregateInputType = {
   id?: true
   studentId?: true
   admissionYear?: true
+  programId?: true
+  currentYear?: true
+  currentSemester?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,6 +116,10 @@ export type StudentCountAggregateInputType = {
   id?: true
   studentId?: true
   admissionYear?: true
+  programId?: true
+  currentYear?: true
+  currentSemester?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -183,6 +215,10 @@ export type StudentGroupByOutputType = {
   id: string
   studentId: string
   admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive: boolean
   createdAt: Date
   updatedAt: Date
   _count: StudentCountAggregateOutputType | null
@@ -214,18 +250,34 @@ export type StudentWhereInput = {
   id?: Prisma.StringFilter<"Student"> | string
   studentId?: Prisma.StringFilter<"Student"> | string
   admissionYear?: Prisma.IntFilter<"Student"> | number
+  programId?: Prisma.StringFilter<"Student"> | string
+  currentYear?: Prisma.IntFilter<"Student"> | number
+  currentSemester?: Prisma.IntFilter<"Student"> | number
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  semesters?: Prisma.StudentSemesterListRelationFilter
+  admissions?: Prisma.AdmissionListRelationFilter
+  transactions?: Prisma.TransactionListRelationFilter
 }
 
 export type StudentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  programId?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  program?: Prisma.ProgramOrderByWithRelationInput
+  semesters?: Prisma.StudentSemesterOrderByRelationAggregateInput
+  admissions?: Prisma.AdmissionOrderByRelationAggregateInput
+  transactions?: Prisma.TransactionOrderByRelationAggregateInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -235,15 +287,27 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StudentWhereInput[]
   NOT?: Prisma.StudentWhereInput | Prisma.StudentWhereInput[]
   admissionYear?: Prisma.IntFilter<"Student"> | number
+  programId?: Prisma.StringFilter<"Student"> | string
+  currentYear?: Prisma.IntFilter<"Student"> | number
+  currentSemester?: Prisma.IntFilter<"Student"> | number
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  semesters?: Prisma.StudentSemesterListRelationFilter
+  admissions?: Prisma.AdmissionListRelationFilter
+  transactions?: Prisma.TransactionListRelationFilter
 }, "id" | "studentId">
 
 export type StudentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  programId?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StudentCountOrderByAggregateInput
@@ -260,6 +324,10 @@ export type StudentScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Student"> | string
   studentId?: Prisma.StringWithAggregatesFilter<"Student"> | string
   admissionYear?: Prisma.IntWithAggregatesFilter<"Student"> | number
+  programId?: Prisma.StringWithAggregatesFilter<"Student"> | string
+  currentYear?: Prisma.IntWithAggregatesFilter<"Student"> | number
+  currentSemester?: Prisma.IntWithAggregatesFilter<"Student"> | number
+  isActive?: Prisma.BoolWithAggregatesFilter<"Student"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
 }
@@ -267,39 +335,71 @@ export type StudentScalarWhereWithAggregatesInput = {
 export type StudentCreateInput = {
   studentId: string
   admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentInput
+  program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
+  semesters?: Prisma.StudentSemesterCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateInput = {
   id: string
   studentId: string
   admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUpdateInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
+  semesters?: Prisma.StudentSemesterUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyInput = {
   id: string
   studentId: string
   admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -307,6 +407,9 @@ export type StudentCreateManyInput = {
 export type StudentUpdateManyMutationInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -315,26 +418,55 @@ export type StudentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StudentScalarRelationFilter = {
+  is?: Prisma.StudentWhereInput
+  isNot?: Prisma.StudentWhereInput
+}
+
+export type StudentListRelationFilter = {
+  every?: Prisma.StudentWhereInput
+  some?: Prisma.StudentWhereInput
+  none?: Prisma.StudentWhereInput
+}
+
+export type StudentOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StudentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  programId?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type StudentAvgOrderByAggregateInput = {
   admissionYear?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
 }
 
 export type StudentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  programId?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -343,12 +475,18 @@ export type StudentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  programId?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type StudentSumOrderByAggregateInput = {
   admissionYear?: Prisma.SortOrder
+  currentYear?: Prisma.SortOrder
+  currentSemester?: Prisma.SortOrder
 }
 
 export type StudentNullableScalarRelationFilter = {
@@ -356,20 +494,88 @@ export type StudentNullableScalarRelationFilter = {
   isNot?: Prisma.StudentWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type StudentCreateNestedOneWithoutAdmissionsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutAdmissionsInput, Prisma.StudentUncheckedCreateWithoutAdmissionsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutAdmissionsInput
+  connect?: Prisma.StudentWhereUniqueInput
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type StudentUpdateOneRequiredWithoutAdmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutAdmissionsInput, Prisma.StudentUncheckedCreateWithoutAdmissionsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutAdmissionsInput
+  upsert?: Prisma.StudentUpsertWithoutAdmissionsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutAdmissionsInput, Prisma.StudentUpdateWithoutAdmissionsInput>, Prisma.StudentUncheckedUpdateWithoutAdmissionsInput>
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type StudentCreateNestedManyWithoutProgramInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput> | Prisma.StudentCreateWithoutProgramInput[] | Prisma.StudentUncheckedCreateWithoutProgramInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutProgramInput | Prisma.StudentCreateOrConnectWithoutProgramInput[]
+  createMany?: Prisma.StudentCreateManyProgramInputEnvelope
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+}
+
+export type StudentUncheckedCreateNestedManyWithoutProgramInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput> | Prisma.StudentCreateWithoutProgramInput[] | Prisma.StudentUncheckedCreateWithoutProgramInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutProgramInput | Prisma.StudentCreateOrConnectWithoutProgramInput[]
+  createMany?: Prisma.StudentCreateManyProgramInputEnvelope
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+}
+
+export type StudentUpdateManyWithoutProgramNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput> | Prisma.StudentCreateWithoutProgramInput[] | Prisma.StudentUncheckedCreateWithoutProgramInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutProgramInput | Prisma.StudentCreateOrConnectWithoutProgramInput[]
+  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutProgramInput | Prisma.StudentUpsertWithWhereUniqueWithoutProgramInput[]
+  createMany?: Prisma.StudentCreateManyProgramInputEnvelope
+  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  update?: Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput | Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput[]
+  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutProgramInput | Prisma.StudentUpdateManyWithWhereWithoutProgramInput[]
+  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+}
+
+export type StudentUncheckedUpdateManyWithoutProgramNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput> | Prisma.StudentCreateWithoutProgramInput[] | Prisma.StudentUncheckedCreateWithoutProgramInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutProgramInput | Prisma.StudentCreateOrConnectWithoutProgramInput[]
+  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutProgramInput | Prisma.StudentUpsertWithWhereUniqueWithoutProgramInput[]
+  createMany?: Prisma.StudentCreateManyProgramInputEnvelope
+  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  update?: Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput | Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput[]
+  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutProgramInput | Prisma.StudentUpdateManyWithWhereWithoutProgramInput[]
+  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+}
+
+export type StudentCreateNestedOneWithoutSemestersInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutSemestersInput, Prisma.StudentUncheckedCreateWithoutSemestersInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutSemestersInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutSemestersNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutSemestersInput, Prisma.StudentUncheckedCreateWithoutSemestersInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutSemestersInput
+  upsert?: Prisma.StudentUpsertWithoutSemestersInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutSemestersInput, Prisma.StudentUpdateWithoutSemestersInput>, Prisma.StudentUncheckedUpdateWithoutSemestersInput>
+}
+
+export type StudentCreateNestedOneWithoutTransactionsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutTransactionsInput, Prisma.StudentUncheckedCreateWithoutTransactionsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutTransactionsInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutTransactionsInput, Prisma.StudentUncheckedCreateWithoutTransactionsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutTransactionsInput
+  upsert?: Prisma.StudentUpsertWithoutTransactionsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutTransactionsInput, Prisma.StudentUpdateWithoutTransactionsInput>, Prisma.StudentUncheckedUpdateWithoutTransactionsInput>
 }
 
 export type StudentCreateNestedOneWithoutUserInput = {
@@ -404,18 +610,317 @@ export type StudentUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutUserInput, Prisma.StudentUpdateWithoutUserInput>, Prisma.StudentUncheckedUpdateWithoutUserInput>
 }
 
+export type StudentCreateWithoutAdmissionsInput = {
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStudentInput
+  program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
+  semesters?: Prisma.StudentSemesterCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutAdmissionsInput = {
+  id: string
+  studentId: string
+  admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutAdmissionsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutAdmissionsInput, Prisma.StudentUncheckedCreateWithoutAdmissionsInput>
+}
+
+export type StudentUpsertWithoutAdmissionsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutAdmissionsInput, Prisma.StudentUncheckedUpdateWithoutAdmissionsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutAdmissionsInput, Prisma.StudentUncheckedCreateWithoutAdmissionsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutAdmissionsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutAdmissionsInput, Prisma.StudentUncheckedUpdateWithoutAdmissionsInput>
+}
+
+export type StudentUpdateWithoutAdmissionsInput = {
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
+  semesters?: Prisma.StudentSemesterUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutAdmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutProgramInput = {
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStudentInput
+  semesters?: Prisma.StudentSemesterCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutProgramInput = {
+  id: string
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutProgramInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput>
+}
+
+export type StudentCreateManyProgramInputEnvelope = {
+  data: Prisma.StudentCreateManyProgramInput | Prisma.StudentCreateManyProgramInput[]
+  skipDuplicates?: boolean
+}
+
+export type StudentUpsertWithWhereUniqueWithoutProgramInput = {
+  where: Prisma.StudentWhereUniqueInput
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutProgramInput, Prisma.StudentUncheckedUpdateWithoutProgramInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutProgramInput, Prisma.StudentUncheckedCreateWithoutProgramInput>
+}
+
+export type StudentUpdateWithWhereUniqueWithoutProgramInput = {
+  where: Prisma.StudentWhereUniqueInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutProgramInput, Prisma.StudentUncheckedUpdateWithoutProgramInput>
+}
+
+export type StudentUpdateManyWithWhereWithoutProgramInput = {
+  where: Prisma.StudentScalarWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateManyMutationInput, Prisma.StudentUncheckedUpdateManyWithoutProgramInput>
+}
+
+export type StudentScalarWhereInput = {
+  AND?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  OR?: Prisma.StudentScalarWhereInput[]
+  NOT?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  id?: Prisma.StringFilter<"Student"> | string
+  studentId?: Prisma.StringFilter<"Student"> | string
+  admissionYear?: Prisma.IntFilter<"Student"> | number
+  programId?: Prisma.StringFilter<"Student"> | string
+  currentYear?: Prisma.IntFilter<"Student"> | number
+  currentSemester?: Prisma.IntFilter<"Student"> | number
+  isActive?: Prisma.BoolFilter<"Student"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+}
+
+export type StudentCreateWithoutSemestersInput = {
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStudentInput
+  program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutSemestersInput = {
+  id: string
+  studentId: string
+  admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutSemestersInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutSemestersInput, Prisma.StudentUncheckedCreateWithoutSemestersInput>
+}
+
+export type StudentUpsertWithoutSemestersInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutSemestersInput, Prisma.StudentUncheckedUpdateWithoutSemestersInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutSemestersInput, Prisma.StudentUncheckedCreateWithoutSemestersInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutSemestersInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutSemestersInput, Prisma.StudentUncheckedUpdateWithoutSemestersInput>
+}
+
+export type StudentUpdateWithoutSemestersInput = {
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutSemestersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutTransactionsInput = {
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStudentInput
+  program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
+  semesters?: Prisma.StudentSemesterCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutTransactionsInput = {
+  id: string
+  studentId: string
+  admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutTransactionsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutTransactionsInput, Prisma.StudentUncheckedCreateWithoutTransactionsInput>
+}
+
+export type StudentUpsertWithoutTransactionsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutTransactionsInput, Prisma.StudentUncheckedUpdateWithoutTransactionsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutTransactionsInput, Prisma.StudentUncheckedCreateWithoutTransactionsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutTransactionsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutTransactionsInput, Prisma.StudentUncheckedUpdateWithoutTransactionsInput>
+}
+
+export type StudentUpdateWithoutTransactionsInput = {
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
+  semesters?: Prisma.StudentSemesterUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutStudentNestedInput
+}
+
 export type StudentCreateWithoutUserInput = {
   studentId: string
   admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
+  semesters?: Prisma.StudentSemesterCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutUserInput = {
   studentId: string
   admissionYear: number
+  programId: string
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutStudentInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutUserInput = {
@@ -437,74 +942,223 @@ export type StudentUpdateToOneWithWhereWithoutUserInput = {
 export type StudentUpdateWithoutUserInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
+  semesters?: Prisma.StudentSemesterUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutUserInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateManyProgramInput = {
+  id: string
+  studentId: string
+  admissionYear: number
+  currentYear: number
+  currentSemester: number
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type StudentUpdateWithoutProgramInput = {
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
+  semesters?: Prisma.StudentSemesterUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutProgramInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutStudentNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateManyWithoutProgramInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentYear?: Prisma.IntFieldUpdateOperationsInput | number
+  currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type StudentCountOutputType
+ */
+
+export type StudentCountOutputType = {
+  semesters: number
+  admissions: number
+  transactions: number
+}
+
+export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  semesters?: boolean | StudentCountOutputTypeCountSemestersArgs
+  admissions?: boolean | StudentCountOutputTypeCountAdmissionsArgs
+  transactions?: boolean | StudentCountOutputTypeCountTransactionsArgs
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentCountOutputType
+   */
+  select?: Prisma.StudentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountSemestersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentSemesterWhereInput
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountAdmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdmissionWhereInput
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TransactionWhereInput
+}
 
 
 export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   admissionYear?: boolean
+  programId?: boolean
+  currentYear?: boolean
+  currentSemester?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  semesters?: boolean | Prisma.Student$semestersArgs<ExtArgs>
+  admissions?: boolean | Prisma.Student$admissionsArgs<ExtArgs>
+  transactions?: boolean | Prisma.Student$transactionsArgs<ExtArgs>
+  _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   admissionYear?: boolean
+  programId?: boolean
+  currentYear?: boolean
+  currentSemester?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   admissionYear?: boolean
+  programId?: boolean
+  currentYear?: boolean
+  currentSemester?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectScalar = {
   id?: boolean
   studentId?: boolean
   admissionYear?: boolean
+  programId?: boolean
+  currentYear?: boolean
+  currentSemester?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "admissionYear" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "admissionYear" | "programId" | "currentYear" | "currentSemester" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  semesters?: boolean | Prisma.Student$semestersArgs<ExtArgs>
+  admissions?: boolean | Prisma.Student$admissionsArgs<ExtArgs>
+  transactions?: boolean | Prisma.Student$transactionsArgs<ExtArgs>
+  _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 export type StudentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 
 export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Student"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    program: Prisma.$ProgramPayload<ExtArgs>
+    semesters: Prisma.$StudentSemesterPayload<ExtArgs>[]
+    admissions: Prisma.$AdmissionPayload<ExtArgs>[]
+    transactions: Prisma.$TransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     studentId: string
     admissionYear: number
+    programId: string
+    currentYear: number
+    currentSemester: number
+    isActive: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["student"]>
@@ -902,6 +1556,10 @@ readonly fields: StudentFieldRefs;
 export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  semesters<T extends Prisma.Student$semestersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$semestersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentSemesterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  admissions<T extends Prisma.Student$admissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$admissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  transactions<T extends Prisma.Student$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -934,6 +1592,10 @@ export interface StudentFieldRefs {
   readonly id: Prisma.FieldRef<"Student", 'String'>
   readonly studentId: Prisma.FieldRef<"Student", 'String'>
   readonly admissionYear: Prisma.FieldRef<"Student", 'Int'>
+  readonly programId: Prisma.FieldRef<"Student", 'String'>
+  readonly currentYear: Prisma.FieldRef<"Student", 'Int'>
+  readonly currentSemester: Prisma.FieldRef<"Student", 'Int'>
+  readonly isActive: Prisma.FieldRef<"Student", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Student", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Student", 'DateTime'>
 }
@@ -1334,6 +1996,78 @@ export type StudentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Students to delete.
    */
   limit?: number
+}
+
+/**
+ * Student.semesters
+ */
+export type Student$semestersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentSemester
+   */
+  select?: Prisma.StudentSemesterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudentSemester
+   */
+  omit?: Prisma.StudentSemesterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentSemesterInclude<ExtArgs> | null
+  where?: Prisma.StudentSemesterWhereInput
+  orderBy?: Prisma.StudentSemesterOrderByWithRelationInput | Prisma.StudentSemesterOrderByWithRelationInput[]
+  cursor?: Prisma.StudentSemesterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudentSemesterScalarFieldEnum | Prisma.StudentSemesterScalarFieldEnum[]
+}
+
+/**
+ * Student.admissions
+ */
+export type Student$admissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Admission
+   */
+  select?: Prisma.AdmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Admission
+   */
+  omit?: Prisma.AdmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdmissionInclude<ExtArgs> | null
+  where?: Prisma.AdmissionWhereInput
+  orderBy?: Prisma.AdmissionOrderByWithRelationInput | Prisma.AdmissionOrderByWithRelationInput[]
+  cursor?: Prisma.AdmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdmissionScalarFieldEnum | Prisma.AdmissionScalarFieldEnum[]
+}
+
+/**
+ * Student.transactions
+ */
+export type Student$transactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Transaction
+   */
+  select?: Prisma.TransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Transaction
+   */
+  omit?: Prisma.TransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null
+  where?: Prisma.TransactionWhereInput
+  orderBy?: Prisma.TransactionOrderByWithRelationInput | Prisma.TransactionOrderByWithRelationInput[]
+  cursor?: Prisma.TransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[]
 }
 
 /**

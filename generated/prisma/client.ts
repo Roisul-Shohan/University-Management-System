@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Students
- * const students = await prisma.student.findMany()
+ * // Fetch zero or more AcademicPeriods
+ * const academicPeriods = await prisma.academicPeriod.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,15 +42,125 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
+ * Model AcademicPeriod
+ * 
+ */
+export type AcademicPeriod = Prisma.AcademicPeriodModel
+/**
+ * Model Admission
+ * 
+ */
+export type Admission = Prisma.AdmissionModel
+/**
+ * Model AttendanceRecord
+ * 
+ */
+export type AttendanceRecord = Prisma.AttendanceRecordModel
+/**
+ * Model AttendanceSession
+ * 
+ */
+export type AttendanceSession = Prisma.AttendanceSessionModel
+/**
+ * Model ClassSession
+ * 
+ */
+export type ClassSession = Prisma.ClassSessionModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
+/**
+ * Model CourseEnrollment
+ * 
+ */
+export type CourseEnrollment = Prisma.CourseEnrollmentModel
+/**
+ * Model CourseOffering
+ * 
+ */
+export type CourseOffering = Prisma.CourseOfferingModel
+/**
+ * Model CoursePrerequisite
+ * 
+ */
+export type CoursePrerequisite = Prisma.CoursePrerequisiteModel
+/**
+ * Model CurriculumCourse
+ * 
+ */
+export type CurriculumCourse = Prisma.CurriculumCourseModel
+/**
+ * Model Department
+ * 
+ */
+export type Department = Prisma.DepartmentModel
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
+ * Model ExamAttempt
+ * 
+ */
+export type ExamAttempt = Prisma.ExamAttemptModel
+/**
+ * Model ExamQuestion
+ * 
+ */
+export type ExamQuestion = Prisma.ExamQuestionModel
+/**
+ * Model GradingScale
+ * 
+ */
+export type GradingScale = Prisma.GradingScaleModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model Program
+ * 
+ */
+export type Program = Prisma.ProgramModel
+/**
+ * Model QuestionOption
+ * 
+ */
+export type QuestionOption = Prisma.QuestionOptionModel
+/**
+ * Model Result
+ * 
+ */
+export type Result = Prisma.ResultModel
+/**
  * Model Student
  * 
  */
 export type Student = Prisma.StudentModel
 /**
+ * Model StudentAnswer
+ * 
+ */
+export type StudentAnswer = Prisma.StudentAnswerModel
+/**
+ * Model StudentSemester
+ * 
+ */
+export type StudentSemester = Prisma.StudentSemesterModel
+/**
  * Model Teacher
  * 
  */
 export type Teacher = Prisma.TeacherModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
 /**
  * Model User
  * 
