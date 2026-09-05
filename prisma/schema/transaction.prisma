@@ -1,0 +1,26 @@
+model Transaction {
+  id        String @id @default(uuid())
+
+  studentId String
+  studentSemesterId String?
+
+  type      TransactionType
+
+  amount    Decimal @db.Decimal(10, 2)
+  status    TransactionStatus @default(PENDING)
+
+  paidAt    DateTime?
+
+  studentSemester StudentSemester? @relation(fields: [studentSemesterId],references: [id])
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([studentSemesterId])
+  @@index([type])
+  @@index([status])
+  @@map("transactions")
+}

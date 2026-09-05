@@ -1,0 +1,26 @@
+model ExamAttempt {
+  id String @id @default(uuid())
+
+  examId String
+  studentSemesterId String
+
+  startedAt   DateTime @default(now())
+  submittedAt DateTime?
+  expiresAt   DateTime
+
+  score       Decimal? @db.Decimal(5, 2)
+
+  exam Exam @relation( fields: [examId],references: [id], onDelete: Cascade)
+
+  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id] )
+
+  answers StudentAnswer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([examId, studentSemesterId])
+  @@index([examId])
+  @@index([studentSemesterId])
+  @@map("exam_attempts")
+}

@@ -9,3 +9,89 @@ enum UserStatus {
   SUSPENDED
   DISABLED
 }
+
+enum DegreeType {
+  BSC
+  MSC
+  PHD
+}
+
+enum StudentSemesterStatus {
+  PENDING
+  REGISTERED
+  ACTIVE
+  COMPLETED
+  DROPPED
+  CANCELLED
+}
+
+enum AcademicPeriodType {
+  ADMISSION
+  SEMESTER_REGISTRATION
+  COURSE_REGISTRATION
+  MIDTERM_EXAM
+  FINAL_EXAM
+  RESULT_PUBLICATION
+}
+
+enum AdmissionStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  REJECTED
+}
+
+enum TransactionType {
+  ADMISSION
+  SEMESTER_REGISTRATION
+  COURSE_REGISTRATION
+  EXAM
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum EnrollmentStatus {
+  ENROLLED
+  COMPLETED
+  DROPPED
+  FAILED
+}
+
+enum AttendanceSessionStatus {
+  OPEN
+  CLOSED
+  EXPIRED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
+
+enum ExamType {
+  MIDTERM
+  FINAL
+}
+
+enum ExamStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+}
+
+enum NotificationType {
+  GENERAL
+  ADMISSION
+  REGISTRATION
+  COURSE
+  EXAM
+  RESULT
+  PAYMENT
+}

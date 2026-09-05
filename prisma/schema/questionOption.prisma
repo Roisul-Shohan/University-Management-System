@@ -1,0 +1,19 @@
+model QuestionOption {
+  id String @id @default(uuid())
+
+  questionId String
+
+  optionText String
+  isCorrect  Boolean @default(false)
+  order      Int
+
+  question ExamQuestion @relation( fields: [questionId], references: [id], onDelete: Cascade)
+  studentAnswers StudentAnswer[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([questionId])
+  @@unique([questionId, order])
+  @@map("question_options")
+}

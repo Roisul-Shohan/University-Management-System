@@ -1,0 +1,29 @@
+model StudentSemester {
+  id              String @id @default(uuid())
+
+  studentId       String
+
+  year            Int
+  semester        Int
+
+  status          StudentSemesterStatus @default(PENDING)
+
+  registeredAt    DateTime?
+  completedAt     DateTime?
+
+  student Student @relation(fields: [studentId],references: [id],onDelete: Cascade)
+
+  transactions Transaction[]
+  courseEnrollments CourseEnrollment[]
+  examAttempt ExamAttempt[]
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([studentId, year, semester])
+  @@index([studentId])
+  @@index([year, semester])
+  @@index([status])
+  @@map("student_semesters")
+}

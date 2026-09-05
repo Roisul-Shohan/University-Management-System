@@ -1,0 +1,30 @@
+model Exam {
+  id String @id @default(uuid())
+
+  courseOfferingId String
+
+  type ExamType
+  title String
+
+  durationMinutes Int
+
+  totalMarks Int
+
+  startAt DateTime?
+  endAt   DateTime?
+
+  status ExamStatus @default(DRAFT)
+
+  courseOffering CourseOffering @relation(fields: [courseOfferingId],references: [id] )
+
+  questions ExamQuestion[]
+  attempts  ExamAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseOfferingId])
+  @@index([type])
+  @@index([status])
+  @@map("exams")
+}

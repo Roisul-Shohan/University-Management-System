@@ -1,0 +1,25 @@
+model Admission {
+  id            String @id @default(uuid())
+
+  studentId     String
+  programId     String
+
+  admissionYear Int
+  status        AdmissionStatus @default(PENDING)
+
+  appliedAt     DateTime @default(now())
+  confirmedAt   DateTime?
+
+  student Student @relation(fields: [studentId],references: [id])
+
+  program Program @relation( fields: [programId],references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([programId])
+  @@index([admissionYear])
+  @@index([status])
+  @@map("admissions")
+}

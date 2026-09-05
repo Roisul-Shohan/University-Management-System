@@ -2,12 +2,23 @@ model Student {
   id            String   @id
   studentId     String   @unique
   admissionYear Int
+  programId     String
+  currentYear   Int
+  currentSemester Int
+  isActive        Boolean @default(true)
 
   user User @relation( fields: [id], references: [id], onDelete: Cascade)
+
+  program Program @relation(fields: [programId],references: [id])
+  semesters StudentSemester[]
+  admissions Admission[]
+  transactions Transaction[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([admissionYear])
+  @@index([programId])
+  @@index([currentYear, currentSemester])
   @@map("students")
 }

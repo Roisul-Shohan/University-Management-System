@@ -1,0 +1,21 @@
+model CurriculumCourse {
+  id          String @id @default(uuid())
+
+  programId   String
+  courseId    String
+
+  year        Int
+  semester    Int
+
+  program Program @relation( fields: [programId], references: [id] )
+
+  course Course @relation(fields: [courseId],references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, courseId])
+  @@index([programId, year, semester])
+  @@index([courseId])
+  @@map("curriculum_courses")
+}

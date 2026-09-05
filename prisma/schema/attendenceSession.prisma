@@ -1,0 +1,24 @@
+model AttendanceSession {
+  id String @id @default(uuid())
+
+  classSessionId String  @unique
+
+
+  qrToken   String   @unique
+  openedAt  DateTime
+  expiresAt DateTime
+
+  status AttendanceSessionStatus @default(OPEN)
+
+  classSession ClassSession @relation( fields: [classSessionId],references: [id], onDelete: Cascade )
+
+  attendanceRecords AttendanceRecord[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([classSessionId])
+  @@index([expiresAt])
+  @@index([status])
+  @@map("attendance_sessions")
+}

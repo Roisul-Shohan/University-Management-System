@@ -4,6 +4,11 @@ model Teacher {
   joiningYear Int
   isDeptAdmin Boolean @default(false)
 
+  departmentId String
+  offerings CourseOffering[]
+
+  department   Department @relation(fields: [departmentId],references: [id])
+
   user User @relation(fields: [id],references: [id],onDelete: Cascade)
 
   createdAt DateTime @default(now())

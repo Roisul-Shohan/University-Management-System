@@ -1,0 +1,18 @@
+model Result {
+  id String @id @default(uuid())
+
+  courseEnrollmentId String
+
+  marks      Decimal @db.Decimal(5, 2)
+  letterGrade String
+  gradePoint Decimal @db.Decimal(3, 2)
+
+  courseEnrollment CourseEnrollment @relation(fields: [courseEnrollmentId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseEnrollmentId])
+  @@index([courseEnrollmentId])
+  @@map("results")
+}

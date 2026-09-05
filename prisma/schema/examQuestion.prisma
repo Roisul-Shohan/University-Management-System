@@ -1,0 +1,21 @@
+model ExamQuestion {
+  id String @id @default(uuid())
+
+  examId String
+
+  questionText String
+  marks        Int
+  order        Int
+
+  exam Exam @relation(fields: [examId], references: [id],onDelete: Cascade)
+
+  options QuestionOption[]
+  studentAnswers StudentAnswer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([examId])
+  @@unique([examId, order])
+  @@map("exam_questions")
+}

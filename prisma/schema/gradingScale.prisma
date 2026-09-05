@@ -1,0 +1,14 @@
+model GradingScale {
+  id String @id @default(uuid())
+
+  minMark    Float
+  letter     String
+  gradePoint Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([minMark])
+  @@index([minMark])
+  @@map("grading_scales")
+}

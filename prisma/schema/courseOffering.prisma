@@ -1,0 +1,28 @@
+model CourseOffering {
+  id String @id @default(uuid())
+
+  courseId String
+  teacherId String
+
+  year     Int
+  semester Int
+
+  capacity Int?
+
+  course Course @relation( fields: [courseId], references: [id])
+
+  teacher Teacher @relation(fields: [teacherId],references: [id])
+
+  enrollments CourseEnrollment[]
+  classSession ClassSession[]
+  exam Exam[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+  @@index([teacherId])
+  @@index([year, semester])
+  @@unique([courseId, teacherId, year, semester])
+  @@map("course_offerings")
+}

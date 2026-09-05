@@ -1,0 +1,23 @@
+model ClassSession {
+  id String @id @default(uuid())
+
+  courseOfferingId String
+
+  date      DateTime
+  startTime DateTime
+  endTime   DateTime
+
+  topic       String?
+  meetingLink String?
+
+  courseOffering CourseOffering @relation( fields: [courseOfferingId], references: [id])
+
+  attendanceSession AttendanceSession ?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseOfferingId])
+  @@index([date])
+  @@map("class_sessions")
+}
