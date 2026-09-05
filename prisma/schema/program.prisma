@@ -1,19 +1,18 @@
-
 model Program {
-  id           String @id @default(uuid())
+  id           String     @id @default(uuid())
   degreeType   DegreeType
   departmentId String
 
-  department Department @relation(fields: [departmentId],references: [id])
+  department Department @relation(fields: [departmentId], references: [id])
 
-  students Student[]
+  students          Student[]
   curriculumCourses CurriculumCourse[]
-  admissions Admission[]
+  admissions        Admission[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([departmentId,degreeType])
+  @@unique([departmentId, degreeType])
   @@index([departmentId])
   @@map("programs")
 }

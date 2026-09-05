@@ -1,18 +1,17 @@
 model Course {
-  id           String @id @default(uuid())
+  id String @id @default(uuid())
 
-  code         String @unique
-  name         String
-  credits      Float
+  code    String @unique
+  name    String
+  credits Float
 
   departmentId String
-  department Department @relation(fields: [departmentId],references: [id])
-  
+  department   Department @relation(fields: [departmentId], references: [id])
+
   curriculumCourses CurriculumCourse[]
-  offerings CourseOffering[]
+  offerings         CourseOffering[]
 
-
-  prerequisites  CoursePrerequisite[] @relation("CoursePrerequisites")
+  prerequisites   CoursePrerequisite[] @relation("CoursePrerequisites")
   prerequisiteFor CoursePrerequisite[] @relation("PrerequisiteFor")
 
   createdAt DateTime @default(now())

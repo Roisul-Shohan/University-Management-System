@@ -1,7 +1,7 @@
 model CourseOffering {
   id String @id @default(uuid())
 
-  courseId String
+  courseId  String
   teacherId String
 
   year     Int
@@ -9,20 +9,20 @@ model CourseOffering {
 
   capacity Int?
 
-  course Course @relation( fields: [courseId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
 
-  teacher Teacher @relation(fields: [teacherId],references: [id])
+  teacher Teacher @relation(fields: [teacherId], references: [id])
 
-  enrollments CourseEnrollment[]
+  enrollments  CourseEnrollment[]
   classSession ClassSession[]
-  exam Exam[]
+  exam         Exam[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([courseId, teacherId, year, semester])
   @@index([courseId])
   @@index([teacherId])
   @@index([year, semester])
-  @@unique([courseId, teacherId, year, semester])
   @@map("course_offerings")
 }

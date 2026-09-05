@@ -7,15 +7,15 @@ model ExamQuestion {
   marks        Int
   order        Int
 
-  exam Exam @relation(fields: [examId], references: [id],onDelete: Cascade)
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
 
-  options QuestionOption[]
+  options        QuestionOption[]
   studentAnswers StudentAnswer[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([examId])
   @@unique([examId, order])
+  @@index([examId])
   @@map("exam_questions")
 }

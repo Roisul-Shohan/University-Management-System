@@ -7,13 +7,13 @@ model QuestionOption {
   isCorrect  Boolean @default(false)
   order      Int
 
-  question ExamQuestion @relation( fields: [questionId], references: [id], onDelete: Cascade)
+  question       ExamQuestion    @relation(fields: [questionId], references: [id], onDelete: Cascade)
   studentAnswers StudentAnswer[]
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([questionId])
   @@unique([questionId, order])
+  @@index([questionId])
   @@map("question_options")
 }

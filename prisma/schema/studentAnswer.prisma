@@ -7,11 +7,11 @@ model StudentAnswer {
 
   answeredAt DateTime @default(now())
 
-  examAttempt ExamAttempt @relation( fields: [examAttemptId],references: [id], onDelete: Cascade)
+  examAttempt ExamAttempt @relation(fields: [examAttemptId], references: [id], onDelete: Cascade)
 
-  question ExamQuestion @relation( fields: [questionId], references: [id])
+  question ExamQuestion @relation(fields: [questionId], references: [id])
 
-  option QuestionOption? @relation( fields: [optionId], references: [id] )
+  option QuestionOption? @relation(fields: [optionId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

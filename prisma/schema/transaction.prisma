@@ -1,17 +1,17 @@
 model Transaction {
-  id        String @id @default(uuid())
+  id String @id @default(uuid())
 
-  studentId String
+  studentId         String
   studentSemesterId String?
 
-  type      TransactionType
+  type TransactionType
 
-  amount    Decimal @db.Decimal(10, 2)
-  status    TransactionStatus @default(PENDING)
+  amount Decimal           @db.Decimal(10, 2)
+  status TransactionStatus @default(PENDING)
 
-  paidAt    DateTime?
+  paidAt DateTime?
 
-  studentSemester StudentSemester? @relation(fields: [studentSemesterId],references: [id])
+  studentSemester StudentSemester? @relation(fields: [studentSemesterId], references: [id])
 
   student Student @relation(fields: [studentId], references: [id])
 

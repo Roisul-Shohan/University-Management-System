@@ -3,7 +3,7 @@ model Exam {
 
   courseOfferingId String
 
-  type ExamType
+  type  ExamType
   title String
 
   durationMinutes Int
@@ -15,7 +15,7 @@ model Exam {
 
   status ExamStatus @default(DRAFT)
 
-  courseOffering CourseOffering @relation(fields: [courseOfferingId],references: [id] )
+  courseOffering CourseOffering @relation(fields: [courseOfferingId], references: [id])
 
   questions ExamQuestion[]
   attempts  ExamAttempt[]

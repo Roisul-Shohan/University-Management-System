@@ -3,9 +3,9 @@ model Result {
 
   courseEnrollmentId String
 
-  marks      Decimal @db.Decimal(5, 2)
+  marks       Decimal @db.Decimal(5, 2)
   letterGrade String
-  gradePoint Decimal @db.Decimal(3, 2)
+  gradePoint  Decimal @db.Decimal(3, 2)
 
   courseEnrollment CourseEnrollment @relation(fields: [courseEnrollmentId], references: [id])
 

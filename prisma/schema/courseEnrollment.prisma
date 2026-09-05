@@ -6,17 +6,17 @@ model CourseEnrollment {
 
   status EnrollmentStatus @default(ENROLLED)
 
-  enrolledAt DateTime @default(now())
-  droppedAt   DateTime?
+  enrolledAt DateTime  @default(now())
+  droppedAt  DateTime?
 
-  courseOffering CourseOffering @relation( fields: [courseOfferingId], references: [id])
+  courseOffering CourseOffering @relation(fields: [courseOfferingId], references: [id])
 
-  studentSemester StudentSemester @relation(fields: [studentSemesterId],references: [id], onDelete: Cascade)
-  result Result?
+  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id], onDelete: Cascade)
+  result          Result?
 
   attendanceRecords AttendanceRecord[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 
   @@unique([studentSemesterId, courseOfferingId])
   @@index([studentSemesterId])

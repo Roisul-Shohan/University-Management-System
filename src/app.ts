@@ -13,13 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Helllo");
+	res.send("Helllo");
 });
-
 
 app.use(notFound);
 
 app.use(globalErrorHandler);
-
 
 export default app;

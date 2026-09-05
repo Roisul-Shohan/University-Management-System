@@ -1,8 +1,7 @@
 model AttendanceSession {
   id String @id @default(uuid())
 
-  classSessionId String  @unique
-
+  classSessionId String @unique
 
   qrToken   String   @unique
   openedAt  DateTime
@@ -10,7 +9,7 @@ model AttendanceSession {
 
   status AttendanceSessionStatus @default(OPEN)
 
-  classSession ClassSession @relation( fields: [classSessionId],references: [id], onDelete: Cascade )
+  classSession ClassSession @relation(fields: [classSessionId], references: [id], onDelete: Cascade)
 
   attendanceRecords AttendanceRecord[]
 

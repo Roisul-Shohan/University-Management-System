@@ -1,15 +1,15 @@
 model Teacher {
-  id         String   @id
-  teacherId  String   @unique
+  id          String  @id
+  teacherId   String  @unique
   joiningYear Int
   isDeptAdmin Boolean @default(false)
 
   departmentId String
-  offerings CourseOffering[]
+  offerings    CourseOffering[]
 
-  department   Department @relation(fields: [departmentId],references: [id])
+  department Department @relation(fields: [departmentId], references: [id])
 
-  user User @relation(fields: [id],references: [id],onDelete: Cascade)
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

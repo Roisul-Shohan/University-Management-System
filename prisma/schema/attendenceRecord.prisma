@@ -5,11 +5,11 @@ model AttendanceRecord {
   courseEnrollmentId  String
 
   status   AttendanceStatus
-  markedAt DateTime @default(now())
+  markedAt DateTime         @default(now())
 
   attendanceSession AttendanceSession @relation(fields: [attendanceSessionId], references: [id], onDelete: Cascade)
 
-  courseEnrollment CourseEnrollment @relation( fields: [courseEnrollmentId], references: [id], onDelete: Cascade)
+  courseEnrollment CourseEnrollment @relation(fields: [courseEnrollmentId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

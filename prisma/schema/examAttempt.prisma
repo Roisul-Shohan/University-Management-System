@@ -1,18 +1,18 @@
 model ExamAttempt {
   id String @id @default(uuid())
 
-  examId String
+  examId            String
   studentSemesterId String
 
-  startedAt   DateTime @default(now())
+  startedAt   DateTime  @default(now())
   submittedAt DateTime?
   expiresAt   DateTime
 
-  score       Decimal? @db.Decimal(5, 2)
+  score Decimal? @db.Decimal(5, 2)
 
-  exam Exam @relation( fields: [examId],references: [id], onDelete: Cascade)
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
 
-  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id] )
+  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id])
 
   answers StudentAnswer[]
 
