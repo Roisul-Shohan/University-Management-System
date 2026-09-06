@@ -15,7 +15,7 @@ async function main() {
 		// await seed();
 
 		await transporter.verify();
-		console.log("Nodemailer Connected Successfully")
+		console.log("Nodemailer Connected Successfully");
 
 		await redisClient.connect();
 		console.log("redis connected Successfully");

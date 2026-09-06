@@ -2,21 +2,32 @@
 import { Role } from "../../generated/prisma/enums";
 
 export interface RegisterUserInput {
-  name: string;
-  email: string;
-  password: string;
-  role: Role;
+	name: string;
+	email: string;
+	password: string;
+	role: Role;
 }
 
 export interface VerifyEmailInput {
-  email: string;
-  otp: string;
+	email: string;
+	otp: string;
 }
 
 export interface PendingRegistration {
-  name: string;
-  email: string;
-  hashed_password: string;
-  role: Role;
-  otpHash: string;
+	name: string;
+	email: string;
+	hashed_password: string;
+	role: Role;
+	otpHash: string;
+}
+
+export interface LoginUserInput {
+	email: string;
+	password: string;
+}
+
+export interface ResetPasswordInput {
+	email: string;
+	otp: string;
+	newPassword: string;
 }

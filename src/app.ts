@@ -5,7 +5,6 @@ import { notFound } from "./middlewares/notFound";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
 import { authRoutes } from "./modules/auth.routes";
 
-
 const app: Application = express();
 
 app.use(cors());
