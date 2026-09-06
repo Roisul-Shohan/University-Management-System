@@ -1,23 +1,25 @@
 model Admission {
   id String @id @default(uuid())
 
-  studentId String
+  userId String
   programId String
 
   admissionYear Int
+  admissionFee Decimal @db.Decimal(10, 2)
+
   status        AdmissionStatus @default(PENDING)
 
   appliedAt   DateTime  @default(now())
   confirmedAt DateTime?
 
-  student Student @relation(fields: [studentId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
   program Program @relation(fields: [programId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([studentId])
+  @@index([userId])
   @@index([programId])
   @@index([admissionYear])
   @@index([status])

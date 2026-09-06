@@ -52,6 +52,11 @@ export type AcademicPeriod = Prisma.AcademicPeriodModel
  */
 export type Admission = Prisma.AdmissionModel
 /**
+ * Model AdmissionFee
+ * 
+ */
+export type AdmissionFee = Prisma.AdmissionFeeModel
+/**
  * Model AttendanceRecord
  * 
  */

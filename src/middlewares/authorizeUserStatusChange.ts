@@ -51,6 +51,7 @@ export const authorizeUserStatusChange = catchAsync(
 				teacher: {
 					select: {
 						departmentId: true,
+						isDeptAdmin: true,
 					},
 				},
 			},
@@ -58,6 +59,17 @@ export const authorizeUserStatusChange = catchAsync(
 
 		if (!targetUser) {
 			throw new AppError(404, "User not found.");
+		}
+
+		if (targetUser.role === Role.TEACHER && targetUser.teacher?.isDeptAdmin) {
+			throw new AppError(
+				403,
+				"Department Admin cannot modify another Department Admin.",
+			);
+		}
+
+		if (targetUser.role === Role.SUPER_ADMIN) {
+			throw new AppError(403, "Department Admin cannot modify a Super Admin.");
 		}
 
 		let targetDepartmentId: string | undefined;

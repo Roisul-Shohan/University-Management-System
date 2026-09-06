@@ -438,14 +438,6 @@ export type ResultUncheckedUpdateOneWithoutCourseEnrollmentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ResultUpdateToOneWithWhereWithoutCourseEnrollmentInput, Prisma.ResultUpdateWithoutCourseEnrollmentInput>, Prisma.ResultUncheckedUpdateWithoutCourseEnrollmentInput>
 }
 
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
 export type ResultCreateWithoutCourseEnrollmentInput = {
   id?: string
   marks: runtime.Decimal | runtime.DecimalJsLike | number | string

@@ -11,7 +11,7 @@ model Student {
 
   program      Program           @relation(fields: [programId], references: [id])
   semesters    StudentSemester[]
-  admissions   Admission[]
+  
   transactions Transaction[]
 
   createdAt DateTime @default(now())

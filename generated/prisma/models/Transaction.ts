@@ -38,6 +38,8 @@ export type TransactionMinAggregateOutputType = {
   id: string | null
   studentId: string | null
   studentSemesterId: string | null
+  userId: string | null
+  admissionId: string | null
   type: $Enums.TransactionType | null
   amount: runtime.Decimal | null
   status: $Enums.TransactionStatus | null
@@ -50,6 +52,8 @@ export type TransactionMaxAggregateOutputType = {
   id: string | null
   studentId: string | null
   studentSemesterId: string | null
+  userId: string | null
+  admissionId: string | null
   type: $Enums.TransactionType | null
   amount: runtime.Decimal | null
   status: $Enums.TransactionStatus | null
@@ -62,6 +66,8 @@ export type TransactionCountAggregateOutputType = {
   id: number
   studentId: number
   studentSemesterId: number
+  userId: number
+  admissionId: number
   type: number
   amount: number
   status: number
@@ -84,6 +90,8 @@ export type TransactionMinAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
+  userId?: true
+  admissionId?: true
   type?: true
   amount?: true
   status?: true
@@ -96,6 +104,8 @@ export type TransactionMaxAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
+  userId?: true
+  admissionId?: true
   type?: true
   amount?: true
   status?: true
@@ -108,6 +118,8 @@ export type TransactionCountAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
+  userId?: true
+  admissionId?: true
   type?: true
   amount?: true
   status?: true
@@ -205,8 +217,10 @@ export type TransactionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type TransactionGroupByOutputType = {
   id: string
-  studentId: string
+  studentId: string | null
   studentSemesterId: string | null
+  userId: string
+  admissionId: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal
   status: $Enums.TransactionStatus
@@ -240,28 +254,34 @@ export type TransactionWhereInput = {
   OR?: Prisma.TransactionWhereInput[]
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   id?: Prisma.StringFilter<"Transaction"> | string
-  studentId?: Prisma.StringFilter<"Transaction"> | string
+  studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
 }
 
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  studentId?: Prisma.SortOrderInput | Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   studentSemester?: Prisma.StudentSemesterOrderByWithRelationInput
   student?: Prisma.StudentOrderByWithRelationInput
 }
@@ -271,22 +291,27 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   OR?: Prisma.TransactionWhereInput[]
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
-  studentId?: Prisma.StringFilter<"Transaction"> | string
+  studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
 }, "id">
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  studentId?: Prisma.SortOrderInput | Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -305,8 +330,10 @@ export type TransactionScalarWhereWithAggregatesInput = {
   OR?: Prisma.TransactionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TransactionScalarWhereWithAggregatesInput | Prisma.TransactionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
-  studentId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
+  studentId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  userId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
+  admissionId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeWithAggregatesFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalWithAggregatesFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusWithAggregatesFilter<"Transaction"> | $Enums.TransactionStatus
@@ -317,20 +344,24 @@ export type TransactionScalarWhereWithAggregatesInput = {
 
 export type TransactionCreateInput = {
   id?: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
   studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
-  student: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateInput = {
   id?: string
-  studentId: string
+  studentId?: string | null
   studentSemesterId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -341,20 +372,24 @@ export type TransactionUncheckedCreateInput = {
 
 export type TransactionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
   studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
-  student?: Prisma.StudentUpdateOneRequiredWithoutTransactionsNestedInput
+  student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -365,8 +400,10 @@ export type TransactionUncheckedUpdateInput = {
 
 export type TransactionCreateManyInput = {
   id?: string
-  studentId: string
+  studentId?: string | null
   studentSemesterId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -377,6 +414,7 @@ export type TransactionCreateManyInput = {
 
 export type TransactionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -387,8 +425,10 @@ export type TransactionUpdateManyMutationInput = {
 
 export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -411,6 +451,8 @@ export type TransactionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -427,6 +469,8 @@ export type TransactionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -439,6 +483,8 @@ export type TransactionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -543,20 +589,66 @@ export type EnumTransactionStatusFieldUpdateOperationsInput = {
   set?: $Enums.TransactionStatus
 }
 
+export type TransactionCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput> | Prisma.TransactionCreateWithoutUserInput[] | Prisma.TransactionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutUserInput | Prisma.TransactionCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TransactionCreateManyUserInputEnvelope
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+}
+
+export type TransactionUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput> | Prisma.TransactionCreateWithoutUserInput[] | Prisma.TransactionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutUserInput | Prisma.TransactionCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TransactionCreateManyUserInputEnvelope
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+}
+
+export type TransactionUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput> | Prisma.TransactionCreateWithoutUserInput[] | Prisma.TransactionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutUserInput | Prisma.TransactionCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutUserInput | Prisma.TransactionUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TransactionCreateManyUserInputEnvelope
+  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutUserInput | Prisma.TransactionUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutUserInput | Prisma.TransactionUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
+}
+
+export type TransactionUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput> | Prisma.TransactionCreateWithoutUserInput[] | Prisma.TransactionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutUserInput | Prisma.TransactionCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutUserInput | Prisma.TransactionUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TransactionCreateManyUserInputEnvelope
+  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutUserInput | Prisma.TransactionUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutUserInput | Prisma.TransactionUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
+}
+
 export type TransactionCreateWithoutStudentInput = {
   id?: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
   studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateWithoutStudentInput = {
   id?: string
   studentSemesterId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -596,8 +688,10 @@ export type TransactionScalarWhereInput = {
   OR?: Prisma.TransactionScalarWhereInput[]
   NOT?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
   id?: Prisma.StringFilter<"Transaction"> | string
-  studentId?: Prisma.StringFilter<"Transaction"> | string
+  studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
@@ -608,18 +702,22 @@ export type TransactionScalarWhereInput = {
 
 export type TransactionCreateWithoutStudentSemesterInput = {
   id?: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
+  student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateWithoutStudentSemesterInput = {
   id?: string
-  studentId: string
+  studentId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -654,9 +752,63 @@ export type TransactionUpdateManyWithWhereWithoutStudentSemesterInput = {
   data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutStudentSemesterInput>
 }
 
+export type TransactionCreateWithoutUserInput = {
+  id?: string
+  admissionId?: string | null
+  type: $Enums.TransactionType
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.TransactionStatus
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
+  student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+}
+
+export type TransactionUncheckedCreateWithoutUserInput = {
+  id?: string
+  studentId?: string | null
+  studentSemesterId?: string | null
+  admissionId?: string | null
+  type: $Enums.TransactionType
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.TransactionStatus
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TransactionCreateOrConnectWithoutUserInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput>
+}
+
+export type TransactionCreateManyUserInputEnvelope = {
+  data: Prisma.TransactionCreateManyUserInput | Prisma.TransactionCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type TransactionUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  update: Prisma.XOR<Prisma.TransactionUpdateWithoutUserInput, Prisma.TransactionUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutUserInput, Prisma.TransactionUncheckedCreateWithoutUserInput>
+}
+
+export type TransactionUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  data: Prisma.XOR<Prisma.TransactionUpdateWithoutUserInput, Prisma.TransactionUncheckedUpdateWithoutUserInput>
+}
+
+export type TransactionUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.TransactionScalarWhereInput
+  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutUserInput>
+}
+
 export type TransactionCreateManyStudentInput = {
   id?: string
   studentSemesterId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -667,18 +819,22 @@ export type TransactionCreateManyStudentInput = {
 
 export type TransactionUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
   studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -690,6 +846,8 @@ export type TransactionUncheckedUpdateWithoutStudentInput = {
 export type TransactionUncheckedUpdateManyWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -700,7 +858,9 @@ export type TransactionUncheckedUpdateManyWithoutStudentInput = {
 
 export type TransactionCreateManyStudentSemesterInput = {
   id?: string
-  studentId: string
+  studentId?: string | null
+  userId: string
+  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
@@ -711,18 +871,22 @@ export type TransactionCreateManyStudentSemesterInput = {
 
 export type TransactionUpdateWithoutStudentSemesterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutTransactionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
+  student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutStudentSemesterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -733,7 +897,61 @@ export type TransactionUncheckedUpdateWithoutStudentSemesterInput = {
 
 export type TransactionUncheckedUpdateManyWithoutStudentSemesterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TransactionCreateManyUserInput = {
+  id?: string
+  studentId?: string | null
+  studentSemesterId?: string | null
+  admissionId?: string | null
+  type: $Enums.TransactionType
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.TransactionStatus
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TransactionUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
+  student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
+}
+
+export type TransactionUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TransactionUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
@@ -748,48 +966,59 @@ export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
+  userId?: boolean
+  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
+  userId?: boolean
+  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
+  userId?: boolean
+  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectScalar = {
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
+  userId?: boolean
+  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
@@ -798,30 +1027,36 @@ export type TransactionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "studentSemesterId" | "type" | "amount" | "status" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "studentSemesterId" | "userId" | "admissionId" | "type" | "amount" | "status" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
 export type TransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }
 export type TransactionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }
 export type TransactionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
 }
 
 export type $TransactionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Transaction"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
     studentSemester: Prisma.$StudentSemesterPayload<ExtArgs> | null
-    student: Prisma.$StudentPayload<ExtArgs>
+    student: Prisma.$StudentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    studentId: string
+    studentId: string | null
     studentSemesterId: string | null
+    userId: string
+    admissionId: string | null
     type: $Enums.TransactionType
     amount: runtime.Decimal
     status: $Enums.TransactionStatus
@@ -1222,8 +1457,9 @@ readonly fields: TransactionFieldRefs;
  */
 export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   studentSemester<T extends Prisma.Transaction$studentSemesterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$studentSemesterArgs<ExtArgs>>): Prisma.Prisma__StudentSemesterClient<runtime.Types.Result.GetResult<Prisma.$StudentSemesterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.Transaction$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$studentArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1256,6 +1492,8 @@ export interface TransactionFieldRefs {
   readonly id: Prisma.FieldRef<"Transaction", 'String'>
   readonly studentId: Prisma.FieldRef<"Transaction", 'String'>
   readonly studentSemesterId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly userId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly admissionId: Prisma.FieldRef<"Transaction", 'String'>
   readonly type: Prisma.FieldRef<"Transaction", 'TransactionType'>
   readonly amount: Prisma.FieldRef<"Transaction", 'Decimal'>
   readonly status: Prisma.FieldRef<"Transaction", 'TransactionStatus'>
@@ -1679,6 +1917,25 @@ export type Transaction$studentSemesterArgs<ExtArgs extends runtime.Types.Extens
    */
   include?: Prisma.StudentSemesterInclude<ExtArgs> | null
   where?: Prisma.StudentSemesterWhereInput
+}
+
+/**
+ * Transaction.student
+ */
+export type Transaction$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Student
+   */
+  select?: Prisma.StudentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Student
+   */
+  omit?: Prisma.StudentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentInclude<ExtArgs> | null
+  where?: Prisma.StudentWhereInput
 }
 
 /**

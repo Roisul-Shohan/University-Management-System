@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   AcademicPeriod: 'AcademicPeriod',
   Admission: 'Admission',
+  AdmissionFee: 'AdmissionFee',
   AttendanceRecord: 'AttendanceRecord',
   AttendanceSession: 'AttendanceSession',
   ClassSession: 'ClassSession',
@@ -109,9 +110,10 @@ export type AcademicPeriodScalarFieldEnum = (typeof AcademicPeriodScalarFieldEnu
 
 export const AdmissionScalarFieldEnum = {
   id: 'id',
-  studentId: 'studentId',
+  userId: 'userId',
   programId: 'programId',
   admissionYear: 'admissionYear',
+  admissionFee: 'admissionFee',
   status: 'status',
   appliedAt: 'appliedAt',
   confirmedAt: 'confirmedAt',
@@ -120,6 +122,18 @@ export const AdmissionScalarFieldEnum = {
 } as const
 
 export type AdmissionScalarFieldEnum = (typeof AdmissionScalarFieldEnum)[keyof typeof AdmissionScalarFieldEnum]
+
+
+export const AdmissionFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdmissionFeeScalarFieldEnum = (typeof AdmissionFeeScalarFieldEnum)[keyof typeof AdmissionFeeScalarFieldEnum]
 
 
 export const AttendanceRecordScalarFieldEnum = {
@@ -405,6 +419,8 @@ export const TransactionScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   studentSemesterId: 'studentSemesterId',
+  userId: 'userId',
+  admissionId: 'admissionId',
   type: 'type',
   amount: 'amount',
   status: 'status',

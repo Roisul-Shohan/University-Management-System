@@ -186,6 +186,7 @@ export type ProgramWhereInput = {
   students?: Prisma.StudentListRelationFilter
   curriculumCourses?: Prisma.CurriculumCourseListRelationFilter
   admissions?: Prisma.AdmissionListRelationFilter
+  admissionFees?: Prisma.AdmissionFeeListRelationFilter
 }
 
 export type ProgramOrderByWithRelationInput = {
@@ -198,6 +199,7 @@ export type ProgramOrderByWithRelationInput = {
   students?: Prisma.StudentOrderByRelationAggregateInput
   curriculumCourses?: Prisma.CurriculumCourseOrderByRelationAggregateInput
   admissions?: Prisma.AdmissionOrderByRelationAggregateInput
+  admissionFees?: Prisma.AdmissionFeeOrderByRelationAggregateInput
 }
 
 export type ProgramWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +216,7 @@ export type ProgramWhereUniqueInput = Prisma.AtLeast<{
   students?: Prisma.StudentListRelationFilter
   curriculumCourses?: Prisma.CurriculumCourseListRelationFilter
   admissions?: Prisma.AdmissionListRelationFilter
+  admissionFees?: Prisma.AdmissionFeeListRelationFilter
 }, "id" | "departmentId_degreeType">
 
 export type ProgramOrderByWithAggregationInput = {
@@ -247,6 +250,7 @@ export type ProgramCreateInput = {
   students?: Prisma.StudentCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateInput = {
@@ -258,6 +262,7 @@ export type ProgramUncheckedCreateInput = {
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUpdateInput = {
@@ -269,6 +274,7 @@ export type ProgramUpdateInput = {
   students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateInput = {
@@ -280,6 +286,7 @@ export type ProgramUncheckedUpdateInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateManyInput = {
@@ -361,6 +368,20 @@ export type ProgramUpdateOneRequiredWithoutAdmissionsNestedInput = {
   upsert?: Prisma.ProgramUpsertWithoutAdmissionsInput
   connect?: Prisma.ProgramWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProgramUpdateToOneWithWhereWithoutAdmissionsInput, Prisma.ProgramUpdateWithoutAdmissionsInput>, Prisma.ProgramUncheckedUpdateWithoutAdmissionsInput>
+}
+
+export type ProgramCreateNestedOneWithoutAdmissionFeesInput = {
+  create?: Prisma.XOR<Prisma.ProgramCreateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedCreateWithoutAdmissionFeesInput>
+  connectOrCreate?: Prisma.ProgramCreateOrConnectWithoutAdmissionFeesInput
+  connect?: Prisma.ProgramWhereUniqueInput
+}
+
+export type ProgramUpdateOneRequiredWithoutAdmissionFeesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProgramCreateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedCreateWithoutAdmissionFeesInput>
+  connectOrCreate?: Prisma.ProgramCreateOrConnectWithoutAdmissionFeesInput
+  upsert?: Prisma.ProgramUpsertWithoutAdmissionFeesInput
+  connect?: Prisma.ProgramWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProgramUpdateToOneWithWhereWithoutAdmissionFeesInput, Prisma.ProgramUpdateWithoutAdmissionFeesInput>, Prisma.ProgramUncheckedUpdateWithoutAdmissionFeesInput>
 }
 
 export type ProgramCreateNestedOneWithoutCurriculumCoursesInput = {
@@ -445,6 +466,7 @@ export type ProgramCreateWithoutAdmissionsInput = {
   department: Prisma.DepartmentCreateNestedOneWithoutProgramsInput
   students?: Prisma.StudentCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutAdmissionsInput = {
@@ -455,6 +477,7 @@ export type ProgramUncheckedCreateWithoutAdmissionsInput = {
   updatedAt?: Date | string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutAdmissionsInput = {
@@ -481,6 +504,7 @@ export type ProgramUpdateWithoutAdmissionsInput = {
   department?: Prisma.DepartmentUpdateOneRequiredWithoutProgramsNestedInput
   students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutAdmissionsInput = {
@@ -491,6 +515,67 @@ export type ProgramUncheckedUpdateWithoutAdmissionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
+}
+
+export type ProgramCreateWithoutAdmissionFeesInput = {
+  id?: string
+  degreeType: $Enums.DegreeType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  department: Prisma.DepartmentCreateNestedOneWithoutProgramsInput
+  students?: Prisma.StudentCreateNestedManyWithoutProgramInput
+  curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+}
+
+export type ProgramUncheckedCreateWithoutAdmissionFeesInput = {
+  id?: string
+  degreeType: $Enums.DegreeType
+  departmentId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
+  curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+}
+
+export type ProgramCreateOrConnectWithoutAdmissionFeesInput = {
+  where: Prisma.ProgramWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProgramCreateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedCreateWithoutAdmissionFeesInput>
+}
+
+export type ProgramUpsertWithoutAdmissionFeesInput = {
+  update: Prisma.XOR<Prisma.ProgramUpdateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedUpdateWithoutAdmissionFeesInput>
+  create: Prisma.XOR<Prisma.ProgramCreateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedCreateWithoutAdmissionFeesInput>
+  where?: Prisma.ProgramWhereInput
+}
+
+export type ProgramUpdateToOneWithWhereWithoutAdmissionFeesInput = {
+  where?: Prisma.ProgramWhereInput
+  data: Prisma.XOR<Prisma.ProgramUpdateWithoutAdmissionFeesInput, Prisma.ProgramUncheckedUpdateWithoutAdmissionFeesInput>
+}
+
+export type ProgramUpdateWithoutAdmissionFeesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degreeType?: Prisma.EnumDegreeTypeFieldUpdateOperationsInput | $Enums.DegreeType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutProgramsNestedInput
+  students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
+  curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+}
+
+export type ProgramUncheckedUpdateWithoutAdmissionFeesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degreeType?: Prisma.EnumDegreeTypeFieldUpdateOperationsInput | $Enums.DegreeType
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
+  curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateWithoutCurriculumCoursesInput = {
@@ -501,6 +586,7 @@ export type ProgramCreateWithoutCurriculumCoursesInput = {
   department: Prisma.DepartmentCreateNestedOneWithoutProgramsInput
   students?: Prisma.StudentCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutCurriculumCoursesInput = {
@@ -511,6 +597,7 @@ export type ProgramUncheckedCreateWithoutCurriculumCoursesInput = {
   updatedAt?: Date | string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutCurriculumCoursesInput = {
@@ -537,6 +624,7 @@ export type ProgramUpdateWithoutCurriculumCoursesInput = {
   department?: Prisma.DepartmentUpdateOneRequiredWithoutProgramsNestedInput
   students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutCurriculumCoursesInput = {
@@ -547,6 +635,7 @@ export type ProgramUncheckedUpdateWithoutCurriculumCoursesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateWithoutDepartmentInput = {
@@ -557,6 +646,7 @@ export type ProgramCreateWithoutDepartmentInput = {
   students?: Prisma.StudentCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutDepartmentInput = {
@@ -567,6 +657,7 @@ export type ProgramUncheckedCreateWithoutDepartmentInput = {
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutDepartmentInput = {
@@ -614,6 +705,7 @@ export type ProgramCreateWithoutStudentsInput = {
   department: Prisma.DepartmentCreateNestedOneWithoutProgramsInput
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutStudentsInput = {
@@ -624,6 +716,7 @@ export type ProgramUncheckedCreateWithoutStudentsInput = {
   updatedAt?: Date | string
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutStudentsInput = {
@@ -650,6 +743,7 @@ export type ProgramUpdateWithoutStudentsInput = {
   department?: Prisma.DepartmentUpdateOneRequiredWithoutProgramsNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutStudentsInput = {
@@ -660,6 +754,7 @@ export type ProgramUncheckedUpdateWithoutStudentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateManyDepartmentInput = {
@@ -677,6 +772,7 @@ export type ProgramUpdateWithoutDepartmentInput = {
   students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutDepartmentInput = {
@@ -687,6 +783,7 @@ export type ProgramUncheckedUpdateWithoutDepartmentInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateManyWithoutDepartmentInput = {
@@ -705,12 +802,14 @@ export type ProgramCountOutputType = {
   students: number
   curriculumCourses: number
   admissions: number
+  admissionFees: number
 }
 
 export type ProgramCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   students?: boolean | ProgramCountOutputTypeCountStudentsArgs
   curriculumCourses?: boolean | ProgramCountOutputTypeCountCurriculumCoursesArgs
   admissions?: boolean | ProgramCountOutputTypeCountAdmissionsArgs
+  admissionFees?: boolean | ProgramCountOutputTypeCountAdmissionFeesArgs
 }
 
 /**
@@ -744,6 +843,13 @@ export type ProgramCountOutputTypeCountAdmissionsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.AdmissionWhereInput
 }
 
+/**
+ * ProgramCountOutputType without action
+ */
+export type ProgramCountOutputTypeCountAdmissionFeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdmissionFeeWhereInput
+}
+
 
 export type ProgramSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -755,6 +861,7 @@ export type ProgramSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   students?: boolean | Prisma.Program$studentsArgs<ExtArgs>
   curriculumCourses?: boolean | Prisma.Program$curriculumCoursesArgs<ExtArgs>
   admissions?: boolean | Prisma.Program$admissionsArgs<ExtArgs>
+  admissionFees?: boolean | Prisma.Program$admissionFeesArgs<ExtArgs>
   _count?: boolean | Prisma.ProgramCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["program"]>
 
@@ -790,6 +897,7 @@ export type ProgramInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   students?: boolean | Prisma.Program$studentsArgs<ExtArgs>
   curriculumCourses?: boolean | Prisma.Program$curriculumCoursesArgs<ExtArgs>
   admissions?: boolean | Prisma.Program$admissionsArgs<ExtArgs>
+  admissionFees?: boolean | Prisma.Program$admissionFeesArgs<ExtArgs>
   _count?: boolean | Prisma.ProgramCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProgramIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -806,6 +914,7 @@ export type $ProgramPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     students: Prisma.$StudentPayload<ExtArgs>[]
     curriculumCourses: Prisma.$CurriculumCoursePayload<ExtArgs>[]
     admissions: Prisma.$AdmissionPayload<ExtArgs>[]
+    admissionFees: Prisma.$AdmissionFeePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1211,6 +1320,7 @@ export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends runtime.
   students<T extends Prisma.Program$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   curriculumCourses<T extends Prisma.Program$curriculumCoursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$curriculumCoursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CurriculumCoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   admissions<T extends Prisma.Program$admissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$admissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  admissionFees<T extends Prisma.Program$admissionFeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$admissionFeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionFeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1715,6 +1825,30 @@ export type Program$admissionsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.AdmissionScalarFieldEnum | Prisma.AdmissionScalarFieldEnum[]
+}
+
+/**
+ * Program.admissionFees
+ */
+export type Program$admissionFeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdmissionFee
+   */
+  select?: Prisma.AdmissionFeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdmissionFee
+   */
+  omit?: Prisma.AdmissionFeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdmissionFeeInclude<ExtArgs> | null
+  where?: Prisma.AdmissionFeeWhereInput
+  orderBy?: Prisma.AdmissionFeeOrderByWithRelationInput | Prisma.AdmissionFeeOrderByWithRelationInput[]
+  cursor?: Prisma.AdmissionFeeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdmissionFeeScalarFieldEnum | Prisma.AdmissionFeeScalarFieldEnum[]
 }
 
 /**

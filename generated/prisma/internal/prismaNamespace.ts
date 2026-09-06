@@ -399,6 +399,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   AcademicPeriod: 'AcademicPeriod',
   Admission: 'Admission',
+  AdmissionFee: 'AdmissionFee',
   AttendanceRecord: 'AttendanceRecord',
   AttendanceSession: 'AttendanceSession',
   ClassSession: 'ClassSession',
@@ -437,7 +438,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "academicPeriod" | "admission" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
+    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -586,6 +587,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AdmissionCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AdmissionCountAggregateOutputType> | number
+        }
+      }
+    }
+    AdmissionFee: {
+      payload: Prisma.$AdmissionFeePayload<ExtArgs>
+      fields: Prisma.AdmissionFeeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdmissionFeeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdmissionFeeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        findFirst: {
+          args: Prisma.AdmissionFeeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdmissionFeeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        findMany: {
+          args: Prisma.AdmissionFeeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>[]
+        }
+        create: {
+          args: Prisma.AdmissionFeeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        createMany: {
+          args: Prisma.AdmissionFeeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdmissionFeeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>[]
+        }
+        delete: {
+          args: Prisma.AdmissionFeeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        update: {
+          args: Prisma.AdmissionFeeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        deleteMany: {
+          args: Prisma.AdmissionFeeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdmissionFeeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdmissionFeeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>[]
+        }
+        upsert: {
+          args: Prisma.AdmissionFeeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionFeePayload>
+        }
+        aggregate: {
+          args: Prisma.AdmissionFeeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdmissionFee>
+        }
+        groupBy: {
+          args: Prisma.AdmissionFeeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdmissionFeeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdmissionFeeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdmissionFeeCountAggregateOutputType> | number
         }
       }
     }
@@ -2345,9 +2420,10 @@ export type AcademicPeriodScalarFieldEnum = (typeof AcademicPeriodScalarFieldEnu
 
 export const AdmissionScalarFieldEnum = {
   id: 'id',
-  studentId: 'studentId',
+  userId: 'userId',
   programId: 'programId',
   admissionYear: 'admissionYear',
+  admissionFee: 'admissionFee',
   status: 'status',
   appliedAt: 'appliedAt',
   confirmedAt: 'confirmedAt',
@@ -2356,6 +2432,18 @@ export const AdmissionScalarFieldEnum = {
 } as const
 
 export type AdmissionScalarFieldEnum = (typeof AdmissionScalarFieldEnum)[keyof typeof AdmissionScalarFieldEnum]
+
+
+export const AdmissionFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdmissionFeeScalarFieldEnum = (typeof AdmissionFeeScalarFieldEnum)[keyof typeof AdmissionFeeScalarFieldEnum]
 
 
 export const AttendanceRecordScalarFieldEnum = {
@@ -2641,6 +2729,8 @@ export const TransactionScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   studentSemesterId: 'studentSemesterId',
+  userId: 'userId',
+  admissionId: 'admissionId',
   type: 'type',
   amount: 'amount',
   status: 'status',
@@ -2762,6 +2852,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'AdmissionStatus'
  */
 export type EnumAdmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdmissionStatus'>
@@ -2856,20 +2960,6 @@ export type EnumExamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'ExamStatus[]'
  */
 export type ListEnumExamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal'
- */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal[]'
- */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -3123,6 +3213,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   academicPeriod?: Prisma.AcademicPeriodOmit
   admission?: Prisma.AdmissionOmit
+  admissionFee?: Prisma.AdmissionFeeOmit
   attendanceRecord?: Prisma.AttendanceRecordOmit
   attendanceSession?: Prisma.AttendanceSessionOmit
   classSession?: Prisma.ClassSessionOmit

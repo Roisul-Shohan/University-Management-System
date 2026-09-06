@@ -28,17 +28,20 @@ export type AggregateAdmission = {
 
 export type AdmissionAvgAggregateOutputType = {
   admissionYear: number | null
+  admissionFee: runtime.Decimal | null
 }
 
 export type AdmissionSumAggregateOutputType = {
   admissionYear: number | null
+  admissionFee: runtime.Decimal | null
 }
 
 export type AdmissionMinAggregateOutputType = {
   id: string | null
-  studentId: string | null
+  userId: string | null
   programId: string | null
   admissionYear: number | null
+  admissionFee: runtime.Decimal | null
   status: $Enums.AdmissionStatus | null
   appliedAt: Date | null
   confirmedAt: Date | null
@@ -48,9 +51,10 @@ export type AdmissionMinAggregateOutputType = {
 
 export type AdmissionMaxAggregateOutputType = {
   id: string | null
-  studentId: string | null
+  userId: string | null
   programId: string | null
   admissionYear: number | null
+  admissionFee: runtime.Decimal | null
   status: $Enums.AdmissionStatus | null
   appliedAt: Date | null
   confirmedAt: Date | null
@@ -60,9 +64,10 @@ export type AdmissionMaxAggregateOutputType = {
 
 export type AdmissionCountAggregateOutputType = {
   id: number
-  studentId: number
+  userId: number
   programId: number
   admissionYear: number
+  admissionFee: number
   status: number
   appliedAt: number
   confirmedAt: number
@@ -74,17 +79,20 @@ export type AdmissionCountAggregateOutputType = {
 
 export type AdmissionAvgAggregateInputType = {
   admissionYear?: true
+  admissionFee?: true
 }
 
 export type AdmissionSumAggregateInputType = {
   admissionYear?: true
+  admissionFee?: true
 }
 
 export type AdmissionMinAggregateInputType = {
   id?: true
-  studentId?: true
+  userId?: true
   programId?: true
   admissionYear?: true
+  admissionFee?: true
   status?: true
   appliedAt?: true
   confirmedAt?: true
@@ -94,9 +102,10 @@ export type AdmissionMinAggregateInputType = {
 
 export type AdmissionMaxAggregateInputType = {
   id?: true
-  studentId?: true
+  userId?: true
   programId?: true
   admissionYear?: true
+  admissionFee?: true
   status?: true
   appliedAt?: true
   confirmedAt?: true
@@ -106,9 +115,10 @@ export type AdmissionMaxAggregateInputType = {
 
 export type AdmissionCountAggregateInputType = {
   id?: true
-  studentId?: true
+  userId?: true
   programId?: true
   admissionYear?: true
+  admissionFee?: true
   status?: true
   appliedAt?: true
   confirmedAt?: true
@@ -205,9 +215,10 @@ export type AdmissionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type AdmissionGroupByOutputType = {
   id: string
-  studentId: string
+  userId: string
   programId: string
   admissionYear: number
+  admissionFee: runtime.Decimal
   status: $Enums.AdmissionStatus
   appliedAt: Date
   confirmedAt: Date | null
@@ -240,29 +251,31 @@ export type AdmissionWhereInput = {
   OR?: Prisma.AdmissionWhereInput[]
   NOT?: Prisma.AdmissionWhereInput | Prisma.AdmissionWhereInput[]
   id?: Prisma.StringFilter<"Admission"> | string
-  studentId?: Prisma.StringFilter<"Admission"> | string
+  userId?: Prisma.StringFilter<"Admission"> | string
   programId?: Prisma.StringFilter<"Admission"> | string
   admissionYear?: Prisma.IntFilter<"Admission"> | number
+  admissionFee?: Prisma.DecimalFilter<"Admission"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFilter<"Admission"> | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Admission"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
 }
 
 export type AdmissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   programId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  student?: Prisma.StudentOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
   program?: Prisma.ProgramOrderByWithRelationInput
 }
 
@@ -271,23 +284,25 @@ export type AdmissionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AdmissionWhereInput | Prisma.AdmissionWhereInput[]
   OR?: Prisma.AdmissionWhereInput[]
   NOT?: Prisma.AdmissionWhereInput | Prisma.AdmissionWhereInput[]
-  studentId?: Prisma.StringFilter<"Admission"> | string
+  userId?: Prisma.StringFilter<"Admission"> | string
   programId?: Prisma.StringFilter<"Admission"> | string
   admissionYear?: Prisma.IntFilter<"Admission"> | number
+  admissionFee?: Prisma.DecimalFilter<"Admission"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFilter<"Admission"> | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Admission"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
 }, "id">
 
 export type AdmissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   programId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -305,9 +320,10 @@ export type AdmissionScalarWhereWithAggregatesInput = {
   OR?: Prisma.AdmissionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AdmissionScalarWhereWithAggregatesInput | Prisma.AdmissionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Admission"> | string
-  studentId?: Prisma.StringWithAggregatesFilter<"Admission"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Admission"> | string
   programId?: Prisma.StringWithAggregatesFilter<"Admission"> | string
   admissionYear?: Prisma.IntWithAggregatesFilter<"Admission"> | number
+  admissionFee?: Prisma.DecimalWithAggregatesFilter<"Admission"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusWithAggregatesFilter<"Admission"> | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeWithAggregatesFilter<"Admission"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Admission"> | Date | string | null
@@ -318,20 +334,22 @@ export type AdmissionScalarWhereWithAggregatesInput = {
 export type AdmissionCreateInput = {
   id?: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutAdmissionsInput
+  user: Prisma.UserCreateNestedOneWithoutAdmissionsInput
   program: Prisma.ProgramCreateNestedOneWithoutAdmissionsInput
 }
 
 export type AdmissionUncheckedCreateInput = {
   id?: string
-  studentId: string
+  userId: string
   programId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -342,20 +360,22 @@ export type AdmissionUncheckedCreateInput = {
 export type AdmissionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutAdmissionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAdmissionsNestedInput
   program?: Prisma.ProgramUpdateOneRequiredWithoutAdmissionsNestedInput
 }
 
 export type AdmissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   programId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -365,9 +385,10 @@ export type AdmissionUncheckedUpdateInput = {
 
 export type AdmissionCreateManyInput = {
   id?: string
-  studentId: string
+  userId: string
   programId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -378,6 +399,7 @@ export type AdmissionCreateManyInput = {
 export type AdmissionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -387,9 +409,10 @@ export type AdmissionUpdateManyMutationInput = {
 
 export type AdmissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   programId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -399,9 +422,10 @@ export type AdmissionUncheckedUpdateManyInput = {
 
 export type AdmissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   programId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
@@ -411,13 +435,15 @@ export type AdmissionCountOrderByAggregateInput = {
 
 export type AdmissionAvgOrderByAggregateInput = {
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
 }
 
 export type AdmissionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   programId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
@@ -427,9 +453,10 @@ export type AdmissionMaxOrderByAggregateInput = {
 
 export type AdmissionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  studentId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   programId?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
@@ -439,6 +466,7 @@ export type AdmissionMinOrderByAggregateInput = {
 
 export type AdmissionSumOrderByAggregateInput = {
   admissionYear?: Prisma.SortOrder
+  admissionFee?: Prisma.SortOrder
 }
 
 export type AdmissionListRelationFilter = {
@@ -457,6 +485,14 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type EnumAdmissionStatusFieldUpdateOperationsInput = {
@@ -509,63 +545,65 @@ export type AdmissionUncheckedUpdateManyWithoutProgramNestedInput = {
   deleteMany?: Prisma.AdmissionScalarWhereInput | Prisma.AdmissionScalarWhereInput[]
 }
 
-export type AdmissionCreateNestedManyWithoutStudentInput = {
-  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput> | Prisma.AdmissionCreateWithoutStudentInput[] | Prisma.AdmissionUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutStudentInput | Prisma.AdmissionCreateOrConnectWithoutStudentInput[]
-  createMany?: Prisma.AdmissionCreateManyStudentInputEnvelope
+export type AdmissionCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput> | Prisma.AdmissionCreateWithoutUserInput[] | Prisma.AdmissionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutUserInput | Prisma.AdmissionCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.AdmissionCreateManyUserInputEnvelope
   connect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
 }
 
-export type AdmissionUncheckedCreateNestedManyWithoutStudentInput = {
-  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput> | Prisma.AdmissionCreateWithoutStudentInput[] | Prisma.AdmissionUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutStudentInput | Prisma.AdmissionCreateOrConnectWithoutStudentInput[]
-  createMany?: Prisma.AdmissionCreateManyStudentInputEnvelope
+export type AdmissionUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput> | Prisma.AdmissionCreateWithoutUserInput[] | Prisma.AdmissionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutUserInput | Prisma.AdmissionCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.AdmissionCreateManyUserInputEnvelope
   connect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
 }
 
-export type AdmissionUpdateManyWithoutStudentNestedInput = {
-  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput> | Prisma.AdmissionCreateWithoutStudentInput[] | Prisma.AdmissionUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutStudentInput | Prisma.AdmissionCreateOrConnectWithoutStudentInput[]
-  upsert?: Prisma.AdmissionUpsertWithWhereUniqueWithoutStudentInput | Prisma.AdmissionUpsertWithWhereUniqueWithoutStudentInput[]
-  createMany?: Prisma.AdmissionCreateManyStudentInputEnvelope
+export type AdmissionUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput> | Prisma.AdmissionCreateWithoutUserInput[] | Prisma.AdmissionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutUserInput | Prisma.AdmissionCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.AdmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.AdmissionUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.AdmissionCreateManyUserInputEnvelope
   set?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   disconnect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   delete?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   connect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
-  update?: Prisma.AdmissionUpdateWithWhereUniqueWithoutStudentInput | Prisma.AdmissionUpdateWithWhereUniqueWithoutStudentInput[]
-  updateMany?: Prisma.AdmissionUpdateManyWithWhereWithoutStudentInput | Prisma.AdmissionUpdateManyWithWhereWithoutStudentInput[]
+  update?: Prisma.AdmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.AdmissionUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.AdmissionUpdateManyWithWhereWithoutUserInput | Prisma.AdmissionUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.AdmissionScalarWhereInput | Prisma.AdmissionScalarWhereInput[]
 }
 
-export type AdmissionUncheckedUpdateManyWithoutStudentNestedInput = {
-  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput> | Prisma.AdmissionCreateWithoutStudentInput[] | Prisma.AdmissionUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutStudentInput | Prisma.AdmissionCreateOrConnectWithoutStudentInput[]
-  upsert?: Prisma.AdmissionUpsertWithWhereUniqueWithoutStudentInput | Prisma.AdmissionUpsertWithWhereUniqueWithoutStudentInput[]
-  createMany?: Prisma.AdmissionCreateManyStudentInputEnvelope
+export type AdmissionUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput> | Prisma.AdmissionCreateWithoutUserInput[] | Prisma.AdmissionUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutUserInput | Prisma.AdmissionCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.AdmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.AdmissionUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.AdmissionCreateManyUserInputEnvelope
   set?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   disconnect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   delete?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
   connect?: Prisma.AdmissionWhereUniqueInput | Prisma.AdmissionWhereUniqueInput[]
-  update?: Prisma.AdmissionUpdateWithWhereUniqueWithoutStudentInput | Prisma.AdmissionUpdateWithWhereUniqueWithoutStudentInput[]
-  updateMany?: Prisma.AdmissionUpdateManyWithWhereWithoutStudentInput | Prisma.AdmissionUpdateManyWithWhereWithoutStudentInput[]
+  update?: Prisma.AdmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.AdmissionUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.AdmissionUpdateManyWithWhereWithoutUserInput | Prisma.AdmissionUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.AdmissionScalarWhereInput | Prisma.AdmissionScalarWhereInput[]
 }
 
 export type AdmissionCreateWithoutProgramInput = {
   id?: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutAdmissionsInput
+  user: Prisma.UserCreateNestedOneWithoutAdmissionsInput
 }
 
 export type AdmissionUncheckedCreateWithoutProgramInput = {
   id?: string
-  studentId: string
+  userId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -604,9 +642,10 @@ export type AdmissionScalarWhereInput = {
   OR?: Prisma.AdmissionScalarWhereInput[]
   NOT?: Prisma.AdmissionScalarWhereInput | Prisma.AdmissionScalarWhereInput[]
   id?: Prisma.StringFilter<"Admission"> | string
-  studentId?: Prisma.StringFilter<"Admission"> | string
+  userId?: Prisma.StringFilter<"Admission"> | string
   programId?: Prisma.StringFilter<"Admission"> | string
   admissionYear?: Prisma.IntFilter<"Admission"> | number
+  admissionFee?: Prisma.DecimalFilter<"Admission"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFilter<"Admission"> | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Admission"> | Date | string | null
@@ -614,9 +653,10 @@ export type AdmissionScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
 }
 
-export type AdmissionCreateWithoutStudentInput = {
+export type AdmissionCreateWithoutUserInput = {
   id?: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -625,10 +665,11 @@ export type AdmissionCreateWithoutStudentInput = {
   program: Prisma.ProgramCreateNestedOneWithoutAdmissionsInput
 }
 
-export type AdmissionUncheckedCreateWithoutStudentInput = {
+export type AdmissionUncheckedCreateWithoutUserInput = {
   id?: string
   programId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -636,36 +677,37 @@ export type AdmissionUncheckedCreateWithoutStudentInput = {
   updatedAt?: Date | string
 }
 
-export type AdmissionCreateOrConnectWithoutStudentInput = {
+export type AdmissionCreateOrConnectWithoutUserInput = {
   where: Prisma.AdmissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput>
+  create: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput>
 }
 
-export type AdmissionCreateManyStudentInputEnvelope = {
-  data: Prisma.AdmissionCreateManyStudentInput | Prisma.AdmissionCreateManyStudentInput[]
+export type AdmissionCreateManyUserInputEnvelope = {
+  data: Prisma.AdmissionCreateManyUserInput | Prisma.AdmissionCreateManyUserInput[]
   skipDuplicates?: boolean
 }
 
-export type AdmissionUpsertWithWhereUniqueWithoutStudentInput = {
+export type AdmissionUpsertWithWhereUniqueWithoutUserInput = {
   where: Prisma.AdmissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.AdmissionUpdateWithoutStudentInput, Prisma.AdmissionUncheckedUpdateWithoutStudentInput>
-  create: Prisma.XOR<Prisma.AdmissionCreateWithoutStudentInput, Prisma.AdmissionUncheckedCreateWithoutStudentInput>
+  update: Prisma.XOR<Prisma.AdmissionUpdateWithoutUserInput, Prisma.AdmissionUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput>
 }
 
-export type AdmissionUpdateWithWhereUniqueWithoutStudentInput = {
+export type AdmissionUpdateWithWhereUniqueWithoutUserInput = {
   where: Prisma.AdmissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.AdmissionUpdateWithoutStudentInput, Prisma.AdmissionUncheckedUpdateWithoutStudentInput>
+  data: Prisma.XOR<Prisma.AdmissionUpdateWithoutUserInput, Prisma.AdmissionUncheckedUpdateWithoutUserInput>
 }
 
-export type AdmissionUpdateManyWithWhereWithoutStudentInput = {
+export type AdmissionUpdateManyWithWhereWithoutUserInput = {
   where: Prisma.AdmissionScalarWhereInput
-  data: Prisma.XOR<Prisma.AdmissionUpdateManyMutationInput, Prisma.AdmissionUncheckedUpdateManyWithoutStudentInput>
+  data: Prisma.XOR<Prisma.AdmissionUpdateManyMutationInput, Prisma.AdmissionUncheckedUpdateManyWithoutUserInput>
 }
 
 export type AdmissionCreateManyProgramInput = {
   id?: string
-  studentId: string
+  userId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -676,18 +718,20 @@ export type AdmissionCreateManyProgramInput = {
 export type AdmissionUpdateWithoutProgramInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutAdmissionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAdmissionsNestedInput
 }
 
 export type AdmissionUncheckedUpdateWithoutProgramInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -697,8 +741,9 @@ export type AdmissionUncheckedUpdateWithoutProgramInput = {
 
 export type AdmissionUncheckedUpdateManyWithoutProgramInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -706,10 +751,11 @@ export type AdmissionUncheckedUpdateManyWithoutProgramInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdmissionCreateManyStudentInput = {
+export type AdmissionCreateManyUserInput = {
   id?: string
   programId: string
   admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.AdmissionStatus
   appliedAt?: Date | string
   confirmedAt?: Date | string | null
@@ -717,9 +763,10 @@ export type AdmissionCreateManyStudentInput = {
   updatedAt?: Date | string
 }
 
-export type AdmissionUpdateWithoutStudentInput = {
+export type AdmissionUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -728,10 +775,11 @@ export type AdmissionUpdateWithoutStudentInput = {
   program?: Prisma.ProgramUpdateOneRequiredWithoutAdmissionsNestedInput
 }
 
-export type AdmissionUncheckedUpdateWithoutStudentInput = {
+export type AdmissionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   programId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -739,10 +787,11 @@ export type AdmissionUncheckedUpdateWithoutStudentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdmissionUncheckedUpdateManyWithoutStudentInput = {
+export type AdmissionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   programId?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -754,51 +803,55 @@ export type AdmissionUncheckedUpdateManyWithoutStudentInput = {
 
 export type AdmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  studentId?: boolean
+  userId?: boolean
   programId?: boolean
   admissionYear?: boolean
+  admissionFee?: boolean
   status?: boolean
   appliedAt?: boolean
   confirmedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admission"]>
 
 export type AdmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  studentId?: boolean
+  userId?: boolean
   programId?: boolean
   admissionYear?: boolean
+  admissionFee?: boolean
   status?: boolean
   appliedAt?: boolean
   confirmedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admission"]>
 
 export type AdmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  studentId?: boolean
+  userId?: boolean
   programId?: boolean
   admissionYear?: boolean
+  admissionFee?: boolean
   status?: boolean
   appliedAt?: boolean
   confirmedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admission"]>
 
 export type AdmissionSelectScalar = {
   id?: boolean
-  studentId?: boolean
+  userId?: boolean
   programId?: boolean
   admissionYear?: boolean
+  admissionFee?: boolean
   status?: boolean
   appliedAt?: boolean
   confirmedAt?: boolean
@@ -806,31 +859,32 @@ export type AdmissionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AdmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "programId" | "admissionYear" | "status" | "appliedAt" | "confirmedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["admission"]>
+export type AdmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "programId" | "admissionYear" | "admissionFee" | "status" | "appliedAt" | "confirmedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["admission"]>
 export type AdmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 export type AdmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 export type AdmissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 
 export type $AdmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Admission"
   objects: {
-    student: Prisma.$StudentPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
     program: Prisma.$ProgramPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    studentId: string
+    userId: string
     programId: string
     admissionYear: number
+    admissionFee: runtime.Decimal
     status: $Enums.AdmissionStatus
     appliedAt: Date
     confirmedAt: Date | null
@@ -1230,7 +1284,7 @@ readonly fields: AdmissionFieldRefs;
  */
 export interface Prisma__AdmissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1262,9 +1316,10 @@ export interface Prisma__AdmissionClient<T, Null = never, ExtArgs extends runtim
  */
 export interface AdmissionFieldRefs {
   readonly id: Prisma.FieldRef<"Admission", 'String'>
-  readonly studentId: Prisma.FieldRef<"Admission", 'String'>
+  readonly userId: Prisma.FieldRef<"Admission", 'String'>
   readonly programId: Prisma.FieldRef<"Admission", 'String'>
   readonly admissionYear: Prisma.FieldRef<"Admission", 'Int'>
+  readonly admissionFee: Prisma.FieldRef<"Admission", 'Decimal'>
   readonly status: Prisma.FieldRef<"Admission", 'AdmissionStatus'>
   readonly appliedAt: Prisma.FieldRef<"Admission", 'DateTime'>
   readonly confirmedAt: Prisma.FieldRef<"Admission", 'DateTime'>

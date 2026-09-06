@@ -36,9 +36,10 @@ enum AcademicPeriodType {
 
 enum AdmissionStatus {
   PENDING
+  APPROVED
   CONFIRMED
-  CANCELLED
   REJECTED
+  CANCELLED
 }
 
 enum TransactionType {

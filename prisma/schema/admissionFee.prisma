@@ -1,0 +1,17 @@
+model AdmissionFee {
+  id         String     @id @default(uuid())
+
+  programId  String
+  amount     Decimal    @db.Decimal(10, 2)
+
+  isActive   Boolean    @default(true)
+
+  program    Program    @relation(fields: [programId],references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([programId])
+  @@index([isActive])
+  @@map("admission_fees")
+}

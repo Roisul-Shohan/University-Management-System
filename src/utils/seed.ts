@@ -1,8 +1,9 @@
-import { Role } from "../../generated/prisma/client";
+import { DegreeType, Role } from "../../generated/prisma/client";
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma.js";
 import config from "../config";
 import AppError from "../errors/AppErrors";
+import { Program } from "../../generated/prisma/browser";
 
 export async function seedSuperAdmin() {
 	const email = config.super_admin_email;
@@ -341,10 +342,76 @@ export async function seedCourses() {
 	}
 }
 
+export async function seedPrograms() {
+	const departments = await prisma.department.findMany();
+
+	if (departments.length === 0) {
+		throw new AppError(
+			500,
+			"No departments found. Create departments before seeding programs.",
+		);
+	}
+
+	const programs = [
+		{
+			degreeType: DegreeType.BSC,
+			fee: 10000,
+		},
+		{
+			degreeType: DegreeType.MSC,
+			fee: 15000,
+		},
+		{
+			degreeType: DegreeType.PHD,
+			fee: 25000,
+		},
+	];
+
+	for (const department of departments) {
+		for (const program of programs) {
+			const programRecord = await prisma.program.upsert({
+				where: {
+					departmentId_degreeType: {
+						departmentId: department.id,
+						degreeType: program.degreeType,
+					},
+				},
+
+				update: {},
+
+				create: {
+					departmentId: department.id,
+					degreeType: program.degreeType,
+				},
+			});
+
+			const existingFee = await prisma.admissionFee.findFirst({
+				where: {
+					programId: programRecord.id,
+					isActive: true,
+				},
+			});
+
+			if (!existingFee) {
+				await prisma.admissionFee.create({
+					data: {
+						programId: programRecord.id,
+						amount: program.fee,
+						isActive: true,
+					},
+				});
+			}
+		}
+	}
+
+	console.log("Programs and admission fees seeded successfully.");
+}
+
 export async function seed() {
 	await seedSuperAdmin();
 	await seedDepartments();
 	await seedCourses();
+	await seedPrograms();
 
 	console.log("Database seeding completed.");
 }

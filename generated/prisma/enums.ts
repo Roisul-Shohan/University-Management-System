@@ -62,9 +62,10 @@ export type AcademicPeriodType = (typeof AcademicPeriodType)[keyof typeof Academ
 
 export const AdmissionStatus = {
   PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
   CONFIRMED: 'CONFIRMED',
-  CANCELLED: 'CANCELLED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
 } as const
 
 export type AdmissionStatus = (typeof AdmissionStatus)[keyof typeof AdmissionStatus]

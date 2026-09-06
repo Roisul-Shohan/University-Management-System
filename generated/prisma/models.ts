@@ -10,6 +10,7 @@
  */
 export type * from './models/AcademicPeriod'
 export type * from './models/Admission'
+export type * from './models/AdmissionFee'
 export type * from './models/AttendanceRecord'
 export type * from './models/AttendanceSession'
 export type * from './models/ClassSession'
