@@ -8,11 +8,11 @@ import {
 	resetPassword,
 	verifyEmail,
 } from "./auth.service";
-import catchAsync from "../utils/catchAsync";
-import { jwtUtils } from "../utils/jwt";
-import config from "../config";
-import sendResponse from "../utils/sendResponse";
-import AppError from "../errors/AppErrors";
+import catchAsync from "../../utils/catchAsync";
+import { jwtUtils } from "../../utils/jwt";
+import config from "../../config";
+import sendResponse from "../../utils/sendResponse";
+import AppError from "../../errors/AppErrors";
 
 export const register = catchAsync(async (req: Request, res: Response) => {
 	const result = await registerUser(req.body);

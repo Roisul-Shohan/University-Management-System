@@ -9,7 +9,7 @@ import {
 	resetPasswordController,
 	verifyEmailController,
 } from "./auth.controller";
-import validateRequest from "../middlewares/validateRequest";
+import validateRequest from "../../middlewares/validateRequest";
 import {
 	forgotPasswordSchema,
 	loginSchema,
@@ -17,8 +17,8 @@ import {
 	resetPasswordSchema,
 	verifyEmailSchema,
 } from "./auth.validation";
-import { auth } from "../middlewares/auth";
-import { Role } from "../../generated/prisma/enums";
+import { auth } from "../../middlewares/auth";
+import { Role } from "../../../generated/prisma/enums";
 
 const router = Router();
 

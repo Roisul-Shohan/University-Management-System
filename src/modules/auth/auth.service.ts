@@ -8,13 +8,16 @@ import {
 	ResetPasswordInput,
 	VerifyEmailInput,
 } from "./auth.interface";
-import { prisma } from "../lib/prisma";
-import AppError from "../errors/AppErrors";
-import { redisClient } from "../lib/redis";
+import { prisma } from "../../lib/prisma";
+import AppError from "../../errors/AppErrors";
+import { redisClient } from "../../lib/redis";
 import { randomInt } from "crypto";
-import { sendPasswordResetEmail, sendVerificationEmail } from "../utils/email";
-import { jwtUtils } from "../utils/jwt";
-import config from "../config";
+import {
+	sendPasswordResetEmail,
+	sendVerificationEmail,
+} from "../../utils/email";
+import { jwtUtils } from "../../utils/jwt";
+import config from "../../config";
 
 const OTP_EXPIRATION = 4 * 60; // 4 minutes
 
