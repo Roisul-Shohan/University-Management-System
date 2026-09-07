@@ -71,3 +71,43 @@ export const sendPasswordResetEmail = async (
 		);
 	}
 };
+
+export const sendAcademicPeriodEmail = async (
+	email: string,
+	name: string,
+	title: string,
+	message: string,
+	endDate: Date,
+) => {
+	const templatePath = path.join(
+		process.cwd(),
+		"src",
+		"views",
+		"emails",
+		"academic-period-opened.ejs",
+	);
+
+	const formattedEndDate = endDate.toLocaleDateString();
+
+	const html = await ejs.renderFile(templatePath, {
+		name,
+		title,
+		message,
+		endDate: formattedEndDate,
+		year: new Date().getFullYear(),
+	});
+
+	try {
+		await transporter.sendMail({
+			from: `"University Management System" <${config.email_sender}>`,
+			to: email,
+			subject: title,
+			html,
+		});
+	} catch (error) {
+		throw new AppError(
+			500,
+			"Unable to send academic period email. Please try again.",
+		);
+	}
+};

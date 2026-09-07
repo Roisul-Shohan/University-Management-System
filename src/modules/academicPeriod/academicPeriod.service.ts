@@ -1,10 +1,14 @@
+/** biome-ignore-all lint/style/useImportType: <explanation> */
+/** biome-ignore-all assist/source/organizeImports: <explanation> */
 import { prisma } from "../../lib/prisma.js";
 import AppError from "../../errors/AppErrors.js";
 import {
 	ICreateAcademicPeriod,
 	IGetAcademicPeriodsQuery,
 	IUpdateAcademicPeriod,
+	IUpdateAcademicPeriodStatus,
 } from "./academicPeriod.interface.js";
+import { notificationQueue } from "../../queues/notification.queue.js";
 
 export const createAcademicPeriod = async (data: ICreateAcademicPeriod) => {
 	const { type, startDate, endDate } = data;
@@ -154,12 +158,31 @@ export const updateAcademicPeriod = async (
 		},
 	});
 
+	if (academicPeriod.isActive && !existingPeriod.isActive) {
+		const now = new Date();
+
+		const isCurrentlyOpen =
+			academicPeriod.startDate <= now && academicPeriod.endDate >= now;
+
+		if (isCurrentlyOpen) {
+			await notificationQueue.add(
+				"academic-period-opened",
+				{
+					academicPeriodId: academicPeriod.id,
+				},
+				{
+					jobId: `academic-period-opened-${academicPeriod.id}`,
+				},
+			);
+		}
+	}
+
 	return academicPeriod;
 };
 
 export const updateAcademicPeriodStatus = async (
 	id: string,
-	isActive: boolean,
+	data: IUpdateAcademicPeriodStatus,
 ) => {
 	const existingPeriod = await prisma.academicPeriod.findUnique({
 		where: {
@@ -171,14 +194,14 @@ export const updateAcademicPeriodStatus = async (
 		throw new AppError(404, "Academic period not found.");
 	}
 
-	if (existingPeriod.isActive === isActive) {
+	if (existingPeriod.isActive === data.isActive) {
 		throw new AppError(
 			400,
-			`Academic period is already ${isActive ? "active" : "inactive"}.`,
+			`Academic period is already ${data.isActive ? "active" : "inactive"}.`,
 		);
 	}
 
-	if (isActive) {
+	if (data.isActive) {
 		const activePeriod = await prisma.academicPeriod.findFirst({
 			where: {
 				type: existingPeriod.type,
@@ -202,10 +225,38 @@ export const updateAcademicPeriodStatus = async (
 			id,
 		},
 		data: {
-			isActive: isActive,
+			isActive: data.isActive,
 		},
 	});
 
+	if (!existingPeriod.isActive && academicPeriod.isActive) {
+		const now = new Date();
+
+		if (academicPeriod.startDate <= now) {
+			await notificationQueue.add(
+				"academic-period-opened",
+				{
+					academicPeriodId: academicPeriod.id,
+				},
+				{
+					jobId: `academic-period-opened-${academicPeriod.id}`,
+				},
+			);
+		} else {
+			const delay = academicPeriod.startDate.getTime() - now.getTime();
+
+			await notificationQueue.add(
+				"academic-period-opened",
+				{
+					academicPeriodId: academicPeriod.id,
+				},
+				{
+					jobId: `academic-period-opened-${academicPeriod.id}`,
+					delay,
+				},
+			);
+		}
+	}
 	return academicPeriod;
 };
 

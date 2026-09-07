@@ -71,7 +71,7 @@ export const updateAcademicPeriodStatusController = catchAsync(
 	async (req: Request, res: Response) => {
 		const academicPeriod = await updateAcademicPeriodStatus(
 			req.params.id as string,
-			req.body.isActive,
+			req.body,
 		);
 
 		sendResponse(res, {

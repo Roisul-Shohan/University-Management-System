@@ -20,3 +20,6 @@ export interface IUpdateAcademicPeriod {
 	startDate?: Date;
 	endDate?: Date;
 }
+export interface IUpdateAcademicPeriodStatus {
+	isActive: boolean;
+}
