@@ -4,12 +4,12 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { notFound } from "./middlewares/notFound";
-import globalErrorHandler from "./middlewares/globalErrorHandler";
-import { authRoutes } from "./modules/auth/auth.routes";
-import { usersRouter } from "./modules/users/users.route";
-import { academicPeriodRouter } from "./modules/academicPeriod/academicPeriod.route";
-import { notificationRouter } from "./modules/notifications/notification.route";
+import { notFound } from "./middlewares/notFound.js";
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
+import { authRoutes } from "./modules/auth/auth.routes.js";
+import { usersRouter } from "./modules/users/users.route.js";
+import { academicPeriodRouter } from "./modules/academicPeriod/academicPeriod.route.js";
+import { notificationRouter } from "./modules/notifications/notification.route.js";
 
 const app: Application = express();
 

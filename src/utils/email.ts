@@ -1,8 +1,8 @@
 import ejs from "ejs";
 import path from "path";
-import { transporter } from "../lib/nodemailer";
-import AppError from "../errors/AppErrors";
-import config from "../config";
+import { transporter } from "../lib/nodemailer.js";
+import AppError from "../errors/AppErrors.js";
+import config from "../config/index.js";
 
 export const sendVerificationEmail = async (
 	email: string,

@@ -1,9 +1,9 @@
 /** biome-ignore-all lint/style/useImportType: <explanation> */
 import bcrypt from "bcryptjs";
-import { PrismaClient } from "../../../generated/prisma/client";
-import AppError from "../../errors/AppErrors";
-import { prisma } from "../../lib/prisma";
-import { GetUsersQuery, UpdateProfileInput } from "./users.interface";
+import { PrismaClient } from "../../../generated/prisma/client.js";
+import AppError from "../../errors/AppErrors.js";
+import { prisma } from "../../lib/prisma.js";
+import { GetUsersQuery, UpdateProfileInput } from "./users.interface.js";
 
 export const getUsers = async (query: GetUsersQuery) => {
 	const { page, limit, search, role, status, sortBy, sortOrder } = query;

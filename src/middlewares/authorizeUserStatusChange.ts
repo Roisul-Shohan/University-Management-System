@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { Role } from "../../generated/prisma/client";
-import catchAsync from "../utils/catchAsync";
-import AppError from "../errors/AppErrors";
-import { prisma } from "../lib/prisma";
+import { Role } from "../../generated/prisma/client.js";
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../errors/AppErrors.js";
+import { prisma } from "../lib/prisma.js";
 
 export const authorizeUserStatusChange = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {

@@ -1,6 +1,6 @@
-import AppError from "../../errors/AppErrors";
-import { prisma } from "../../lib/prisma";
-import type { IGetNotificationsQuery } from "./notification.interface";
+import AppError from "../../errors/AppErrors.js";
+import { prisma } from "../../lib/prisma.js";
+import type { IGetNotificationsQuery } from "./notification.interface.js";
 
 export const getMyNotifications = async (
 	userId: string,

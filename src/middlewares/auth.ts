@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { Role } from "../../generated/prisma/client";
+import { Role } from "../../generated/prisma/client.js";
 
 import AppError from "../errors/AppErrors.js";
 import config from "../config/index.js";

@@ -7,15 +7,15 @@ import {
 	getUnreadNotificationCountController,
 	markAllNotificationsAsReadController,
 	markNotificationAsReadController,
-} from "./notification.controller";
+} from "./notification.controller.js";
 import {
 	getNotificationByIdSchema,
 	getNotificationsQuerySchema,
 	markNotificationAsReadSchema,
-} from "./notification.validation";
-import { auth } from "../../middlewares/auth";
-import validateRequest from "../../middlewares/validateRequest";
-import { Role } from "../../../generated/prisma/enums";
+} from "./notification.validation.js";
+import { auth } from "../../middlewares/auth.js";
+import validateRequest from "../../middlewares/validateRequest.js";
+import { Role } from "../../../generated/prisma/enums.js";
 
 const router = Router();
 

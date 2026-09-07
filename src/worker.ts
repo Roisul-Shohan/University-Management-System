@@ -1,8 +1,8 @@
 import { Worker } from "bullmq";
-import { bullmqRedis } from "./lib/bullmq";
-import { sendAcademicPeriodEmail } from "./utils/email";
-import { prisma } from "./lib/prisma";
-import { NotificationType } from "../generated/prisma/enums";
+import { bullmqRedis } from "./lib/bullmq.js";
+import { sendAcademicPeriodEmail } from "./utils/email.js";
+import { prisma } from "./lib/prisma.js";
+import { NotificationType } from "../generated/prisma/enums.js";
 
 const worker = new Worker(
 	"notification-queue",

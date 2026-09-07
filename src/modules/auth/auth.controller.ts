@@ -7,12 +7,12 @@ import {
 	registerUser,
 	resetPassword,
 	verifyEmail,
-} from "./auth.service";
-import catchAsync from "../../utils/catchAsync";
-import { jwtUtils } from "../../utils/jwt";
-import config from "../../config";
-import sendResponse from "../../utils/sendResponse";
-import AppError from "../../errors/AppErrors";
+} from "./auth.service.js";
+import catchAsync from "../../utils/catchAsync.js";
+import { jwtUtils } from "../../utils/jwt.js";
+import config from "../../config/index.js";
+import sendResponse from "../../utils/sendResponse.js";
+import AppError from "../../errors/AppErrors.js";
 
 export const register = catchAsync(async (req: Request, res: Response) => {
 	const result = await registerUser(req.body);

@@ -1,4 +1,4 @@
-import { AcademicPeriodType } from "../../../generated/prisma/enums";
+import { AcademicPeriodType } from "../../../generated/prisma/enums.js";
 
 export interface ICreateAcademicPeriod {
 	type: AcademicPeriodType;

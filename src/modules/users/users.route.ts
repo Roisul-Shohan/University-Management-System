@@ -1,24 +1,24 @@
 /** biome-ignore-all assist/source/organizeImports: <explanation> */
 import { Router } from "express";
 
-import { auth } from "../../middlewares/auth";
+import { auth } from "../../middlewares/auth.js";
 
 import {
 	getUsersQuerySchema,
 	updateProfileSchema,
 	updateUserStatusSchema,
-} from "./users.validation";
+} from "./users.validation.js";
 
 import {
 	getUserByIdController,
 	getUsersController,
 	updateProfileController,
 	updateUserStatusController,
-} from "./users.controller";
+} from "./users.controller.js";
 
-import { Role } from "../../../generated/prisma/enums";
-import validateRequest from "../../middlewares/validateRequest";
-import { authorizeUserStatusChange } from "../../middlewares/authorizeUserStatusChange";
+import { Role } from "../../../generated/prisma/enums.js";
+import validateRequest from "../../middlewares/validateRequest.js";
+import { authorizeUserStatusChange } from "../../middlewares/authorizeUserStatusChange.js";
 
 const router = Router();
 

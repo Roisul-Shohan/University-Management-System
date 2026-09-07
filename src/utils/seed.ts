@@ -1,9 +1,9 @@
-import { DegreeType, Role } from "../../generated/prisma/client";
+import { DegreeType, Role } from "../../generated/prisma/client.js";
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma.js";
-import config from "../config";
-import AppError from "../errors/AppErrors";
-import { Program } from "../../generated/prisma/browser";
+import config from "../config/index.js";
+import AppError from "../errors/AppErrors.js";
+import { Program } from "../../generated/prisma/browser.js";
 
 export async function seedSuperAdmin() {
 	const email = config.super_admin_email;

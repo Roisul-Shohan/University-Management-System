@@ -8,17 +8,17 @@ import {
 	register,
 	resetPasswordController,
 	verifyEmailController,
-} from "./auth.controller";
-import validateRequest from "../../middlewares/validateRequest";
+} from "./auth.controller.js";
+import validateRequest from "../../middlewares/validateRequest.js";
 import {
 	forgotPasswordSchema,
 	loginSchema,
 	registerSchema,
 	resetPasswordSchema,
 	verifyEmailSchema,
-} from "./auth.validation";
-import { auth } from "../../middlewares/auth";
-import { Role } from "../../../generated/prisma/enums";
+} from "./auth.validation.js";
+import { auth } from "../../middlewares/auth.js";
+import { Role } from "../../../generated/prisma/enums.js";
 
 const router = Router();
 

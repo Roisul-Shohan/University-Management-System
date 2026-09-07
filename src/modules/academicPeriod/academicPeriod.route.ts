@@ -1,7 +1,7 @@
 /** biome-ignore-all assist/source/organizeImports: <explanation> */
 import { Router } from "express";
-import { auth } from "../../middlewares/auth";
-import { Role } from "../../../generated/prisma/enums";
+import { auth } from "../../middlewares/auth.js";
+import { Role } from "../../../generated/prisma/enums.js";
 import {
 	createAcademicPeriodSchema,
 	getAcademicPeriodByIdSchema,
@@ -9,8 +9,8 @@ import {
 	updateAcademicPeriodRequestSchema,
 	updateAcademicPeriodSchema,
 	updateAcademicPeriodStatusSchema,
-} from "./academicPeriod.validation";
-import validateRequest from "../../middlewares/validateRequest";
+} from "./academicPeriod.validation.js";
+import validateRequest from "../../middlewares/validateRequest.js";
 import {
 	createAcademicPeriodController,
 	getAcademicPeriodByIdController,
@@ -18,7 +18,7 @@ import {
 	getCurrentAcademicPeriodsController,
 	updateAcademicPeriodController,
 	updateAcademicPeriodStatusController,
-} from "./academicPeriod.controller";
+} from "./academicPeriod.controller.js";
 
 const router = Router();
 

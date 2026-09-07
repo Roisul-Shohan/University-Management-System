@@ -1,15 +1,15 @@
 /** biome-ignore-all assist/source/organizeImports: <explanation> */
 import type { Request, Response } from "express";
 
-import sendResponse from "../../utils/sendResponse";
+import sendResponse from "../../utils/sendResponse.js";
 import {
 	getMyNotificationById,
 	getMyNotifications,
 	getUnreadNotificationCount,
 	markAllNotificationsAsRead,
 	markNotificationAsRead,
-} from "./notification.service";
-import catchAsync from "../../utils/catchAsync";
+} from "./notification.service.js";
+import catchAsync from "../../utils/catchAsync.js";
 
 export const getMyNotificationsController = catchAsync(
 	async (req: Request, res: Response) => {

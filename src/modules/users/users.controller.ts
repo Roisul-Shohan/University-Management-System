@@ -1,13 +1,13 @@
 import type { Request, Response } from "express";
 
-import catchAsync from "../../utils/catchAsync";
-import sendResponse from "../../utils/sendResponse";
+import catchAsync from "../../utils/catchAsync.js";
+import sendResponse from "../../utils/sendResponse.js";
 import {
 	getUserById,
 	getUsers,
 	updateProfile,
 	updateUserStatus,
-} from "./users.service";
+} from "./users.service.js";
 
 export const getUsersController = catchAsync(
 	async (req: Request, res: Response) => {

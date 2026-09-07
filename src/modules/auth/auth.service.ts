@@ -7,17 +7,17 @@ import {
 	RegisterUserInput,
 	ResetPasswordInput,
 	VerifyEmailInput,
-} from "./auth.interface";
-import { prisma } from "../../lib/prisma";
-import AppError from "../../errors/AppErrors";
-import { redisClient } from "../../lib/redis";
+} from "./auth.interface.js";
+import { prisma } from "../../lib/prisma.js";
+import AppError from "../../errors/AppErrors.js";
+import { redisClient } from "../../lib/redis.js";
 import { randomInt } from "crypto";
 import {
 	sendPasswordResetEmail,
 	sendVerificationEmail,
-} from "../../utils/email";
-import { jwtUtils } from "../../utils/jwt";
-import config from "../../config";
+} from "../../utils/email.js";
+import { jwtUtils } from "../../utils/jwt.js";
+import config from "../../config/index.js";
 
 const OTP_EXPIRATION = 4 * 60; // 4 minutes
 
