@@ -46,6 +46,7 @@ export type StudentMinAggregateOutputType = {
   currentYear: number | null
   currentSemester: number | null
   isActive: boolean | null
+  programStatus: $Enums.StudentProgramStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,6 +59,7 @@ export type StudentMaxAggregateOutputType = {
   currentYear: number | null
   currentSemester: number | null
   isActive: boolean | null
+  programStatus: $Enums.StudentProgramStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -70,6 +72,7 @@ export type StudentCountAggregateOutputType = {
   currentYear: number
   currentSemester: number
   isActive: number
+  programStatus: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -96,6 +99,7 @@ export type StudentMinAggregateInputType = {
   currentYear?: true
   currentSemester?: true
   isActive?: true
+  programStatus?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -108,6 +112,7 @@ export type StudentMaxAggregateInputType = {
   currentYear?: true
   currentSemester?: true
   isActive?: true
+  programStatus?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -120,6 +125,7 @@ export type StudentCountAggregateInputType = {
   currentYear?: true
   currentSemester?: true
   isActive?: true
+  programStatus?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -219,6 +225,7 @@ export type StudentGroupByOutputType = {
   currentYear: number
   currentSemester: number
   isActive: boolean
+  programStatus: $Enums.StudentProgramStatus
   createdAt: Date
   updatedAt: Date
   _count: StudentCountAggregateOutputType | null
@@ -254,6 +261,7 @@ export type StudentWhereInput = {
   currentYear?: Prisma.IntFilter<"Student"> | number
   currentSemester?: Prisma.IntFilter<"Student"> | number
   isActive?: Prisma.BoolFilter<"Student"> | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFilter<"Student"> | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -270,6 +278,7 @@ export type StudentOrderByWithRelationInput = {
   currentYear?: Prisma.SortOrder
   currentSemester?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  programStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -289,6 +298,7 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   currentYear?: Prisma.IntFilter<"Student"> | number
   currentSemester?: Prisma.IntFilter<"Student"> | number
   isActive?: Prisma.BoolFilter<"Student"> | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFilter<"Student"> | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -305,6 +315,7 @@ export type StudentOrderByWithAggregationInput = {
   currentYear?: Prisma.SortOrder
   currentSemester?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  programStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StudentCountOrderByAggregateInput
@@ -325,6 +336,7 @@ export type StudentScalarWhereWithAggregatesInput = {
   currentYear?: Prisma.IntWithAggregatesFilter<"Student"> | number
   currentSemester?: Prisma.IntWithAggregatesFilter<"Student"> | number
   isActive?: Prisma.BoolWithAggregatesFilter<"Student"> | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusWithAggregatesFilter<"Student"> | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
 }
@@ -335,6 +347,7 @@ export type StudentCreateInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentInput
@@ -351,6 +364,7 @@ export type StudentUncheckedCreateInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
@@ -363,6 +377,7 @@ export type StudentUpdateInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
@@ -379,6 +394,7 @@ export type StudentUncheckedUpdateInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
@@ -393,6 +409,7 @@ export type StudentCreateManyInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -403,6 +420,7 @@ export type StudentUpdateManyMutationInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -415,6 +433,7 @@ export type StudentUncheckedUpdateManyInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -437,6 +456,7 @@ export type StudentCountOrderByAggregateInput = {
   currentYear?: Prisma.SortOrder
   currentSemester?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  programStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -455,6 +475,7 @@ export type StudentMaxOrderByAggregateInput = {
   currentYear?: Prisma.SortOrder
   currentSemester?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  programStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -467,6 +488,7 @@ export type StudentMinOrderByAggregateInput = {
   currentYear?: Prisma.SortOrder
   currentSemester?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  programStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -527,6 +549,10 @@ export type StudentUncheckedUpdateManyWithoutProgramNestedInput = {
   update?: Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput | Prisma.StudentUpdateWithWhereUniqueWithoutProgramInput[]
   updateMany?: Prisma.StudentUpdateManyWithWhereWithoutProgramInput | Prisma.StudentUpdateManyWithWhereWithoutProgramInput[]
   deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+}
+
+export type EnumStudentProgramStatusFieldUpdateOperationsInput = {
+  set?: $Enums.StudentProgramStatus
 }
 
 export type StudentCreateNestedOneWithoutSemestersInput = {
@@ -597,6 +623,7 @@ export type StudentCreateWithoutProgramInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentInput
@@ -611,6 +638,7 @@ export type StudentUncheckedCreateWithoutProgramInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
@@ -654,6 +682,7 @@ export type StudentScalarWhereInput = {
   currentYear?: Prisma.IntFilter<"Student"> | number
   currentSemester?: Prisma.IntFilter<"Student"> | number
   isActive?: Prisma.BoolFilter<"Student"> | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFilter<"Student"> | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
 }
@@ -664,6 +693,7 @@ export type StudentCreateWithoutSemestersInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentInput
@@ -679,6 +709,7 @@ export type StudentUncheckedCreateWithoutSemestersInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutStudentInput
@@ -706,6 +737,7 @@ export type StudentUpdateWithoutSemestersInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
@@ -721,6 +753,7 @@ export type StudentUncheckedUpdateWithoutSemestersInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutStudentNestedInput
@@ -732,6 +765,7 @@ export type StudentCreateWithoutTransactionsInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentInput
@@ -747,6 +781,7 @@ export type StudentUncheckedCreateWithoutTransactionsInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
@@ -774,6 +809,7 @@ export type StudentUpdateWithoutTransactionsInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
@@ -789,6 +825,7 @@ export type StudentUncheckedUpdateWithoutTransactionsInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
@@ -800,6 +837,7 @@ export type StudentCreateWithoutUserInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   program: Prisma.ProgramCreateNestedOneWithoutStudentsInput
@@ -814,6 +852,7 @@ export type StudentUncheckedCreateWithoutUserInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   semesters?: Prisma.StudentSemesterUncheckedCreateNestedManyWithoutStudentInput
@@ -842,6 +881,7 @@ export type StudentUpdateWithoutUserInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   program?: Prisma.ProgramUpdateOneRequiredWithoutStudentsNestedInput
@@ -856,6 +896,7 @@ export type StudentUncheckedUpdateWithoutUserInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
@@ -869,6 +910,7 @@ export type StudentCreateManyProgramInput = {
   currentYear: number
   currentSemester: number
   isActive?: boolean
+  programStatus?: $Enums.StudentProgramStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -879,6 +921,7 @@ export type StudentUpdateWithoutProgramInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
@@ -893,6 +936,7 @@ export type StudentUncheckedUpdateWithoutProgramInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   semesters?: Prisma.StudentSemesterUncheckedUpdateManyWithoutStudentNestedInput
@@ -906,6 +950,7 @@ export type StudentUncheckedUpdateManyWithoutProgramInput = {
   currentYear?: Prisma.IntFieldUpdateOperationsInput | number
   currentSemester?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  programStatus?: Prisma.EnumStudentProgramStatusFieldUpdateOperationsInput | $Enums.StudentProgramStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -958,6 +1003,7 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   currentYear?: boolean
   currentSemester?: boolean
   isActive?: boolean
+  programStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -975,6 +1021,7 @@ export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   currentYear?: boolean
   currentSemester?: boolean
   isActive?: boolean
+  programStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -989,6 +1036,7 @@ export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   currentYear?: boolean
   currentSemester?: boolean
   isActive?: boolean
+  programStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1003,11 +1051,12 @@ export type StudentSelectScalar = {
   currentYear?: boolean
   currentSemester?: boolean
   isActive?: boolean
+  programStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "admissionYear" | "programId" | "currentYear" | "currentSemester" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "admissionYear" | "programId" | "currentYear" | "currentSemester" | "isActive" | "programStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
@@ -1040,6 +1089,7 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     currentYear: number
     currentSemester: number
     isActive: boolean
+    programStatus: $Enums.StudentProgramStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["student"]>
@@ -1476,6 +1526,7 @@ export interface StudentFieldRefs {
   readonly currentYear: Prisma.FieldRef<"Student", 'Int'>
   readonly currentSemester: Prisma.FieldRef<"Student", 'Int'>
   readonly isActive: Prisma.FieldRef<"Student", 'Boolean'>
+  readonly programStatus: Prisma.FieldRef<"Student", 'StudentProgramStatus'>
   readonly createdAt: Prisma.FieldRef<"Student", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Student", 'DateTime'>
 }

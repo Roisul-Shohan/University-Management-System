@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noNonNullAssertion: <explanation> */
 import dotenv from "dotenv";
 import path from "path";
 import type { SignOptions } from "jsonwebtoken";

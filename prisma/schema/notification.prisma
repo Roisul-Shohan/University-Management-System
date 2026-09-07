@@ -1,14 +1,24 @@
 model Notification {
   id String @id @default(uuid())
 
+  userId String
+  academicPeriodId String?
+
   title   String
   message String
   type    NotificationType
+  isRead  Boolean @default(false)
+
+  user User @relation( fields: [userId], references: [id],  onDelete: Cascade)
+
+  academicPeriod AcademicPeriod? @relation( fields: [academicPeriodId], references: [id],onDelete: Cascade )
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([userId, academicPeriodId])
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
   @@index([type])
-  @@index([createdAt])
   @@map("notifications")
 }

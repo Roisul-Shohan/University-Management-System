@@ -2622,9 +2622,12 @@ export type GradingScaleScalarFieldEnum = (typeof GradingScaleScalarFieldEnum)[k
 
 export const NotificationScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
+  academicPeriodId: 'academicPeriodId',
   title: 'title',
   message: 'message',
   type: 'type',
+  isRead: 'isRead',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2677,6 +2680,7 @@ export const StudentScalarFieldEnum = {
   currentYear: 'currentYear',
   currentSemester: 'currentSemester',
   isActive: 'isActive',
+  programStatus: 'programStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2988,6 +2992,20 @@ export type EnumDegreeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'DegreeType[]'
  */
 export type ListEnumDegreeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DegreeType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'StudentProgramStatus'
+ */
+export type EnumStudentProgramStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StudentProgramStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'StudentProgramStatus[]'
+ */
+export type ListEnumStudentProgramStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StudentProgramStatus[]'>
     
 
 

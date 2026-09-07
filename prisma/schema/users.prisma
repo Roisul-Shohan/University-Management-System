@@ -16,6 +16,7 @@ model User {
   teacher Teacher?
   admissions Admission[]
   transaction Transaction[]
+  notifications Notification[]
 
   @@index([role])
   @@index([status])

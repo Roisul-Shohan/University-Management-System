@@ -198,6 +198,7 @@ export type AcademicPeriodWhereInput = {
   isActive?: Prisma.BoolFilter<"AcademicPeriod"> | boolean
   createdAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
+  notifications?: Prisma.NotificationListRelationFilter
 }
 
 export type AcademicPeriodOrderByWithRelationInput = {
@@ -208,6 +209,7 @@ export type AcademicPeriodOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
 
 export type AcademicPeriodWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +223,7 @@ export type AcademicPeriodWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"AcademicPeriod"> | boolean
   createdAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
+  notifications?: Prisma.NotificationListRelationFilter
 }, "id">
 
 export type AcademicPeriodOrderByWithAggregationInput = {
@@ -257,6 +260,7 @@ export type AcademicPeriodCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutAcademicPeriodInput
 }
 
 export type AcademicPeriodUncheckedCreateInput = {
@@ -267,6 +271,7 @@ export type AcademicPeriodUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAcademicPeriodInput
 }
 
 export type AcademicPeriodUpdateInput = {
@@ -277,6 +282,7 @@ export type AcademicPeriodUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutAcademicPeriodNestedInput
 }
 
 export type AcademicPeriodUncheckedUpdateInput = {
@@ -287,6 +293,7 @@ export type AcademicPeriodUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAcademicPeriodNestedInput
 }
 
 export type AcademicPeriodCreateManyInput = {
@@ -349,6 +356,11 @@ export type AcademicPeriodMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type AcademicPeriodNullableScalarRelationFilter = {
+  is?: Prisma.AcademicPeriodWhereInput | null
+  isNot?: Prisma.AcademicPeriodWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -365,6 +377,107 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type AcademicPeriodCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.AcademicPeriodCreateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.AcademicPeriodCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.AcademicPeriodWhereUniqueInput
+}
+
+export type AcademicPeriodUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.AcademicPeriodCreateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.AcademicPeriodCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.AcademicPeriodUpsertWithoutNotificationsInput
+  disconnect?: Prisma.AcademicPeriodWhereInput | boolean
+  delete?: Prisma.AcademicPeriodWhereInput | boolean
+  connect?: Prisma.AcademicPeriodWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AcademicPeriodUpdateToOneWithWhereWithoutNotificationsInput, Prisma.AcademicPeriodUpdateWithoutNotificationsInput>, Prisma.AcademicPeriodUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type AcademicPeriodCreateWithoutNotificationsInput = {
+  id?: string
+  type: $Enums.AcademicPeriodType
+  startDate: Date | string
+  endDate: Date | string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AcademicPeriodUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  type: $Enums.AcademicPeriodType
+  startDate: Date | string
+  endDate: Date | string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AcademicPeriodCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.AcademicPeriodWhereUniqueInput
+  create: Prisma.XOR<Prisma.AcademicPeriodCreateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedCreateWithoutNotificationsInput>
+}
+
+export type AcademicPeriodUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.AcademicPeriodUpdateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.AcademicPeriodCreateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.AcademicPeriodWhereInput
+}
+
+export type AcademicPeriodUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.AcademicPeriodWhereInput
+  data: Prisma.XOR<Prisma.AcademicPeriodUpdateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type AcademicPeriodUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAcademicPeriodTypeFieldUpdateOperationsInput | $Enums.AcademicPeriodType
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AcademicPeriodUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAcademicPeriodTypeFieldUpdateOperationsInput | $Enums.AcademicPeriodType
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type AcademicPeriodCountOutputType
+ */
+
+export type AcademicPeriodCountOutputType = {
+  notifications: number
+}
+
+export type AcademicPeriodCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | AcademicPeriodCountOutputTypeCountNotificationsArgs
+}
+
+/**
+ * AcademicPeriodCountOutputType without action
+ */
+export type AcademicPeriodCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AcademicPeriodCountOutputType
+   */
+  select?: Prisma.AcademicPeriodCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AcademicPeriodCountOutputType without action
+ */
+export type AcademicPeriodCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
 
 
 export type AcademicPeriodSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -375,6 +488,8 @@ export type AcademicPeriodSelect<ExtArgs extends runtime.Types.Extensions.Intern
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  notifications?: boolean | Prisma.AcademicPeriod$notificationsArgs<ExtArgs>
+  _count?: boolean | Prisma.AcademicPeriodCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["academicPeriod"]>
 
 export type AcademicPeriodSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -408,10 +523,18 @@ export type AcademicPeriodSelectScalar = {
 }
 
 export type AcademicPeriodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "startDate" | "endDate" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["academicPeriod"]>
+export type AcademicPeriodInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | Prisma.AcademicPeriod$notificationsArgs<ExtArgs>
+  _count?: boolean | Prisma.AcademicPeriodCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type AcademicPeriodIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type AcademicPeriodIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $AcademicPeriodPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AcademicPeriod"
-  objects: {}
+  objects: {
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     type: $Enums.AcademicPeriodType
@@ -814,6 +937,7 @@ readonly fields: AcademicPeriodFieldRefs;
  */
 export interface Prisma__AcademicPeriodClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  notifications<T extends Prisma.AcademicPeriod$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AcademicPeriod$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -867,6 +991,10 @@ export type AcademicPeriodFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * Filter, which AcademicPeriod to fetch.
    */
   where: Prisma.AcademicPeriodWhereUniqueInput
@@ -885,6 +1013,10 @@ export type AcademicPeriodFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * Filter, which AcademicPeriod to fetch.
    */
   where: Prisma.AcademicPeriodWhereUniqueInput
@@ -902,6 +1034,10 @@ export type AcademicPeriodFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the AcademicPeriod
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
   /**
    * Filter, which AcademicPeriod to fetch.
    */
@@ -951,6 +1087,10 @@ export type AcademicPeriodFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * Filter, which AcademicPeriod to fetch.
    */
   where?: Prisma.AcademicPeriodWhereInput
@@ -998,6 +1138,10 @@ export type AcademicPeriodFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the AcademicPeriod
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
   /**
    * Filter, which AcademicPeriods to fetch.
    */
@@ -1047,6 +1191,10 @@ export type AcademicPeriodCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * The data needed to create a AcademicPeriod.
    */
   data: Prisma.XOR<Prisma.AcademicPeriodCreateInput, Prisma.AcademicPeriodUncheckedCreateInput>
@@ -1094,6 +1242,10 @@ export type AcademicPeriodUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the AcademicPeriod
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
   /**
    * The data needed to update a AcademicPeriod.
    */
@@ -1161,6 +1313,10 @@ export type AcademicPeriodUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * The filter to search for the AcademicPeriod to update in case it exists.
    */
   where: Prisma.AcademicPeriodWhereUniqueInput
@@ -1187,6 +1343,10 @@ export type AcademicPeriodDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
+  /**
    * Filter which AcademicPeriod to delete.
    */
   where: Prisma.AcademicPeriodWhereUniqueInput
@@ -1207,6 +1367,30 @@ export type AcademicPeriodDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * AcademicPeriod.notifications
+ */
+export type AcademicPeriod$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
  * AcademicPeriod without action
  */
 export type AcademicPeriodDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1218,4 +1402,8 @@ export type AcademicPeriodDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the AcademicPeriod
    */
   omit?: Prisma.AcademicPeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicPeriodInclude<ExtArgs> | null
 }

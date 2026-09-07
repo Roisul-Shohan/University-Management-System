@@ -148,3 +148,12 @@ export const NotificationType = {
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const StudentProgramStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED'
+} as const
+
+export type StudentProgramStatus = (typeof StudentProgramStatus)[keyof typeof StudentProgramStatus]

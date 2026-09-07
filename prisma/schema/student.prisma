@@ -6,6 +6,7 @@ model Student {
   currentYear     Int
   currentSemester Int
   isActive        Boolean @default(true)
+   programStatus StudentProgramStatus @default(ACTIVE)
 
   user User @relation(fields: [id], references: [id], onDelete: Cascade)
 

@@ -312,9 +312,12 @@ export type GradingScaleScalarFieldEnum = (typeof GradingScaleScalarFieldEnum)[k
 
 export const NotificationScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
+  academicPeriodId: 'academicPeriodId',
   title: 'title',
   message: 'message',
   type: 'type',
+  isRead: 'isRead',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -367,6 +370,7 @@ export const StudentScalarFieldEnum = {
   currentYear: 'currentYear',
   currentSemester: 'currentSemester',
   isActive: 'isActive',
+  programStatus: 'programStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
