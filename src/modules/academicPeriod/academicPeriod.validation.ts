@@ -12,11 +12,11 @@ export const createAcademicPeriodSchema = z
 		]),
 
 		startDate: z.coerce.date({
-			required_error: "Start date is required.",
+			error: "Start date is required.",
 		}),
 
 		endDate: z.coerce.date({
-			required_error: "End date is required.",
+			error: "End date is required.",
 		}),
 	})
 	.refine((data) => data.startDate < data.endDate, {
