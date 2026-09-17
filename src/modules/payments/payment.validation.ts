@@ -17,3 +17,10 @@ export const getPaymentStatusValidation = z.object({
 		transactionId: z.uuid("Invalid transaction ID"),
 	}),
 });
+
+export const bkashCallbackValidation = z.object({
+	query: z.object({
+		paymentID: z.string().trim().min(1),
+		status: z.string().trim().optional(),
+	}),
+});

@@ -4,6 +4,7 @@ import validateRequest from "../../middlewares/validateRequest.js";
 import { Role } from "../../../generated/prisma/enums.js";
 import * as paymentController from "./payment.controller.js";
 import {
+    bkashCallbackValidation,
 	createAdmissionPaymentValidation,
 	executePaymentValidation,
 	getPaymentStatusValidation,
@@ -26,10 +27,16 @@ router.post(
 );
 
 router.get(
+	"/bkash/callback",
+	validateRequest(bkashCallbackValidation),
+	paymentController.handleBkashCallback,
+);
+
+router.get(
 	"/:transactionId/status",
 	auth(Role.STUDENT),
 	validateRequest(getPaymentStatusValidation),
 	paymentController.getPaymentStatus,
 );
 
-export default router;
+export const paymentRoutes =router

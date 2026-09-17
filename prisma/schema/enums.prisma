@@ -53,6 +53,7 @@ enum TransactionStatus {
   PENDING
   SUCCESS
   FAILED
+  CANCELLED
   REFUNDED
 }
 

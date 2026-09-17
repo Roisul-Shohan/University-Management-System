@@ -50,3 +50,20 @@ export const getPaymentStatus = catchAsync(
 		});
 	},
 );
+
+export const handleBkashCallback = catchAsync(
+	async (req: Request, res: Response) => {
+		const result =
+			await paymentService.handleBkashCallback({
+				paymentID: req.query.paymentID as string,
+				status: req.query.status as string | undefined,
+			});
+
+		sendResponse(res, {
+			statusCode: 200,
+			success: true,
+			message: "bKash callback processed successfully.",
+			data: result,
+		});
+	},
+);
