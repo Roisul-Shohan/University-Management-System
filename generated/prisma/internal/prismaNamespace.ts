@@ -2739,6 +2739,8 @@ export const TransactionScalarFieldEnum = {
   amount: 'amount',
   status: 'status',
   paidAt: 'paidAt',
+  bkashPaymentId: 'bkashPaymentId',
+  bkashTrxId: 'bkashTrxId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

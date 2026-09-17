@@ -17,6 +17,7 @@ model User {
   admissions Admission[]
   transaction Transaction[]
   notifications Notification[]
+  
 
   @@index([role])
   @@index([status])

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";;
+import { Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse.js";
 import * as departmentService from "./department.service.js";
 import catchAsync from "../../utils/catchAsync.js";
@@ -46,12 +46,9 @@ export const getDepartmentById = catchAsync(
 
 export const updateDepartment = catchAsync(
 	async (req: Request, res: Response) => {
-		const id =req.params.id as string;
+		const id = req.params.id as string;
 
-		const result = await departmentService.updateDepartment(
-			id,
-			req.body,
-		);
+		const result = await departmentService.updateDepartment(id, req.body);
 
 		sendResponse(res, {
 			statusCode: 200,

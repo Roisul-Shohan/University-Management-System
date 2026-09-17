@@ -11,6 +11,7 @@ import { usersRouter } from "./modules/users/users.route.js";
 import { academicPeriodRouter } from "./modules/academicPeriod/academicPeriod.route.js";
 import { notificationRouter } from "./modules/notifications/notification.route.js";
 import { departmentRouter } from "./modules/department/department.route.js";
+import paymentRoutes from "./modules/payments/payment.route.js";
 
 const app: Application = express();
 
@@ -29,6 +30,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/academic-periods", academicPeriodRouter);
 app.use("/api/notifications", notificationRouter);
 app.use("/api/departments", departmentRouter);
+app.use("/api/payments", paymentRoutes);
 
 app.use(notFound);
 

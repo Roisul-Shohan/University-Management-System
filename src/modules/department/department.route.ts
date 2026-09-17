@@ -1,7 +1,6 @@
 /** biome-ignore-all assist/source/organizeImports: <explanation> */
 import { Router } from "express";
 
-
 import * as departmentController from "./department.controller.js";
 import {
 	createDepartmentSchema,
@@ -21,11 +20,7 @@ router.post(
 	departmentController.createDepartment,
 );
 
-router.get(
-	"/",
-	auth(),
-	departmentController.getAllDepartments,
-);
+router.get("/", auth(), departmentController.getAllDepartments);
 
 router.get(
 	"/:id",

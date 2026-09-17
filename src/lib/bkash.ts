@@ -1,3 +1,4 @@
+import AppError from "../errors/AppErrors.js";
 import config from "../config/index.js";
 import { redisClient } from "./redis.js";
 
@@ -35,7 +36,7 @@ export const getBkashIdToken = async () => {
 				},
 			);
 			if (!refreshTokenResponse.ok) {
-				throw new Error("Bkash Access Token Grant Failed");
+				throw new AppError(500, "Bkash Access Token Refresh Failed");
 			}
 
 			const bkashRefreshTokenResult = await refreshTokenResponse.json();
@@ -52,7 +53,7 @@ export const getBkashIdToken = async () => {
 			return bkashIdToken;
 		}
 
-		if (bkashIdTokenTTL > 600) {
+		if (bkashIdTokenTTL > 600 && bkashIdToken) {
 			return bkashIdToken;
 		}
 
@@ -74,31 +75,138 @@ export const getBkashIdToken = async () => {
 		);
 
 		if (!response.ok) {
-			throw new Error("Bkash Access Token Grant Failed");
+			throw new AppError(500, "Bkash Access Token Grant Failed");
 		}
 
 		const result = await response.json();
 
-		//bkash id token set
 		await redisClient.set(IdTokenKey, result.id_token, {
 			expiration: {
 				type: "EX",
-				value: 60 * 60, // 1hour
+				value: 60 * 60,
 			},
 		});
 
-		//bkash refresh token set
 		await redisClient.set(RefreshTokenKey, result.refresh_token, {
 			expiration: {
 				type: "EX",
-				value: 60 * 60 * 24 * 28, // 28 days
+				value: 60 * 60 * 24 * 28,
 			},
 		});
 
-		bkashIdToken = result.id_token;
-
-		return bkashIdToken;
+		return result.id_token;
 	} catch (error: any) {
-		throw new Error(error.message);
+		if (error instanceof AppError) {
+			throw error;
+		}
+
+		throw new AppError(500, error.message || "Bkash token error");
 	}
+};
+
+export const createBkashPayment = async (payload: {
+	amount: string;
+	merchantInvoiceNumber: string;
+	payerReference: string;
+	intent?: string;
+}) => {
+	const idToken = await getBkashIdToken();
+
+	if (!idToken) {
+		throw new AppError(500, "Bkash ID token not found");
+	}
+
+	const response = await fetch(
+		`${config.bkash_base_url}/tokenized/checkout/create`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: idToken,
+				"X-APP-Key": config.bkash_app_key!,
+			},
+			body: JSON.stringify({
+				mode: "0011",
+				payerReference: payload.payerReference,
+				callbackURL: config.bkash_callbackurl,
+				amount: payload.amount,
+				currency: "BDT",
+				intent: payload.intent ?? "sale",
+				merchantInvoiceNumber: payload.merchantInvoiceNumber,
+			}),
+		},
+	);
+
+	if (!response.ok) {
+		throw new AppError(500, "Bkash payment creation failed");
+	}
+
+	const result = await response.json();
+
+	return result;
+};
+
+export const executeBkashPayment = async (paymentID: string) => {
+	const idToken = await getBkashIdToken();
+
+	if (!idToken) {
+		throw new AppError(500, "Bkash ID token not found");
+	}
+
+	const response = await fetch(
+		`${config.bkash_base_url}/tokenized/checkout/execute`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: idToken,
+				"X-APP-Key": config.bkash_app_key!,
+			},
+			body: JSON.stringify({
+				paymentID,
+			}),
+		},
+	);
+
+	if (!response.ok) {
+		throw new AppError(500, "Bkash payment execution failed");
+	}
+
+	const result = await response.json();
+
+	return result;
+};
+
+export const queryBkashPayment = async (paymentID: string) => {
+	const idToken = await getBkashIdToken();
+
+	if (!idToken) {
+		throw new AppError(500, "Bkash ID token not found");
+	}
+
+	const response = await fetch(
+		`${config.bkash_base_url}/tokenized/checkout/payment/status`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: idToken,
+				"X-APP-Key": config.bkash_app_key!,
+			},
+			body: JSON.stringify({
+				paymentID,
+			}),
+		},
+	);
+
+	if (!response.ok) {
+		throw new AppError(500, "Bkash payment query failed");
+	}
+
+	const result = await response.json();
+
+	return result;
 };

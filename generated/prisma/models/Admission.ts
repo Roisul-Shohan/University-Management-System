@@ -262,6 +262,7 @@ export type AdmissionWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  transactions?: Prisma.TransactionListRelationFilter
 }
 
 export type AdmissionOrderByWithRelationInput = {
@@ -277,6 +278,7 @@ export type AdmissionOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   program?: Prisma.ProgramOrderByWithRelationInput
+  transactions?: Prisma.TransactionOrderByRelationAggregateInput
 }
 
 export type AdmissionWhereUniqueInput = Prisma.AtLeast<{
@@ -295,6 +297,7 @@ export type AdmissionWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  transactions?: Prisma.TransactionListRelationFilter
 }, "id">
 
 export type AdmissionOrderByWithAggregationInput = {
@@ -342,6 +345,7 @@ export type AdmissionCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAdmissionsInput
   program: Prisma.ProgramCreateNestedOneWithoutAdmissionsInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionUncheckedCreateInput = {
@@ -355,6 +359,7 @@ export type AdmissionUncheckedCreateInput = {
   confirmedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionUpdateInput = {
@@ -368,6 +373,7 @@ export type AdmissionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAdmissionsNestedInput
   program?: Prisma.ProgramUpdateOneRequiredWithoutAdmissionsNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionUncheckedUpdateInput = {
@@ -381,6 +387,7 @@ export type AdmissionUncheckedUpdateInput = {
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionCreateManyInput = {
@@ -479,6 +486,11 @@ export type AdmissionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type AdmissionNullableScalarRelationFilter = {
+  is?: Prisma.AdmissionWhereInput | null
+  isNot?: Prisma.AdmissionWhereInput | null
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -545,6 +557,22 @@ export type AdmissionUncheckedUpdateManyWithoutProgramNestedInput = {
   deleteMany?: Prisma.AdmissionScalarWhereInput | Prisma.AdmissionScalarWhereInput[]
 }
 
+export type AdmissionCreateNestedOneWithoutTransactionsInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutTransactionsInput, Prisma.AdmissionUncheckedCreateWithoutTransactionsInput>
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutTransactionsInput
+  connect?: Prisma.AdmissionWhereUniqueInput
+}
+
+export type AdmissionUpdateOneWithoutTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.AdmissionCreateWithoutTransactionsInput, Prisma.AdmissionUncheckedCreateWithoutTransactionsInput>
+  connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutTransactionsInput
+  upsert?: Prisma.AdmissionUpsertWithoutTransactionsInput
+  disconnect?: Prisma.AdmissionWhereInput | boolean
+  delete?: Prisma.AdmissionWhereInput | boolean
+  connect?: Prisma.AdmissionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AdmissionUpdateToOneWithWhereWithoutTransactionsInput, Prisma.AdmissionUpdateWithoutTransactionsInput>, Prisma.AdmissionUncheckedUpdateWithoutTransactionsInput>
+}
+
 export type AdmissionCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.AdmissionCreateWithoutUserInput, Prisma.AdmissionUncheckedCreateWithoutUserInput> | Prisma.AdmissionCreateWithoutUserInput[] | Prisma.AdmissionUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.AdmissionCreateOrConnectWithoutUserInput | Prisma.AdmissionCreateOrConnectWithoutUserInput[]
@@ -597,6 +625,7 @@ export type AdmissionCreateWithoutProgramInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAdmissionsInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionUncheckedCreateWithoutProgramInput = {
@@ -609,6 +638,7 @@ export type AdmissionUncheckedCreateWithoutProgramInput = {
   confirmedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionCreateOrConnectWithoutProgramInput = {
@@ -653,6 +683,74 @@ export type AdmissionScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Admission"> | Date | string
 }
 
+export type AdmissionCreateWithoutTransactionsInput = {
+  id?: string
+  admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.AdmissionStatus
+  appliedAt?: Date | string
+  confirmedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutAdmissionsInput
+  program: Prisma.ProgramCreateNestedOneWithoutAdmissionsInput
+}
+
+export type AdmissionUncheckedCreateWithoutTransactionsInput = {
+  id?: string
+  userId: string
+  programId: string
+  admissionYear: number
+  admissionFee: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.AdmissionStatus
+  appliedAt?: Date | string
+  confirmedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AdmissionCreateOrConnectWithoutTransactionsInput = {
+  where: Prisma.AdmissionWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdmissionCreateWithoutTransactionsInput, Prisma.AdmissionUncheckedCreateWithoutTransactionsInput>
+}
+
+export type AdmissionUpsertWithoutTransactionsInput = {
+  update: Prisma.XOR<Prisma.AdmissionUpdateWithoutTransactionsInput, Prisma.AdmissionUncheckedUpdateWithoutTransactionsInput>
+  create: Prisma.XOR<Prisma.AdmissionCreateWithoutTransactionsInput, Prisma.AdmissionUncheckedCreateWithoutTransactionsInput>
+  where?: Prisma.AdmissionWhereInput
+}
+
+export type AdmissionUpdateToOneWithWhereWithoutTransactionsInput = {
+  where?: Prisma.AdmissionWhereInput
+  data: Prisma.XOR<Prisma.AdmissionUpdateWithoutTransactionsInput, Prisma.AdmissionUncheckedUpdateWithoutTransactionsInput>
+}
+
+export type AdmissionUpdateWithoutTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutAdmissionsNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutAdmissionsNestedInput
+}
+
+export type AdmissionUncheckedUpdateWithoutTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.IntFieldUpdateOperationsInput | number
+  admissionFee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumAdmissionStatusFieldUpdateOperationsInput | $Enums.AdmissionStatus
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type AdmissionCreateWithoutUserInput = {
   id?: string
   admissionYear: number
@@ -663,6 +761,7 @@ export type AdmissionCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   program: Prisma.ProgramCreateNestedOneWithoutAdmissionsInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionUncheckedCreateWithoutUserInput = {
@@ -675,6 +774,7 @@ export type AdmissionUncheckedCreateWithoutUserInput = {
   confirmedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutAdmissionInput
 }
 
 export type AdmissionCreateOrConnectWithoutUserInput = {
@@ -725,6 +825,7 @@ export type AdmissionUpdateWithoutProgramInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAdmissionsNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionUncheckedUpdateWithoutProgramInput = {
@@ -737,6 +838,7 @@ export type AdmissionUncheckedUpdateWithoutProgramInput = {
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionUncheckedUpdateManyWithoutProgramInput = {
@@ -773,6 +875,7 @@ export type AdmissionUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   program?: Prisma.ProgramUpdateOneRequiredWithoutAdmissionsNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionUncheckedUpdateWithoutUserInput = {
@@ -785,6 +888,7 @@ export type AdmissionUncheckedUpdateWithoutUserInput = {
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutAdmissionNestedInput
 }
 
 export type AdmissionUncheckedUpdateManyWithoutUserInput = {
@@ -800,6 +904,35 @@ export type AdmissionUncheckedUpdateManyWithoutUserInput = {
 }
 
 
+/**
+ * Count Type AdmissionCountOutputType
+ */
+
+export type AdmissionCountOutputType = {
+  transactions: number
+}
+
+export type AdmissionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  transactions?: boolean | AdmissionCountOutputTypeCountTransactionsArgs
+}
+
+/**
+ * AdmissionCountOutputType without action
+ */
+export type AdmissionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdmissionCountOutputType
+   */
+  select?: Prisma.AdmissionCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AdmissionCountOutputType without action
+ */
+export type AdmissionCountOutputTypeCountTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TransactionWhereInput
+}
+
 
 export type AdmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -814,6 +947,8 @@ export type AdmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  transactions?: boolean | Prisma.Admission$transactionsArgs<ExtArgs>
+  _count?: boolean | Prisma.AdmissionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admission"]>
 
 export type AdmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -863,6 +998,8 @@ export type AdmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type AdmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  transactions?: boolean | Prisma.Admission$transactionsArgs<ExtArgs>
+  _count?: boolean | Prisma.AdmissionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AdmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -878,6 +1015,7 @@ export type $AdmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     program: Prisma.$ProgramPayload<ExtArgs>
+    transactions: Prisma.$TransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1286,6 +1424,7 @@ export interface Prisma__AdmissionClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  transactions<T extends Prisma.Admission$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Admission$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1723,6 +1862,30 @@ export type AdmissionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many Admissions to delete.
    */
   limit?: number
+}
+
+/**
+ * Admission.transactions
+ */
+export type Admission$transactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Transaction
+   */
+  select?: Prisma.TransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Transaction
+   */
+  omit?: Prisma.TransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null
+  where?: Prisma.TransactionWhereInput
+  orderBy?: Prisma.TransactionOrderByWithRelationInput | Prisma.TransactionOrderByWithRelationInput[]
+  cursor?: Prisma.TransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[]
 }
 
 /**
