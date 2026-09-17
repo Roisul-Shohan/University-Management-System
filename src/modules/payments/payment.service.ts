@@ -21,7 +21,7 @@ const ensureAdmissionValidForPayment = (
 		userId: string;
 		user: { status: string; emailVerified: boolean };
 		status: string;
-		admissionFee: { lessThanOrEqualTo: (arg0: number) => any };
+		admissionFee: unknown;
 	},
 	userId: string,
 ) => {
@@ -49,8 +49,11 @@ const ensureAdmissionValidForPayment = (
 	if (admission.status === AdmissionStatus.REJECTED) {
 		throw new AppError(409, "This admission has been rejected.");
 	}
-	if (admission.status !== AdmissionStatus.PENDING) {
-		throw new AppError(409, "This admission is not available for payment.");
+	if (admission.status !== AdmissionStatus.APPROVED) {
+		throw new AppError(
+			409,
+			"This admission has not been approved for payment.",
+		);
 	}
 };
 
@@ -121,7 +124,7 @@ export const createAdmissionPayment = async ({
 
 	ensureAdmissionValidForPayment(admission, userId);
 
-	if (admission.admissionFee.lessThanOrEqualTo(0)) {
+	if (Number(admission.admissionFee) <= 0) {
 		throw new AppError(
 			400,
 			"Invalid admission fee. Payment cannot be processed.",
@@ -242,7 +245,9 @@ const ensureUserActive = (user: { status: string }) => {
 	}
 };
 
-const ensureAdmissionStillPending = (admission: { status: string } | null) => {
+const ensureAdmissionApprovedForPayment = (
+	admission: { status: string } | null,
+) => {
 	if (!admission) {
 		throw new AppError(
 			409,
@@ -250,8 +255,8 @@ const ensureAdmissionStillPending = (admission: { status: string } | null) => {
 		);
 	}
 
-	if (admission.status !== AdmissionStatus.PENDING) {
-		throw new AppError(409, "This admission is no longer pending.");
+	if (admission.status !== AdmissionStatus.APPROVED) {
+		throw new AppError(409, "This admission is not approved for payment.");
 	}
 };
 
@@ -320,7 +325,7 @@ export const executePayment = async ({
 
 	switch (transaction.type) {
 		case TransactionType.ADMISSION:
-			ensureAdmissionStillPending(transaction.admission);
+			ensureAdmissionApprovedForPayment(transaction.admission);
 			break;
 
 		default:
@@ -354,8 +359,11 @@ export const executePayment = async ({
 					throw new AppError(409, "Admission information is missing.");
 				}
 
-				if (currentTransaction.admission.status !== AdmissionStatus.PENDING) {
-					throw new AppError(409, "Admission is no longer pending.");
+				if (currentTransaction.admission.status !== AdmissionStatus.APPROVED) {
+					throw new AppError(
+						409,
+						"This admission is not approved for payment.",
+					);
 				}
 
 				const updatedTransaction = await tx.transaction.update({
@@ -412,7 +420,6 @@ export const getPaymentStatus = async ({
 		throw new AppError(403, "You are not authorized to view this payment.");
 	}
 
-	
 	if (
 		transaction.status === TransactionStatus.SUCCESS ||
 		transaction.status === TransactionStatus.FAILED
@@ -441,7 +448,6 @@ export const getPaymentStatus = async ({
 		throw new AppError(502, "Invalid response received from bKash.");
 	}
 
-	
 	if (bkashResult.transactionStatus !== "Completed") {
 		return {
 			transaction,
@@ -457,7 +463,6 @@ export const getPaymentStatus = async ({
 		throw new AppError(502, "bKash did not return a transaction ID.");
 	}
 
-	
 	const result = await prisma.$transaction(async (tx) => {
 		const currentTransaction = await tx.transaction.findUnique({
 			where: { id: transaction.id },
@@ -490,7 +495,6 @@ export const getPaymentStatus = async ({
 			},
 		});
 
-		
 		switch (currentTransaction.type) {
 			case TransactionType.ADMISSION:
 				if (!currentTransaction.admission) {
@@ -500,7 +504,7 @@ export const getPaymentStatus = async ({
 					);
 				}
 
-				if (currentTransaction.admission.status === AdmissionStatus.PENDING) {
+				if (currentTransaction.admission.status === AdmissionStatus.APPROVED) {
 					await tx.admission.update({
 						where: {
 							id: currentTransaction.admission.id,

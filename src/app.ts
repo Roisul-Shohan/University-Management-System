@@ -12,6 +12,7 @@ import { academicPeriodRouter } from "./modules/academicPeriod/academicPeriod.ro
 import { notificationRouter } from "./modules/notifications/notification.route.js";
 import { departmentRouter } from "./modules/department/department.route.js";
 import paymentRoutes from "./modules/payments/payment.route.js";
+import { admissionRoutes } from "./modules/admission/admission.routes.js";
 
 const app: Application = express();
 
@@ -31,6 +32,7 @@ app.use("/api/academic-periods", academicPeriodRouter);
 app.use("/api/notifications", notificationRouter);
 app.use("/api/departments", departmentRouter);
 app.use("/api/payments", paymentRoutes);
+app.use("/admissions", admissionRoutes);
 
 app.use(notFound);
 
