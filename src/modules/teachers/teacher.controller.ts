@@ -51,6 +51,51 @@ export const getMyTeacherProfile = catchAsync(
   },
 );
 
+export const getTeachers = catchAsync(async (req: Request, res: Response) => {
+  const teachers = await teacherService.getTeachers({
+    departmentId: req.query.departmentId as string | undefined,
+    isDeptAdmin:
+      req.query.isDeptAdmin === undefined
+        ? undefined
+        : req.query.isDeptAdmin === "true",
+  });
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Teachers retrieved successfully.",
+    data: teachers,
+  });
+});
+
+export const getTeacherById = catchAsync(
+  async (req: Request, res: Response) => {
+    const teacher = await teacherService.getTeacherById(
+      req.params.id as string,
+    );
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Teacher retrieved successfully.",
+      data: teacher,
+    });
+  },
+);
+
+export const updateTeacherAdminStatus = catchAsync(
+  async (req: Request, res: Response) => {
+    const teacher = await teacherService.updateTeacherAdminStatus({
+      teacherId: req.params.id as string,
+      isDeptAdmin: req.body.isDeptAdmin,
+    });
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Teacher department-admin status updated successfully.",
+      data: teacher,
+    });
+  },
+);
+
 export const getTeacherApplications = catchAsync(
   async (req: Request, res: Response) => {
     const applications = await teacherService.getTeacherApplications({

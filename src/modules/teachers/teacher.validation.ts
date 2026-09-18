@@ -13,6 +13,28 @@ export const teacherApplicationIdValidation = z.object({
   }),
 });
 
+export const teacherIdValidation = z.object({
+  params: z.object({
+    id: z.string().min(1, "Teacher ID is required"),
+  }),
+});
+
+export const teachersQueryValidation = z.object({
+  query: z.object({
+    departmentId: z.string().min(1).optional(),
+    isDeptAdmin: z.enum(["true", "false"]).optional(),
+  }),
+});
+
+export const updateTeacherAdminValidation = z.object({
+  params: z.object({
+    id: z.string().min(1, "Teacher ID is required"),
+  }),
+  body: z.object({
+    isDeptAdmin: z.boolean({ message: "isDeptAdmin must be a boolean" }),
+  }),
+});
+
 export const teacherApplicationsQueryValidation = z.object({
   query: z.object({
     status: z.enum(["PENDING", "APPROVED", "REJECTED"]).optional(),

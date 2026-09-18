@@ -11,6 +11,10 @@ import type {
   RejectTeacherApplicationInput,
   ReviewTeacherApplicationInput,
 } from "./teacher.interface.js";
+import type {
+  GetTeachersQuery,
+  UpdateTeacherAdminInput,
+} from "./teacher.admin.interface.js";
 
 const getReviewer = async (reviewerId: string) => {
   const reviewer = await prisma.user.findUnique({
@@ -117,6 +121,75 @@ export const getMyTeacherProfile = async (userId: string) => {
     throw new AppError(404, "You are not an approved teacher yet.");
   }
   return teacher;
+};
+
+export const getTeachers = async ({
+  departmentId,
+  isDeptAdmin,
+}: GetTeachersQuery) => {
+  return prisma.teacher.findMany({
+    where: {
+      ...(departmentId ? { departmentId } : {}),
+      ...(isDeptAdmin === undefined ? {} : { isDeptAdmin }),
+    },
+    include: {
+      department: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          status: true,
+          emailVerified: true,
+        },
+      },
+    },
+    orderBy: [{ department: { name: "asc" } }, { teacherId: "asc" }],
+  });
+};
+
+export const getTeacherById = async (teacherId: string) => {
+  const teacher = await prisma.teacher.findUnique({
+    where: { id: teacherId },
+    include: {
+      department: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          status: true,
+          emailVerified: true,
+        },
+      },
+    },
+  });
+
+  if (!teacher) throw new AppError(404, "Teacher not found.");
+  return teacher;
+};
+
+export const updateTeacherAdminStatus = async ({
+  teacherId,
+  isDeptAdmin,
+}: UpdateTeacherAdminInput) => {
+  const teacher = await prisma.teacher.findUnique({
+    where: { id: teacherId },
+  });
+
+  if (!teacher) throw new AppError(404, "Teacher not found.");
+  if (teacher.isDeptAdmin === isDeptAdmin) {
+    throw new AppError(
+      409,
+      `Teacher is already ${isDeptAdmin ? "a department admin" : "not a department admin"}.`,
+    );
+  }
+
+  return prisma.teacher.update({
+    where: { id: teacherId },
+    data: { isDeptAdmin },
+    include: { department: true },
+  });
 };
 
 export const getTeacherApplications = async ({

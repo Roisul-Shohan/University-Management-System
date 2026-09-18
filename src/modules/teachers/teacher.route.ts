@@ -8,6 +8,9 @@ import {
   rejectTeacherApplicationValidation,
   teacherApplicationIdValidation,
   teacherApplicationsQueryValidation,
+  teacherIdValidation,
+  teachersQueryValidation,
+  updateTeacherAdminValidation,
 } from "./teacher.validation.js";
 
 const router = Router();
@@ -28,10 +31,31 @@ router.get(
 router.get("/me", auth(Role.TEACHER), teacherController.getMyTeacherProfile);
 
 router.get(
+  "/",
+  auth(Role.SUPER_ADMIN),
+  validateRequest(teachersQueryValidation),
+  teacherController.getTeachers,
+);
+
+router.get(
   "/applications",
   auth(Role.TEACHER, Role.SUPER_ADMIN),
   validateRequest(teacherApplicationsQueryValidation),
   teacherController.getTeacherApplications,
+);
+
+router.get(
+  "/:id",
+  auth(Role.SUPER_ADMIN),
+  validateRequest(teacherIdValidation),
+  teacherController.getTeacherById,
+);
+
+router.patch(
+  "/:id/admin-status",
+  auth(Role.SUPER_ADMIN),
+  validateRequest(updateTeacherAdminValidation),
+  teacherController.updateTeacherAdminStatus,
 );
 
 router.patch(
