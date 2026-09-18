@@ -188,6 +188,7 @@ export type ProgramWhereInput = {
   admissions?: Prisma.AdmissionListRelationFilter
   admissionFees?: Prisma.AdmissionFeeListRelationFilter
   semesterFees?: Prisma.SemesterFeeListRelationFilter
+  creditFees?: Prisma.CreditFeeListRelationFilter
 }
 
 export type ProgramOrderByWithRelationInput = {
@@ -202,6 +203,7 @@ export type ProgramOrderByWithRelationInput = {
   admissions?: Prisma.AdmissionOrderByRelationAggregateInput
   admissionFees?: Prisma.AdmissionFeeOrderByRelationAggregateInput
   semesterFees?: Prisma.SemesterFeeOrderByRelationAggregateInput
+  creditFees?: Prisma.CreditFeeOrderByRelationAggregateInput
 }
 
 export type ProgramWhereUniqueInput = Prisma.AtLeast<{
@@ -220,6 +222,7 @@ export type ProgramWhereUniqueInput = Prisma.AtLeast<{
   admissions?: Prisma.AdmissionListRelationFilter
   admissionFees?: Prisma.AdmissionFeeListRelationFilter
   semesterFees?: Prisma.SemesterFeeListRelationFilter
+  creditFees?: Prisma.CreditFeeListRelationFilter
 }, "id" | "departmentId_degreeType">
 
 export type ProgramOrderByWithAggregationInput = {
@@ -255,6 +258,7 @@ export type ProgramCreateInput = {
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateInput = {
@@ -268,6 +272,7 @@ export type ProgramUncheckedCreateInput = {
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUpdateInput = {
@@ -281,6 +286,7 @@ export type ProgramUpdateInput = {
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateInput = {
@@ -294,6 +300,7 @@ export type ProgramUncheckedUpdateInput = {
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateManyInput = {
@@ -389,6 +396,20 @@ export type ProgramUpdateOneRequiredWithoutAdmissionFeesNestedInput = {
   upsert?: Prisma.ProgramUpsertWithoutAdmissionFeesInput
   connect?: Prisma.ProgramWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProgramUpdateToOneWithWhereWithoutAdmissionFeesInput, Prisma.ProgramUpdateWithoutAdmissionFeesInput>, Prisma.ProgramUncheckedUpdateWithoutAdmissionFeesInput>
+}
+
+export type ProgramCreateNestedOneWithoutCreditFeesInput = {
+  create?: Prisma.XOR<Prisma.ProgramCreateWithoutCreditFeesInput, Prisma.ProgramUncheckedCreateWithoutCreditFeesInput>
+  connectOrCreate?: Prisma.ProgramCreateOrConnectWithoutCreditFeesInput
+  connect?: Prisma.ProgramWhereUniqueInput
+}
+
+export type ProgramUpdateOneRequiredWithoutCreditFeesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProgramCreateWithoutCreditFeesInput, Prisma.ProgramUncheckedCreateWithoutCreditFeesInput>
+  connectOrCreate?: Prisma.ProgramCreateOrConnectWithoutCreditFeesInput
+  upsert?: Prisma.ProgramUpsertWithoutCreditFeesInput
+  connect?: Prisma.ProgramWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProgramUpdateToOneWithWhereWithoutCreditFeesInput, Prisma.ProgramUpdateWithoutCreditFeesInput>, Prisma.ProgramUncheckedUpdateWithoutCreditFeesInput>
 }
 
 export type ProgramCreateNestedOneWithoutCurriculumCoursesInput = {
@@ -489,6 +510,7 @@ export type ProgramCreateWithoutAdmissionsInput = {
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutAdmissionsInput = {
@@ -501,6 +523,7 @@ export type ProgramUncheckedCreateWithoutAdmissionsInput = {
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutAdmissionsInput = {
@@ -529,6 +552,7 @@ export type ProgramUpdateWithoutAdmissionsInput = {
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutAdmissionsInput = {
@@ -541,6 +565,7 @@ export type ProgramUncheckedUpdateWithoutAdmissionsInput = {
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateWithoutAdmissionFeesInput = {
@@ -553,6 +578,7 @@ export type ProgramCreateWithoutAdmissionFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutAdmissionFeesInput = {
@@ -565,6 +591,7 @@ export type ProgramUncheckedCreateWithoutAdmissionFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutAdmissionFeesInput = {
@@ -593,6 +620,7 @@ export type ProgramUpdateWithoutAdmissionFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutAdmissionFeesInput = {
@@ -604,6 +632,75 @@ export type ProgramUncheckedUpdateWithoutAdmissionFeesInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
+}
+
+export type ProgramCreateWithoutCreditFeesInput = {
+  id?: string
+  degreeType: $Enums.DegreeType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  department: Prisma.DepartmentCreateNestedOneWithoutProgramsInput
+  students?: Prisma.StudentCreateNestedManyWithoutProgramInput
+  curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
+  semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+}
+
+export type ProgramUncheckedCreateWithoutCreditFeesInput = {
+  id?: string
+  degreeType: $Enums.DegreeType
+  departmentId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutProgramInput
+  curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
+  semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+}
+
+export type ProgramCreateOrConnectWithoutCreditFeesInput = {
+  where: Prisma.ProgramWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProgramCreateWithoutCreditFeesInput, Prisma.ProgramUncheckedCreateWithoutCreditFeesInput>
+}
+
+export type ProgramUpsertWithoutCreditFeesInput = {
+  update: Prisma.XOR<Prisma.ProgramUpdateWithoutCreditFeesInput, Prisma.ProgramUncheckedUpdateWithoutCreditFeesInput>
+  create: Prisma.XOR<Prisma.ProgramCreateWithoutCreditFeesInput, Prisma.ProgramUncheckedCreateWithoutCreditFeesInput>
+  where?: Prisma.ProgramWhereInput
+}
+
+export type ProgramUpdateToOneWithWhereWithoutCreditFeesInput = {
+  where?: Prisma.ProgramWhereInput
+  data: Prisma.XOR<Prisma.ProgramUpdateWithoutCreditFeesInput, Prisma.ProgramUncheckedUpdateWithoutCreditFeesInput>
+}
+
+export type ProgramUpdateWithoutCreditFeesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degreeType?: Prisma.EnumDegreeTypeFieldUpdateOperationsInput | $Enums.DegreeType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutProgramsNestedInput
+  students?: Prisma.StudentUpdateManyWithoutProgramNestedInput
+  curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
+  admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
+  semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+}
+
+export type ProgramUncheckedUpdateWithoutCreditFeesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  degreeType?: Prisma.EnumDegreeTypeFieldUpdateOperationsInput | $Enums.DegreeType
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  students?: Prisma.StudentUncheckedUpdateManyWithoutProgramNestedInput
+  curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
+  admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
@@ -617,6 +714,7 @@ export type ProgramCreateWithoutCurriculumCoursesInput = {
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutCurriculumCoursesInput = {
@@ -629,6 +727,7 @@ export type ProgramUncheckedCreateWithoutCurriculumCoursesInput = {
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutCurriculumCoursesInput = {
@@ -657,6 +756,7 @@ export type ProgramUpdateWithoutCurriculumCoursesInput = {
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutCurriculumCoursesInput = {
@@ -669,6 +769,7 @@ export type ProgramUncheckedUpdateWithoutCurriculumCoursesInput = {
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateWithoutDepartmentInput = {
@@ -681,6 +782,7 @@ export type ProgramCreateWithoutDepartmentInput = {
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutDepartmentInput = {
@@ -693,6 +795,7 @@ export type ProgramUncheckedCreateWithoutDepartmentInput = {
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutDepartmentInput = {
@@ -742,6 +845,7 @@ export type ProgramCreateWithoutSemesterFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutSemesterFeesInput = {
@@ -754,6 +858,7 @@ export type ProgramUncheckedCreateWithoutSemesterFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseUncheckedCreateNestedManyWithoutProgramInput
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutSemesterFeesInput = {
@@ -782,6 +887,7 @@ export type ProgramUpdateWithoutSemesterFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutSemesterFeesInput = {
@@ -794,6 +900,7 @@ export type ProgramUncheckedUpdateWithoutSemesterFeesInput = {
   curriculumCourses?: Prisma.CurriculumCourseUncheckedUpdateManyWithoutProgramNestedInput
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateWithoutStudentsInput = {
@@ -806,6 +913,7 @@ export type ProgramCreateWithoutStudentsInput = {
   admissions?: Prisma.AdmissionCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramUncheckedCreateWithoutStudentsInput = {
@@ -818,6 +926,7 @@ export type ProgramUncheckedCreateWithoutStudentsInput = {
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutProgramInput
   admissionFees?: Prisma.AdmissionFeeUncheckedCreateNestedManyWithoutProgramInput
   semesterFees?: Prisma.SemesterFeeUncheckedCreateNestedManyWithoutProgramInput
+  creditFees?: Prisma.CreditFeeUncheckedCreateNestedManyWithoutProgramInput
 }
 
 export type ProgramCreateOrConnectWithoutStudentsInput = {
@@ -846,6 +955,7 @@ export type ProgramUpdateWithoutStudentsInput = {
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutStudentsInput = {
@@ -858,6 +968,7 @@ export type ProgramUncheckedUpdateWithoutStudentsInput = {
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramCreateManyDepartmentInput = {
@@ -877,6 +988,7 @@ export type ProgramUpdateWithoutDepartmentInput = {
   admissions?: Prisma.AdmissionUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateWithoutDepartmentInput = {
@@ -889,6 +1001,7 @@ export type ProgramUncheckedUpdateWithoutDepartmentInput = {
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutProgramNestedInput
   admissionFees?: Prisma.AdmissionFeeUncheckedUpdateManyWithoutProgramNestedInput
   semesterFees?: Prisma.SemesterFeeUncheckedUpdateManyWithoutProgramNestedInput
+  creditFees?: Prisma.CreditFeeUncheckedUpdateManyWithoutProgramNestedInput
 }
 
 export type ProgramUncheckedUpdateManyWithoutDepartmentInput = {
@@ -909,6 +1022,7 @@ export type ProgramCountOutputType = {
   admissions: number
   admissionFees: number
   semesterFees: number
+  creditFees: number
 }
 
 export type ProgramCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -917,6 +1031,7 @@ export type ProgramCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   admissions?: boolean | ProgramCountOutputTypeCountAdmissionsArgs
   admissionFees?: boolean | ProgramCountOutputTypeCountAdmissionFeesArgs
   semesterFees?: boolean | ProgramCountOutputTypeCountSemesterFeesArgs
+  creditFees?: boolean | ProgramCountOutputTypeCountCreditFeesArgs
 }
 
 /**
@@ -964,6 +1079,13 @@ export type ProgramCountOutputTypeCountSemesterFeesArgs<ExtArgs extends runtime.
   where?: Prisma.SemesterFeeWhereInput
 }
 
+/**
+ * ProgramCountOutputType without action
+ */
+export type ProgramCountOutputTypeCountCreditFeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CreditFeeWhereInput
+}
+
 
 export type ProgramSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -977,6 +1099,7 @@ export type ProgramSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   admissions?: boolean | Prisma.Program$admissionsArgs<ExtArgs>
   admissionFees?: boolean | Prisma.Program$admissionFeesArgs<ExtArgs>
   semesterFees?: boolean | Prisma.Program$semesterFeesArgs<ExtArgs>
+  creditFees?: boolean | Prisma.Program$creditFeesArgs<ExtArgs>
   _count?: boolean | Prisma.ProgramCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["program"]>
 
@@ -1014,6 +1137,7 @@ export type ProgramInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   admissions?: boolean | Prisma.Program$admissionsArgs<ExtArgs>
   admissionFees?: boolean | Prisma.Program$admissionFeesArgs<ExtArgs>
   semesterFees?: boolean | Prisma.Program$semesterFeesArgs<ExtArgs>
+  creditFees?: boolean | Prisma.Program$creditFeesArgs<ExtArgs>
   _count?: boolean | Prisma.ProgramCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProgramIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1032,6 +1156,7 @@ export type $ProgramPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     admissions: Prisma.$AdmissionPayload<ExtArgs>[]
     admissionFees: Prisma.$AdmissionFeePayload<ExtArgs>[]
     semesterFees: Prisma.$SemesterFeePayload<ExtArgs>[]
+    creditFees: Prisma.$CreditFeePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1439,6 +1564,7 @@ export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends runtime.
   admissions<T extends Prisma.Program$admissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$admissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   admissionFees<T extends Prisma.Program$admissionFeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$admissionFeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionFeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   semesterFees<T extends Prisma.Program$semesterFeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$semesterFeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SemesterFeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  creditFees<T extends Prisma.Program$creditFeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Program$creditFeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreditFeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1991,6 +2117,30 @@ export type Program$semesterFeesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.SemesterFeeScalarFieldEnum | Prisma.SemesterFeeScalarFieldEnum[]
+}
+
+/**
+ * Program.creditFees
+ */
+export type Program$creditFeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CreditFee
+   */
+  select?: Prisma.CreditFeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CreditFee
+   */
+  omit?: Prisma.CreditFeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CreditFeeInclude<ExtArgs> | null
+  where?: Prisma.CreditFeeWhereInput
+  orderBy?: Prisma.CreditFeeOrderByWithRelationInput | Prisma.CreditFeeOrderByWithRelationInput[]
+  cursor?: Prisma.CreditFeeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CreditFeeScalarFieldEnum | Prisma.CreditFeeScalarFieldEnum[]
 }
 
 /**

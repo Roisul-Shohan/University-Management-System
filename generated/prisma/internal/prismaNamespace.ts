@@ -407,6 +407,7 @@ export const ModelName = {
   CourseEnrollment: 'CourseEnrollment',
   CourseOffering: 'CourseOffering',
   CoursePrerequisite: 'CoursePrerequisite',
+  CreditFee: 'CreditFee',
   CurriculumCourse: 'CurriculumCourse',
   Department: 'Department',
   Exam: 'Exam',
@@ -439,7 +440,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "semesterFee" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
+    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "creditFee" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "semesterFee" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1180,6 +1181,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CoursePrerequisiteCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CoursePrerequisiteCountAggregateOutputType> | number
+        }
+      }
+    }
+    CreditFee: {
+      payload: Prisma.$CreditFeePayload<ExtArgs>
+      fields: Prisma.CreditFeeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CreditFeeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CreditFeeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        findFirst: {
+          args: Prisma.CreditFeeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CreditFeeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        findMany: {
+          args: Prisma.CreditFeeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>[]
+        }
+        create: {
+          args: Prisma.CreditFeeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        createMany: {
+          args: Prisma.CreditFeeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CreditFeeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>[]
+        }
+        delete: {
+          args: Prisma.CreditFeeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        update: {
+          args: Prisma.CreditFeeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        deleteMany: {
+          args: Prisma.CreditFeeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CreditFeeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CreditFeeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>[]
+        }
+        upsert: {
+          args: Prisma.CreditFeeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CreditFeePayload>
+        }
+        aggregate: {
+          args: Prisma.CreditFeeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCreditFee>
+        }
+        groupBy: {
+          args: Prisma.CreditFeeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreditFeeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CreditFeeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CreditFeeCountAggregateOutputType> | number
         }
       }
     }
@@ -2614,6 +2689,18 @@ export const CoursePrerequisiteScalarFieldEnum = {
 export type CoursePrerequisiteScalarFieldEnum = (typeof CoursePrerequisiteScalarFieldEnum)[keyof typeof CoursePrerequisiteScalarFieldEnum]
 
 
+export const CreditFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CreditFeeScalarFieldEnum = (typeof CreditFeeScalarFieldEnum)[keyof typeof CreditFeeScalarFieldEnum]
+
+
 export const CurriculumCourseScalarFieldEnum = {
   id: 'id',
   programId: 'programId',
@@ -3328,6 +3415,7 @@ export type GlobalOmitConfig = {
   courseEnrollment?: Prisma.CourseEnrollmentOmit
   courseOffering?: Prisma.CourseOfferingOmit
   coursePrerequisite?: Prisma.CoursePrerequisiteOmit
+  creditFee?: Prisma.CreditFeeOmit
   curriculumCourse?: Prisma.CurriculumCourseOmit
   department?: Prisma.DepartmentOmit
   exam?: Prisma.ExamOmit

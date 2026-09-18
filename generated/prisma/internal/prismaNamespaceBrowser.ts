@@ -61,6 +61,7 @@ export const ModelName = {
   CourseEnrollment: 'CourseEnrollment',
   CourseOffering: 'CourseOffering',
   CoursePrerequisite: 'CoursePrerequisite',
+  CreditFee: 'CreditFee',
   CurriculumCourse: 'CurriculumCourse',
   Department: 'Department',
   Exam: 'Exam',
@@ -228,6 +229,18 @@ export const CoursePrerequisiteScalarFieldEnum = {
 } as const
 
 export type CoursePrerequisiteScalarFieldEnum = (typeof CoursePrerequisiteScalarFieldEnum)[keyof typeof CoursePrerequisiteScalarFieldEnum]
+
+
+export const CreditFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CreditFeeScalarFieldEnum = (typeof CreditFeeScalarFieldEnum)[keyof typeof CreditFeeScalarFieldEnum]
 
 
 export const CurriculumCourseScalarFieldEnum = {

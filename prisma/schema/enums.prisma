@@ -58,6 +58,7 @@ enum TransactionStatus {
 }
 
 enum EnrollmentStatus {
+  PENDING
   ENROLLED
   COMPLETED
   DROPPED

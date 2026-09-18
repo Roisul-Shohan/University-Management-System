@@ -68,6 +68,11 @@ export type CourseOffering = Prisma.CourseOfferingModel
  */
 export type CoursePrerequisite = Prisma.CoursePrerequisiteModel
 /**
+ * Model CreditFee
+ * 
+ */
+export type CreditFee = Prisma.CreditFeeModel
+/**
  * Model CurriculumCourse
  * 
  */

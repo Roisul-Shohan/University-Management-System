@@ -14,4 +14,11 @@ router.post(
     studentSemesterController.initiatePayment
 );
 
+router.post(
+    "/:studentSemesterId/course-payment/initiate",
+    auth(Role.STUDENT),
+    validateRequest(initiateSemesterPaymentValidation),
+    studentSemesterController.initiateCoursePayment
+);
+
 export const studentSemesterRoutes = router;

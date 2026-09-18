@@ -4,7 +4,7 @@ model CourseEnrollment {
   courseOfferingId  String
   studentSemesterId String
 
-  status EnrollmentStatus @default(ENROLLED)
+  status EnrollmentStatus @default(PENDING)
 
   enrolledAt DateTime  @default(now())
   droppedAt  DateTime?

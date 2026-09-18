@@ -93,6 +93,7 @@ export type TransactionStatus = (typeof TransactionStatus)[keyof typeof Transact
 
 
 export const EnrollmentStatus = {
+  PENDING: 'PENDING',
   ENROLLED: 'ENROLLED',
   COMPLETED: 'COMPLETED',
   DROPPED: 'DROPPED',

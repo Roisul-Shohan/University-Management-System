@@ -16,3 +16,17 @@ export const initiatePayment = catchAsync(async (req: Request, res: Response) =>
         data: result,
     });
 });
+
+export const initiateCoursePayment = catchAsync(async (req: Request, res: Response) => {
+    const result = await studentSemesterService.initiateCourseRegistrationPayment({
+        studentSemesterId: req.params.studentSemesterId as string,
+        userId: req.user!.userId,
+    });
+
+    sendResponse(res, {
+        statusCode: 201,
+        success: true,
+        message: "Course registration payment initiated successfully.",
+        data: result,
+    });
+});

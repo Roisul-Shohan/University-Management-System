@@ -16,6 +16,11 @@ import { paymentRoutes } from "./modules/payments/payment.route.js";
 import { studentRoutes } from "./modules/students/student.route.js";
 import { studentSemesterRoutes } from "./modules/studentSemester/studentSemester.routes.js";
 import { semesterFeeRoutes } from "./modules/semesterFee/semesterFee.route.js";
+import {
+  creditFeeRoutes,
+  courseRegistrationFeeRoutes,
+} from "./modules/creditFee/creditFee.route.js";
+import { courseRegistrationRoutes } from "./modules/courseRegistration/courseRegistration.route.js";
 
 const app: Application = express();
 
@@ -26,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
-	res.send("Helllo");
+  res.send("Helllo");
 });
 
 app.use("/api/auth", authRoutes);
@@ -39,6 +44,9 @@ app.use("/admissions", admissionRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/student-semesters", studentSemesterRoutes);
 app.use("/api/semester-fees", semesterFeeRoutes);
+app.use("/api/credit-fees", creditFeeRoutes);
+app.use("/api/course-registration-fees", courseRegistrationFeeRoutes);
+app.use("/api/course-registrations", courseRegistrationRoutes);
 
 app.use(notFound);
 
