@@ -1,18 +1,18 @@
 model Student {
-  id              String  @id
-  studentId       String  @unique
+  id              String               @id
+  studentId       String               @unique
   admissionYear   Int
   programId       String
   currentYear     Int
   currentSemester Int
-  isActive        Boolean @default(true)
-   programStatus StudentProgramStatus @default(ACTIVE)
+  isActive        Boolean              @default(true)
+  programStatus   StudentProgramStatus @default(ACTIVE)
 
   user User @relation(fields: [id], references: [id], onDelete: Cascade)
 
-  program      Program           @relation(fields: [programId], references: [id])
-  semesters    StudentSemester[]
-  
+  program   Program           @relation(fields: [programId], references: [id])
+  semesters StudentSemester[]
+
   transactions Transaction[]
 
   createdAt DateTime @default(now())

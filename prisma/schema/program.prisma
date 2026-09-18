@@ -8,8 +8,8 @@ model Program {
   students          Student[]
   curriculumCourses CurriculumCourse[]
   admissions        Admission[]
-  admissionFees AdmissionFee[]
-
+  admissionFees     AdmissionFee[]
+  semesterFees      SemesterFee[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

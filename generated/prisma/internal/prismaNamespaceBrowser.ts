@@ -71,6 +71,7 @@ export const ModelName = {
   Program: 'Program',
   QuestionOption: 'QuestionOption',
   Result: 'Result',
+  SemesterFee: 'SemesterFee',
   Student: 'Student',
   StudentAnswer: 'StudentAnswer',
   StudentSemester: 'StudentSemester',
@@ -360,6 +361,18 @@ export const ResultScalarFieldEnum = {
 } as const
 
 export type ResultScalarFieldEnum = (typeof ResultScalarFieldEnum)[keyof typeof ResultScalarFieldEnum]
+
+
+export const SemesterFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SemesterFeeScalarFieldEnum = (typeof SemesterFeeScalarFieldEnum)[keyof typeof SemesterFeeScalarFieldEnum]
 
 
 export const StudentScalarFieldEnum = {

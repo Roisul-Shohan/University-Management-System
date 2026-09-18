@@ -10,3 +10,5 @@ package-lock.json
 pnpm-workspace.yaml
 .vscode
 .vercel
+.kilo
+.antigravity

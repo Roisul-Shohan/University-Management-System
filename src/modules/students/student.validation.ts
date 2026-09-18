@@ -8,10 +8,7 @@ export const createStudentValidation = z.object({
 
 export const getStudentValidation = z.object({
 	params: z.object({
-		studentId: z
-			.string()
-			.trim()
-			.min(1, "Student ID is required"),
+		studentId: z.string().trim().min(1, "Student ID is required"),
 	}),
 });
 
@@ -21,26 +18,11 @@ export const getStudentsValidation = z.object({
 
 		departmentId: z.uuid("Invalid department ID").optional(),
 
-		admissionYear: z.coerce
-			.number()
-			.int()
-			.min(2000)
-			.max(2100)
-			.optional(),
+		admissionYear: z.coerce.number().int().min(2000).max(2100).optional(),
 
-		currentYear: z.coerce
-			.number()
-			.int()
-			.min(1)
-			.max(4)
-			.optional(),
+		currentYear: z.coerce.number().int().min(1).max(4).optional(),
 
-		currentSemester: z.coerce
-			.number()
-			.int()
-			.min(1)
-			.max(2)
-			.optional(),
+		currentSemester: z.coerce.number().int().min(1).max(2).optional(),
 
 		isActive: z
 			.enum(["true", "false"])

@@ -1,4 +1,4 @@
-model AdmissionFee {
+model SemesterFee {
   id String @id @default(uuid())
 
   programId String
@@ -13,5 +13,5 @@ model AdmissionFee {
 
   @@index([programId])
   @@index([isActive])
-  @@map("admission_fees")
+  @@map("semester_fees")
 }

@@ -14,6 +14,8 @@ import { departmentRouter } from "./modules/department/department.route.js";
 import { admissionRoutes } from "./modules/admission/admission.routes.js";
 import { paymentRoutes } from "./modules/payments/payment.route.js";
 import { studentRoutes } from "./modules/students/student.route.js";
+import { studentSemesterRoutes } from "./modules/studentSemester/studentSemester.routes.js";
+import { semesterFeeRoutes } from "./modules/semesterFee/semesterFee.route.js";
 
 const app: Application = express();
 
@@ -35,6 +37,8 @@ app.use("/api/departments", departmentRouter);
 app.use("/api/payments", paymentRoutes);
 app.use("/admissions", admissionRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/student-semesters", studentSemesterRoutes);
+app.use("/api/semester-fees", semesterFeeRoutes);
 
 app.use(notFound);
 

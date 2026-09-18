@@ -118,6 +118,11 @@ export type QuestionOption = Prisma.QuestionOptionModel
  */
 export type Result = Prisma.ResultModel
 /**
+ * Model SemesterFee
+ * 
+ */
+export type SemesterFee = Prisma.SemesterFeeModel
+/**
  * Model Student
  * 
  */

@@ -417,6 +417,7 @@ export const ModelName = {
   Program: 'Program',
   QuestionOption: 'QuestionOption',
   Result: 'Result',
+  SemesterFee: 'SemesterFee',
   Student: 'Student',
   StudentAnswer: 'StudentAnswer',
   StudentSemester: 'StudentSemester',
@@ -438,7 +439,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
+    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "semesterFee" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1922,6 +1923,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SemesterFee: {
+      payload: Prisma.$SemesterFeePayload<ExtArgs>
+      fields: Prisma.SemesterFeeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SemesterFeeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SemesterFeeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        findFirst: {
+          args: Prisma.SemesterFeeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SemesterFeeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        findMany: {
+          args: Prisma.SemesterFeeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>[]
+        }
+        create: {
+          args: Prisma.SemesterFeeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        createMany: {
+          args: Prisma.SemesterFeeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SemesterFeeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>[]
+        }
+        delete: {
+          args: Prisma.SemesterFeeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        update: {
+          args: Prisma.SemesterFeeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        deleteMany: {
+          args: Prisma.SemesterFeeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SemesterFeeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SemesterFeeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>[]
+        }
+        upsert: {
+          args: Prisma.SemesterFeeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SemesterFeePayload>
+        }
+        aggregate: {
+          args: Prisma.SemesterFeeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSemesterFee>
+        }
+        groupBy: {
+          args: Prisma.SemesterFeeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SemesterFeeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SemesterFeeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SemesterFeeCountAggregateOutputType> | number
+        }
+      }
+    }
     Student: {
       payload: Prisma.$StudentPayload<ExtArgs>
       fields: Prisma.StudentFieldRefs
@@ -2672,6 +2747,18 @@ export const ResultScalarFieldEnum = {
 export type ResultScalarFieldEnum = (typeof ResultScalarFieldEnum)[keyof typeof ResultScalarFieldEnum]
 
 
+export const SemesterFeeScalarFieldEnum = {
+  id: 'id',
+  programId: 'programId',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SemesterFeeScalarFieldEnum = (typeof SemesterFeeScalarFieldEnum)[keyof typeof SemesterFeeScalarFieldEnum]
+
+
 export const StudentScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
@@ -3251,6 +3338,7 @@ export type GlobalOmitConfig = {
   program?: Prisma.ProgramOmit
   questionOption?: Prisma.QuestionOptionOmit
   result?: Prisma.ResultOmit
+  semesterFee?: Prisma.SemesterFeeOmit
   student?: Prisma.StudentOmit
   studentAnswer?: Prisma.StudentAnswerOmit
   studentSemester?: Prisma.StudentSemesterOmit

@@ -12,20 +12,10 @@ import {
 
 const router = Router();
 
-// Create student from confirmed admission
-router.post(
-	"/from-admission/:admissionId",
-	auth(Role.SUPER_ADMIN),
-	validateRequest(createStudentValidation),
-	studentController.createStudentFromConfirmedAdmission,
-);
+
 
 // Student views own profile
-router.get(
-	"/me",
-	auth(Role.STUDENT),
-	studentController.getMyStudentProfile,
-);
+router.get("/me", auth(Role.STUDENT), studentController.getMyStudentProfile);
 
 // Admin views all students
 router.get(
@@ -43,5 +33,4 @@ router.get(
 	studentController.getStudent,
 );
 
-
-export const studentRoutes= router;
+export const studentRoutes = router;

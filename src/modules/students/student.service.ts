@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma.js";
+
 import AppError from "../../errors/AppErrors.js";
 import {
 	AdmissionStatus,
@@ -12,17 +12,20 @@ import {
 	GetStudentParams,
 	GetStudentsQuery,
 } from "./student.interface.js";
+import { prisma } from "../../lib/prisma.js";
 
 const MAX_RETRIES = 3;
+
 
 const createStudentTransaction = async (
 	admissionId: string,
 ) => {
 	return prisma.$transaction(
-		async (tx: Prisma.TransactionClient) => {
+		async (tx) => {
 			// -------------------------------------------------
-			// 1. Find and validate admission
+			// 1. Get admission
 			// -------------------------------------------------
+
 			const admission = await tx.admission.findUnique({
 				where: {
 					id: admissionId,
@@ -36,7 +39,6 @@ const createStudentTransaction = async (
 					user: {
 						select: {
 							id: true,
-							role: true,
 							status: true,
 						},
 					},
@@ -44,11 +46,20 @@ const createStudentTransaction = async (
 			});
 
 			if (!admission) {
-				throw new AppError(404, "Admission not found.");
+				throw new AppError(
+					404,
+					"Admission not found.",
+				);
 			}
 
-			// Student can only be created after successful payment
-			if (admission.status !== AdmissionStatus.CONFIRMED) {
+			// -------------------------------------------------
+			// 2. Admission must already be confirmed
+			// -------------------------------------------------
+
+			if (
+				admission.status !==
+				AdmissionStatus.CONFIRMED
+			) {
 				throw new AppError(
 					400,
 					"Student can only be created from a confirmed admission.",
@@ -56,9 +67,13 @@ const createStudentTransaction = async (
 			}
 
 			// -------------------------------------------------
-			// 2. Validate user
+			// 3. User must be active
 			// -------------------------------------------------
-			if (admission.user.status !== UserStatus.ACTIVE) {
+
+			if (
+				admission.user.status !==
+				UserStatus.ACTIVE
+			) {
 				throw new AppError(
 					400,
 					"Student user account is not active.",
@@ -66,21 +81,13 @@ const createStudentTransaction = async (
 			}
 
 			// -------------------------------------------------
-			// 3. Check whether student already exists
+			// 4. Check if student already exists
 			// -------------------------------------------------
-			const existingStudent = await tx.student.findUnique({
-				where: {
-					id: admission.userId,
-				},
-			});
 
-			// Idempotency:
-			// If student was already created, return it instead
-			// of creating another student.
-			if (existingStudent) {
-				return tx.student.findUnique({
+			const existingStudent =
+				await tx.student.findUnique({
 					where: {
-						id: existingStudent.id,
+						id: admission.userId,
 					},
 					include: {
 						program: {
@@ -100,36 +107,58 @@ const createStudentTransaction = async (
 						},
 					},
 				});
+
+			/*
+			 * Important:
+			 *
+			 * Payment callback, execute API, and reconciliation
+			 * can potentially reach this code more than once.
+			 *
+			 * Therefore student creation is idempotent.
+			 */
+			if (existingStudent) {
+				return existingStudent;
 			}
 
 			// -------------------------------------------------
-			// 4. Generate student ID
+			// 5. Generate student ID
 			// -------------------------------------------------
+
 			const prefix =
 				`${admission.admissionYear}${admission.program.department.code}`;
 
-			const students = await tx.student.findMany({
-				where: {
-					admissionYear: admission.admissionYear,
-					program: {
-						departmentId:
-							admission.program.departmentId,
+			const existingStudents =
+				await tx.student.findMany({
+					where: {
+						admissionYear:
+							admission.admissionYear,
+
+						program: {
+							departmentId:
+								admission.program.departmentId,
+						},
 					},
-				},
-				select: {
-					studentId: true,
-				},
-			});
+
+					select: {
+						studentId: true,
+					},
+				});
 
 			let maxSequence = 0;
 
-			for (const student of students) {
-				if (!student.studentId.startsWith(prefix)) {
+			for (const student of existingStudents) {
+				if (
+					!student.studentId.startsWith(
+						prefix,
+					)
+				) {
 					continue;
 				}
 
 				const sequence = Number(
-					student.studentId.slice(prefix.length),
+					student.studentId.slice(
+						prefix.length,
+					),
 				);
 
 				if (
@@ -153,11 +182,14 @@ const createStudentTransaction = async (
 				`${prefix}${String(nextSequence).padStart(3, "0")}`;
 
 			// -------------------------------------------------
-			// 5. Create Student + initial 1/1 semester
+			// 6. Create Student + first semester together
 			// -------------------------------------------------
+
 			const student = await tx.student.create({
 				data: {
-					// Student.id = User.id
+					/*
+					 * Student.id is the same as User.id.
+					 */
 					id: admission.userId,
 
 					studentId,
@@ -186,12 +218,14 @@ const createStudentTransaction = async (
 						},
 					},
 				},
+
 				include: {
 					program: {
 						include: {
 							department: true,
 						},
 					},
+
 					semesters: {
 						orderBy: [
 							{
@@ -207,6 +241,7 @@ const createStudentTransaction = async (
 
 			return student;
 		},
+
 		{
 			isolationLevel:
 				Prisma.TransactionIsolationLevel.Serializable,
@@ -221,19 +256,29 @@ const createStudentTransaction = async (
 export const createStudentFromConfirmedAdmission = async ({
 	admissionId,
 }: CreateStudentFromAdmissionParams) => {
-	for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+	for (
+		let attempt = 1;
+		attempt <= MAX_RETRIES;
+		attempt++
+	) {
 		try {
-			return await createStudentTransaction(admissionId);
+			return await createStudentTransaction(
+				admissionId,
+			);
 		} catch (error) {
 			/*
-			 * P2034 = Transaction failed due to a write conflict
-			 * or deadlock.
+			 * P2034:
 			 *
-			 * This can happen when two student-creation requests
-			 * try to generate the same next sequence simultaneously.
+			 * Transaction failed because of a
+			 * serialization conflict or deadlock.
+			 *
+			 * Retry because another student may have
+			 * been generating an ID at the same time.
 			 */
+
 			const isSerializationError =
-				error instanceof Prisma.PrismaClientKnownRequestError &&
+				error instanceof
+					Prisma.PrismaClientKnownRequestError &&
 				error.code === "P2034";
 
 			if (
@@ -249,7 +294,7 @@ export const createStudentFromConfirmedAdmission = async ({
 
 	throw new AppError(
 		409,
-		"Unable to create student due to concurrent requests. Please try again.",
+		"Unable to create student because of concurrent requests. Please try again.",
 	);
 };
 
@@ -264,12 +309,14 @@ export const getMyStudentProfile = async (
 		where: {
 			id: userId,
 		},
+
 		include: {
 			program: {
 				include: {
 					department: true,
 				},
 			},
+
 			semesters: {
 				orderBy: [
 					{
@@ -304,12 +351,14 @@ export const getStudent = async ({
 		where: {
 			studentId,
 		},
+
 		include: {
 			program: {
 				include: {
 					department: true,
 				},
 			},
+
 			semesters: {
 				orderBy: [
 					{
@@ -353,15 +402,18 @@ export const getStudents = async (
 	}
 
 	if (query.admissionYear !== undefined) {
-		where.admissionYear = query.admissionYear;
+		where.admissionYear =
+			query.admissionYear;
 	}
 
 	if (query.currentYear !== undefined) {
-		where.currentYear = query.currentYear;
+		where.currentYear =
+			query.currentYear;
 	}
 
 	if (query.currentSemester !== undefined) {
-		where.currentSemester = query.currentSemester;
+		where.currentSemester =
+			query.currentSemester;
 	}
 
 	if (query.isActive !== undefined) {

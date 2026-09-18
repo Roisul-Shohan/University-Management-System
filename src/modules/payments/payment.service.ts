@@ -9,6 +9,7 @@ import {
 	AdmissionStatus,
 	TransactionStatus,
 	TransactionType,
+	StudentSemesterStatus,
 } from "../../../generated/prisma/enums.js";
 import {
 	BkashCallbackParams,
@@ -16,6 +17,7 @@ import {
 	ExecutePaymentParams,
 	GetPaymentStatusParams,
 } from "./payment.interface.js";
+import { createStudentFromConfirmedAdmission } from "../students/student.service.js";
 
 const ensureAdmissionValidForPayment = (
 	admission: {
@@ -44,31 +46,19 @@ const ensureAdmissionValidForPayment = (
 	}
 
 	if (!admission.user.emailVerified) {
-		throw new AppError(
-			403,
-			"Please verify your email before making payment.",
-		);
+		throw new AppError(403, "Please verify your email before making payment.");
 	}
 
 	if (admission.status === AdmissionStatus.CONFIRMED) {
-		throw new AppError(
-			409,
-			"This admission has already been confirmed.",
-		);
+		throw new AppError(409, "This admission has already been confirmed.");
 	}
 
 	if (admission.status === AdmissionStatus.CANCELLED) {
-		throw new AppError(
-			409,
-			"This admission has been cancelled.",
-		);
+		throw new AppError(409, "This admission has been cancelled.");
 	}
 
 	if (admission.status === AdmissionStatus.REJECTED) {
-		throw new AppError(
-			409,
-			"This admission has been rejected.",
-		);
+		throw new AppError(409, "This admission has been rejected.");
 	}
 
 	if (admission.status !== AdmissionStatus.APPROVED) {
@@ -99,10 +89,7 @@ const ensureAdmissionPeriodOpen = async () => {
 	});
 
 	if (!admissionPeriod) {
-		throw new AppError(
-			409,
-			"Admission payment is currently closed.",
-		);
+		throw new AppError(409, "Admission payment is currently closed.");
 	}
 
 	return admissionPeriod;
@@ -119,16 +106,12 @@ const ensureNoDuplicatePayment = (
 	);
 
 	if (successfulTransaction) {
-		throw new AppError(
-			409,
-			"Admission payment has already been completed.",
-		);
+		throw new AppError(409, "Admission payment has already been completed.");
 	}
 
 	const pendingTransaction = transactions.find(
 		(item) =>
-			item.status === TransactionStatus.PENDING &&
-			!!item.bkashPaymentId,
+			item.status === TransactionStatus.PENDING && !!item.bkashPaymentId,
 	);
 
 	if (pendingTransaction) {
@@ -144,16 +127,11 @@ const ensureTransactionOwnership = (
 	userId: string,
 ) => {
 	if (transaction.userId !== userId) {
-		throw new AppError(
-			403,
-			"You are not authorized to access this payment.",
-		);
+		throw new AppError(403, "You are not authorized to access this payment.");
 	}
 };
 
-const ensureTransactionExecutable = (
-	transaction: { status: string },
-) => {
+const ensureTransactionExecutable = (transaction: { status: string }) => {
 	if (transaction.status === TransactionStatus.SUCCESS) {
 		return false;
 	}
@@ -177,10 +155,7 @@ const ensureTransactionExecutable = (
 
 const ensureUserActive = (user: { status: string }) => {
 	if (user.status !== "ACTIVE") {
-		throw new AppError(
-			403,
-			"Your account is not active.",
-		);
+		throw new AppError(403, "Your account is not active.");
 	}
 };
 
@@ -195,10 +170,7 @@ const ensureAdmissionApprovedForPayment = (
 	}
 
 	if (admission.status !== AdmissionStatus.APPROVED) {
-		throw new AppError(
-			409,
-			"This admission is not approved for payment.",
-		);
+		throw new AppError(409, "This admission is not approved for payment.");
 	}
 };
 
@@ -213,42 +185,26 @@ const validateBkashResult = (
 	},
 ) => {
 	if (!bkashResult) {
-		throw new AppError(
-			502,
-			"Invalid response received from bKash.",
-		);
+		throw new AppError(502, "Invalid response received from bKash.");
 	}
 
 	if (bkashResult.transactionStatus !== "Completed") {
 		throw new AppError(
 			409,
-			`bKash payment was not completed. Status: ${
-				bkashResult.transactionStatus ?? "Unknown"
+			`bKash payment was not completed. Status: ${bkashResult.transactionStatus ?? "Unknown"
 			}`,
 		);
 	}
 
 	if (!bkashResult.trxID) {
-		throw new AppError(
-			502,
-			"bKash did not return a transaction ID.",
-		);
+		throw new AppError(502, "bKash did not return a transaction ID.");
 	}
 
-	if (
-		bkashResult.amount === undefined ||
-		bkashResult.amount === null
-	) {
-		throw new AppError(
-			502,
-			"bKash did not return the payment amount.",
-		);
+	if (bkashResult.amount === undefined || bkashResult.amount === null) {
+		throw new AppError(502, "bKash did not return the payment amount.");
 	}
 
-	if (
-		Number(bkashResult.amount) !==
-		Number(String(transaction.amount))
-	) {
+	if (Number(bkashResult.amount) !== Number(String(transaction.amount))) {
 		throw new AppError(
 			409,
 			"Payment amount does not match the transaction amount.",
@@ -264,16 +220,15 @@ const finalizeSuccessfulPayment = async (
 		amount?: string;
 	},
 ) => {
-	return prisma.$transaction(async (tx) => {
-		const currentTransaction =
-			await tx.transaction.findUnique({
-				where: {
-					id: transactionId,
-				},
-				include: {
-					admission: true,
-				},
-			});
+	const result = await prisma.$transaction(async (tx) => {
+		const currentTransaction = await tx.transaction.findUnique({
+			where: {
+				id: transactionId,
+			},
+			include: {
+				admission: true,
+			},
+		});
 
 		if (!currentTransaction) {
 			throw new AppError(
@@ -282,17 +237,14 @@ const finalizeSuccessfulPayment = async (
 			);
 		}
 
-		if (
-			currentTransaction.status ===
-			TransactionStatus.SUCCESS
-		) {
-			return currentTransaction;
+		if (currentTransaction.status === TransactionStatus.SUCCESS) {
+			return {
+				transaction: currentTransaction,
+				admissionId: currentTransaction.admissionId,
+			};
 		}
 
-		if (
-			currentTransaction.status !==
-			TransactionStatus.PENDING
-		) {
+		if (currentTransaction.status !== TransactionStatus.PENDING) {
 			throw new AppError(
 				409,
 				"Payment transaction is no longer pending.",
@@ -318,17 +270,16 @@ const finalizeSuccessfulPayment = async (
 					);
 				}
 
-				const updatedTransaction =
-					await tx.transaction.update({
-						where: {
-							id: currentTransaction.id,
-						},
-						data: {
-							status: TransactionStatus.SUCCESS,
-							bkashTrxId: bkashResult.trxID!,
-							paidAt: new Date(),
-						},
-					});
+				const updatedTransaction = await tx.transaction.update({
+					where: {
+						id: currentTransaction.id,
+					},
+					data: {
+						status: TransactionStatus.SUCCESS,
+						bkashTrxId: bkashResult.trxID!,
+						paidAt: new Date(),
+					},
+				});
 
 				await tx.admission.update({
 					where: {
@@ -340,7 +291,44 @@ const finalizeSuccessfulPayment = async (
 					},
 				});
 
-				return updatedTransaction;
+				return {
+					transaction: updatedTransaction,
+					admissionId: currentTransaction.admission.id,
+				};
+			}
+
+			case TransactionType.SEMESTER_REGISTRATION: {
+				if (!currentTransaction.studentSemesterId) {
+					throw new AppError(
+						409,
+						"Student semester information is missing for this transaction.",
+					);
+				}
+
+				const updatedTransaction = await tx.transaction.update({
+					where: {
+						id: currentTransaction.id,
+					},
+					data: {
+						status: TransactionStatus.SUCCESS,
+						bkashTrxId: bkashResult.trxID!,
+						paidAt: new Date(),
+					},
+				});
+
+				await tx.studentSemester.update({
+					where: {
+						id: currentTransaction.studentSemesterId,
+					},
+					data: {
+						status: StudentSemesterStatus.REGISTERED,
+						registeredAt: new Date(),
+					},
+				});
+
+				return {
+					transaction: updatedTransaction,
+				};
 			}
 
 			default:
@@ -350,6 +338,17 @@ const finalizeSuccessfulPayment = async (
 				);
 		}
 	});
+
+	if (
+		result.transaction.type === TransactionType.ADMISSION &&
+		result.admissionId
+	) {
+		await createStudentFromConfirmedAdmission({
+			admissionId: result.admissionId,
+		});
+	}
+
+	return result.transaction;
 };
 
 export const createAdmissionPayment = async ({
@@ -373,16 +372,10 @@ export const createAdmissionPayment = async ({
 	});
 
 	if (!admission) {
-		throw new AppError(
-			404,
-			"Admission not found.",
-		);
+		throw new AppError(404, "Admission not found.");
 	}
 
-	ensureAdmissionValidForPayment(
-		admission,
-		userId,
-	);
+	ensureAdmissionValidForPayment(admission, userId);
 
 	if (Number(admission.admissionFee) <= 0) {
 		throw new AppError(
@@ -393,43 +386,37 @@ export const createAdmissionPayment = async ({
 
 	await ensureAdmissionPeriodOpen();
 
-	const transaction = await prisma.$transaction(
-		async (tx) => {
-			const existingTransactions =
-				await tx.transaction.findMany({
-					where: {
-						admissionId,
-						type: TransactionType.ADMISSION,
-					},
-					orderBy: {
-						createdAt: "desc",
-					},
-				});
+	const transaction = await prisma.$transaction(async (tx) => {
+		const existingTransactions = await tx.transaction.findMany({
+			where: {
+				admissionId,
+				type: TransactionType.ADMISSION,
+			},
+			orderBy: {
+				createdAt: "desc",
+			},
+		});
 
-			ensureNoDuplicatePayment(
-				existingTransactions,
-			);
+		ensureNoDuplicatePayment(existingTransactions);
 
-			return tx.transaction.create({
-				data: {
-					userId,
-					admissionId,
-					type: TransactionType.ADMISSION,
-					amount: admission.admissionFee,
-					status: TransactionStatus.PENDING,
-				},
-			});
-		},
-	);
+		return tx.transaction.create({
+			data: {
+				userId,
+				admissionId,
+				type: TransactionType.ADMISSION,
+				amount: admission.admissionFee,
+				status: TransactionStatus.PENDING,
+			},
+		});
+	});
 
 	try {
-		const bkashPayment =
-			await createBkashPayment({
-				amount: admission.admissionFee.toFixed(2),
-				payerReference: admission.user.email,
-				merchantInvoiceNumber: transaction.id,
-				intent: "sale",
-			});
+		const bkashPayment = await createBkashPayment({
+			amount: admission.admissionFee.toFixed(2),
+			payerReference: admission.user.email,
+			merchantInvoiceNumber: transaction.id,
+			intent: "sale",
+		});
 
 		if (!bkashPayment?.paymentID) {
 			await prisma.transaction.update({
@@ -441,32 +428,24 @@ export const createAdmissionPayment = async ({
 				},
 			});
 
-			throw new AppError(
-				502,
-				"bKash did not return a payment ID.",
-			);
+			throw new AppError(502, "bKash did not return a payment ID.");
 		}
 
-		const updatedTransaction =
-			await prisma.transaction.update({
-				where: {
-					id: transaction.id,
-				},
-				data: {
-					bkashPaymentId:
-						bkashPayment.paymentID,
-				},
-			});
+		const updatedTransaction = await prisma.transaction.update({
+			where: {
+				id: transaction.id,
+			},
+			data: {
+				bkashPaymentId: bkashPayment.paymentID,
+			},
+		});
 
 		return {
 			transaction: updatedTransaction,
 			bkash: {
-				paymentID:
-					bkashPayment.paymentID,
-				bkashURL:
-					bkashPayment.bkashURL,
-				transactionStatus:
-					bkashPayment.transactionStatus,
+				paymentID: bkashPayment.paymentID,
+				bkashURL: bkashPayment.bkashURL,
+				transactionStatus: bkashPayment.transactionStatus,
 			},
 		};
 	} catch (error) {
@@ -492,80 +471,65 @@ export const executePayment = async ({
 	paymentID,
 	userId,
 }: ExecutePaymentParams) => {
-	const transaction =
-		await prisma.transaction.findUnique({
-			where: {
-				bkashPaymentId: paymentID,
-			},
-			include: {
-				admission: true,
-				user: {
-					select: {
-						id: true,
-						email: true,
-						status: true,
-					},
+	const transaction = await prisma.transaction.findUnique({
+		where: {
+			bkashPaymentId: paymentID,
+		},
+		include: {
+			admission: true,
+			studentSemester: true,
+			user: {
+				select: {
+					id: true,
+					email: true,
+					status: true,
 				},
 			},
-		});
+		},
+	});
 
 	if (!transaction) {
-		throw new AppError(
-			404,
-			"Payment transaction not found.",
-		);
+		throw new AppError(404, "Payment transaction not found.");
 	}
 
-	ensureTransactionOwnership(
-		transaction,
-		userId,
-	);
+	ensureTransactionOwnership(transaction, userId);
 
 	ensureUserActive(transaction.user);
 
 	if (!ensureTransactionExecutable(transaction)) {
 		return {
 			transaction,
-			message:
-				"Payment has already been completed.",
+			message: "Payment has already been completed.",
 		};
 	}
 
 	switch (transaction.type) {
 		case TransactionType.ADMISSION:
-			ensureAdmissionApprovedForPayment(
-				transaction.admission,
-			);
+			ensureAdmissionApprovedForPayment(transaction.admission);
+			break;
+
+		case TransactionType.SEMESTER_REGISTRATION:
+			if (transaction.studentSemester?.status !== StudentSemesterStatus.PENDING) {
+				throw new AppError(409, "Semester is not in a valid state for payment completion.");
+			}
 			break;
 
 		default:
-			throw new AppError(
-				400,
-				"This payment type is not supported yet.",
-			);
+			throw new AppError(400, "This payment type is not supported yet.");
 	}
 
-	const bkashResult =
-		await executeBkashPayment(paymentID);
+	const bkashResult = await executeBkashPayment(paymentID);
 
-	validateBkashResult(
-		bkashResult,
-		transaction,
-	);
+	validateBkashResult(bkashResult, transaction);
 
-	const result =
-		await finalizeSuccessfulPayment(
-			transaction.id,
-			bkashResult,
-		);
+	const result = await finalizeSuccessfulPayment(transaction.id, bkashResult);
 
 	return {
 		transaction: result,
 		bkash: {
 			paymentID,
 			trxID: bkashResult.trxID,
-			transactionStatus:
-				bkashResult.transactionStatus,
+			transactionStatus: bkashResult.transactionStatus,
 		},
 	};
 };
@@ -574,74 +538,53 @@ export const getPaymentStatus = async ({
 	transactionId,
 	userId,
 }: GetPaymentStatusParams) => {
-	const transaction =
-		await prisma.transaction.findUnique({
-			where: {
-				id: transactionId,
-			},
-			include: {
-				admission: true,
-			},
-		});
+	const transaction = await prisma.transaction.findUnique({
+		where: {
+			id: transactionId,
+		},
+		include: {
+			admission: true,
+		},
+	});
 
 	if (!transaction) {
-		throw new AppError(
-			404,
-			"Payment transaction not found.",
-		);
+		throw new AppError(404, "Payment transaction not found.");
 	}
 
-	ensureTransactionOwnership(
-		transaction,
-		userId,
-	);
+	ensureTransactionOwnership(transaction, userId);
 
 	/*
 	 * Status endpoint should report the final
 	 * transaction state instead of treating FAILED
 	 * as an execution error.
 	 */
-	if (
-		transaction.status ===
-		TransactionStatus.SUCCESS
-	) {
+	if (transaction.status === TransactionStatus.SUCCESS) {
 		return {
 			transaction,
-			message:
-				"Payment has already been completed.",
+			message: "Payment has already been completed.",
 		};
 	}
 
-	if (
-		transaction.status ===
-		TransactionStatus.FAILED
-	) {
+	if (transaction.status === TransactionStatus.FAILED) {
 		return {
 			transaction,
 			bkash: transaction.bkashPaymentId
 				? {
-						paymentID:
-							transaction.bkashPaymentId,
-						trxID:
-							transaction.bkashTrxId,
-					}
+					paymentID: transaction.bkashPaymentId,
+					trxID: transaction.bkashTrxId,
+				}
 				: null,
 		};
 	}
 
-	if (
-		transaction.status ===
-		TransactionStatus.CANCELLED
-	) {
+	if (transaction.status === TransactionStatus.CANCELLED) {
 		return {
 			transaction,
 			bkash: transaction.bkashPaymentId
 				? {
-						paymentID:
-							transaction.bkashPaymentId,
-						trxID:
-							transaction.bkashTrxId,
-					}
+					paymentID: transaction.bkashPaymentId,
+					trxID: transaction.bkashTrxId,
+				}
 				: null,
 		};
 	}
@@ -653,55 +596,33 @@ export const getPaymentStatus = async ({
 		};
 	}
 
-	const bkashResult =
-		await queryBkashPayment(
-			transaction.bkashPaymentId,
-		);
+	const bkashResult = await queryBkashPayment(transaction.bkashPaymentId);
 
 	if (!bkashResult) {
-		throw new AppError(
-			502,
-			"Invalid response received from bKash.",
-		);
+		throw new AppError(502, "Invalid response received from bKash.");
 	}
 
-	if (
-		bkashResult.transactionStatus !==
-		"Completed"
-	) {
+	if (bkashResult.transactionStatus !== "Completed") {
 		return {
 			transaction,
 			bkash: {
-				paymentID:
-					transaction.bkashPaymentId,
-				trxID:
-					bkashResult.trxID ?? null,
-				transactionStatus:
-					bkashResult.transactionStatus ??
-					"Unknown",
+				paymentID: transaction.bkashPaymentId,
+				trxID: bkashResult.trxID ?? null,
+				transactionStatus: bkashResult.transactionStatus ?? "Unknown",
 			},
 		};
 	}
 
-	validateBkashResult(
-		bkashResult,
-		transaction,
-	);
+	validateBkashResult(bkashResult, transaction);
 
-	const result =
-		await finalizeSuccessfulPayment(
-			transaction.id,
-			bkashResult,
-		);
+	const result = await finalizeSuccessfulPayment(transaction.id, bkashResult);
 
 	return {
 		transaction: result,
 		bkash: {
-			paymentID:
-				transaction.bkashPaymentId,
+			paymentID: transaction.bkashPaymentId,
 			trxID: bkashResult.trxID,
-			transactionStatus:
-				bkashResult.transactionStatus,
+			transactionStatus: bkashResult.transactionStatus,
 		},
 	};
 };
@@ -711,40 +632,30 @@ export const handleBkashCallback = async ({
 	status,
 }: BkashCallbackParams) => {
 	if (!paymentID) {
-		throw new AppError(
-			400,
-			"bKash payment ID is required.",
-		);
+		throw new AppError(400, "bKash payment ID is required.");
 	}
 
-	const transaction =
-		await prisma.transaction.findUnique({
-			where: {
-				bkashPaymentId: paymentID,
-			},
-			select: {
-				id: true,
-				status: true,
-				bkashPaymentId: true,
-			},
-		});
+	const transaction = await prisma.transaction.findUnique({
+		where: {
+			bkashPaymentId: paymentID,
+		},
+		select: {
+			id: true,
+			status: true,
+			bkashPaymentId: true,
+			amount: true,
+		},
+	});
 
 	if (!transaction) {
-		throw new AppError(
-			404,
-			"Payment transaction not found.",
-		);
+		throw new AppError(404, "Payment transaction not found.");
 	}
 
-	if (
-		transaction.status ===
-		TransactionStatus.SUCCESS
-	) {
+	if (transaction.status === TransactionStatus.SUCCESS) {
 		return {
 			transactionId: transaction.id,
 			status: transaction.status,
-			message:
-				"Payment has already been completed.",
+			message: "Payment has already been completed.",
 		};
 	}
 
@@ -755,69 +666,38 @@ export const handleBkashCallback = async ({
 	 * We still ask bKash for the actual payment
 	 * result before updating our database.
 	 */
-	const bkashResult =
-		await queryBkashPayment(paymentID);
+	const bkashResult = await queryBkashPayment(paymentID);
 
 	if (!bkashResult) {
-		throw new AppError(
-			502,
-			"Invalid response received from bKash.",
-		);
+		throw new AppError(502, "Invalid response received from bKash.");
 	}
 
-	if (
-		bkashResult.transactionStatus !==
-		"Completed"
-	) {
+	if (bkashResult.transactionStatus !== "Completed") {
 		return {
 			transactionId: transaction.id,
 			status: transaction.status,
 			bkash: {
 				paymentID,
-				transactionStatus:
-					bkashResult.transactionStatus ??
-					status ??
-					"Unknown",
-				trxID:
-					bkashResult.trxID ?? null,
+				transactionStatus: bkashResult.transactionStatus ?? status ?? "Unknown",
+				trxID: bkashResult.trxID ?? null,
 			},
-			message:
-				"Payment was not completed.",
+			message: "Payment was not completed.",
 		};
 	}
 
-	validateBkashResult(
-		bkashResult,
-		{
-			amount:
-				(
-					await prisma.transaction.findUnique({
-						where: {
-							id: transaction.id,
-						},
-						select: {
-							amount: true,
-						},
-					})
-				)?.amount ?? 0,
-		},
-	);
+	validateBkashResult(bkashResult, {
+		amount: transaction.amount,
+	});
 
-	const result =
-		await finalizeSuccessfulPayment(
-			transaction.id,
-			bkashResult,
-		);
+	const result = await finalizeSuccessfulPayment(transaction.id, bkashResult);
 
 	return {
 		transaction: result,
 		bkash: {
 			paymentID,
 			trxID: bkashResult.trxID,
-			transactionStatus:
-				bkashResult.transactionStatus,
+			transactionStatus: bkashResult.transactionStatus,
 		},
-		message:
-			"Payment completed successfully.",
+		message: "Payment completed successfully.",
 	};
 };

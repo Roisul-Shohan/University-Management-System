@@ -5,7 +5,7 @@ model AcademicPeriod {
   startDate DateTime
   endDate   DateTime
 
-  isActive Boolean @default(false)
+  isActive      Boolean        @default(false)
   notifications Notification[]
 
   createdAt DateTime @default(now())

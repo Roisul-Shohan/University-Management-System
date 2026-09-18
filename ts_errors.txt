@@ -1,0 +1,5 @@
+src/modules/studentSemester/studentSemester.validation.ts(6,7): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): ZodString', gave the following error.
+    Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'.
+  Overload 2 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): $ZodType<...>', gave the following error.
+    Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'.
