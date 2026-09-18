@@ -30,7 +30,7 @@ export const sendVerificationEmail = async (
       subject: "Verify your email address",
       html,
     });
-  } catch (error) {
+  } catch {
     throw new AppError(
       500,
       "Unable to send verification email. Please try again.",
@@ -64,7 +64,7 @@ export const sendPasswordResetEmail = async (
       subject: "Reset your password",
       html,
     });
-  } catch (error) {
+  } catch {
     throw new AppError(
       500,
       "Unable to send password reset email. Please try again.",
@@ -104,7 +104,7 @@ export const sendAcademicPeriodEmail = async (
       subject: title,
       html,
     });
-  } catch (error) {
+  } catch {
     throw new AppError(
       500,
       "Unable to send academic period email. Please try again.",

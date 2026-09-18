@@ -77,6 +77,7 @@ export const ModelName = {
   StudentAnswer: 'StudentAnswer',
   StudentSemester: 'StudentSemester',
   Teacher: 'Teacher',
+  TeacherApplication: 'TeacherApplication',
   Transaction: 'Transaction',
   User: 'User'
 } as const
@@ -443,6 +444,22 @@ export const TeacherScalarFieldEnum = {
 } as const
 
 export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
+
+
+export const TeacherApplicationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  departmentId: 'departmentId',
+  joiningYear: 'joiningYear',
+  status: 'status',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeacherApplicationScalarFieldEnum = (typeof TeacherApplicationScalarFieldEnum)[keyof typeof TeacherApplicationScalarFieldEnum]
 
 
 export const TransactionScalarFieldEnum = {

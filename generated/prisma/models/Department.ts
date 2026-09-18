@@ -183,6 +183,7 @@ export type DepartmentWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   teachers?: Prisma.TeacherListRelationFilter
+  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
   programs?: Prisma.ProgramListRelationFilter
   courses?: Prisma.CourseListRelationFilter
 }
@@ -194,6 +195,7 @@ export type DepartmentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   teachers?: Prisma.TeacherOrderByRelationAggregateInput
+  teacherApplications?: Prisma.TeacherApplicationOrderByRelationAggregateInput
   programs?: Prisma.ProgramOrderByRelationAggregateInput
   courses?: Prisma.CourseOrderByRelationAggregateInput
 }
@@ -208,6 +210,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   teachers?: Prisma.TeacherListRelationFilter
+  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
   programs?: Prisma.ProgramListRelationFilter
   courses?: Prisma.CourseListRelationFilter
 }, "id" | "name" | "code">
@@ -241,6 +244,7 @@ export type DepartmentCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseCreateNestedManyWithoutDepartmentInput
 }
@@ -252,6 +256,7 @@ export type DepartmentUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramUncheckedCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutDepartmentInput
 }
@@ -263,6 +268,7 @@ export type DepartmentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUpdateManyWithoutDepartmentNestedInput
 }
@@ -274,6 +280,7 @@ export type DepartmentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUncheckedUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutDepartmentNestedInput
 }
@@ -373,6 +380,20 @@ export type DepartmentUpdateOneRequiredWithoutTeachersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutTeachersInput, Prisma.DepartmentUpdateWithoutTeachersInput>, Prisma.DepartmentUncheckedUpdateWithoutTeachersInput>
 }
 
+export type DepartmentCreateNestedOneWithoutTeacherApplicationsInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedCreateWithoutTeacherApplicationsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutTeacherApplicationsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneRequiredWithoutTeacherApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedCreateWithoutTeacherApplicationsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutTeacherApplicationsInput
+  upsert?: Prisma.DepartmentUpsertWithoutTeacherApplicationsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutTeacherApplicationsInput, Prisma.DepartmentUpdateWithoutTeacherApplicationsInput>, Prisma.DepartmentUncheckedUpdateWithoutTeacherApplicationsInput>
+}
+
 export type DepartmentCreateWithoutCoursesInput = {
   id?: string
   name: string
@@ -380,6 +401,7 @@ export type DepartmentCreateWithoutCoursesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramCreateNestedManyWithoutDepartmentInput
 }
 
@@ -390,6 +412,7 @@ export type DepartmentUncheckedCreateWithoutCoursesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
@@ -416,6 +439,7 @@ export type DepartmentUpdateWithoutCoursesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -426,6 +450,7 @@ export type DepartmentUncheckedUpdateWithoutCoursesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -436,6 +461,7 @@ export type DepartmentCreateWithoutProgramsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseCreateNestedManyWithoutDepartmentInput
 }
 
@@ -446,6 +472,7 @@ export type DepartmentUncheckedCreateWithoutProgramsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutDepartmentInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
@@ -472,6 +499,7 @@ export type DepartmentUpdateWithoutProgramsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -482,6 +510,7 @@ export type DepartmentUncheckedUpdateWithoutProgramsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutDepartmentNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -491,6 +520,7 @@ export type DepartmentCreateWithoutTeachersInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseCreateNestedManyWithoutDepartmentInput
 }
@@ -501,6 +531,7 @@ export type DepartmentUncheckedCreateWithoutTeachersInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutDepartmentInput
   programs?: Prisma.ProgramUncheckedCreateNestedManyWithoutDepartmentInput
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutDepartmentInput
 }
@@ -527,6 +558,7 @@ export type DepartmentUpdateWithoutTeachersInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUpdateManyWithoutDepartmentNestedInput
 }
@@ -537,6 +569,67 @@ export type DepartmentUncheckedUpdateWithoutTeachersInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutDepartmentNestedInput
+  programs?: Prisma.ProgramUncheckedUpdateManyWithoutDepartmentNestedInput
+  courses?: Prisma.CourseUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutTeacherApplicationsInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  teachers?: Prisma.TeacherCreateNestedManyWithoutDepartmentInput
+  programs?: Prisma.ProgramCreateNestedManyWithoutDepartmentInput
+  courses?: Prisma.CourseCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutTeacherApplicationsInput = {
+  id?: string
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutDepartmentInput
+  programs?: Prisma.ProgramUncheckedCreateNestedManyWithoutDepartmentInput
+  courses?: Prisma.CourseUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutTeacherApplicationsInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedCreateWithoutTeacherApplicationsInput>
+}
+
+export type DepartmentUpsertWithoutTeacherApplicationsInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedUpdateWithoutTeacherApplicationsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedCreateWithoutTeacherApplicationsInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutTeacherApplicationsInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutTeacherApplicationsInput, Prisma.DepartmentUncheckedUpdateWithoutTeacherApplicationsInput>
+}
+
+export type DepartmentUpdateWithoutTeacherApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teachers?: Prisma.TeacherUpdateManyWithoutDepartmentNestedInput
+  programs?: Prisma.ProgramUpdateManyWithoutDepartmentNestedInput
+  courses?: Prisma.CourseUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutTeacherApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teachers?: Prisma.TeacherUncheckedUpdateManyWithoutDepartmentNestedInput
   programs?: Prisma.ProgramUncheckedUpdateManyWithoutDepartmentNestedInput
   courses?: Prisma.CourseUncheckedUpdateManyWithoutDepartmentNestedInput
 }
@@ -548,12 +641,14 @@ export type DepartmentUncheckedUpdateWithoutTeachersInput = {
 
 export type DepartmentCountOutputType = {
   teachers: number
+  teacherApplications: number
   programs: number
   courses: number
 }
 
 export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   teachers?: boolean | DepartmentCountOutputTypeCountTeachersArgs
+  teacherApplications?: boolean | DepartmentCountOutputTypeCountTeacherApplicationsArgs
   programs?: boolean | DepartmentCountOutputTypeCountProgramsArgs
   courses?: boolean | DepartmentCountOutputTypeCountCoursesArgs
 }
@@ -578,6 +673,13 @@ export type DepartmentCountOutputTypeCountTeachersArgs<ExtArgs extends runtime.T
 /**
  * DepartmentCountOutputType without action
  */
+export type DepartmentCountOutputTypeCountTeacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TeacherApplicationWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
 export type DepartmentCountOutputTypeCountProgramsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProgramWhereInput
 }
@@ -597,6 +699,7 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   teachers?: boolean | Prisma.Department$teachersArgs<ExtArgs>
+  teacherApplications?: boolean | Prisma.Department$teacherApplicationsArgs<ExtArgs>
   programs?: boolean | Prisma.Department$programsArgs<ExtArgs>
   courses?: boolean | Prisma.Department$coursesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
@@ -629,6 +732,7 @@ export type DepartmentSelectScalar = {
 export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt", ExtArgs["result"]["department"]>
 export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   teachers?: boolean | Prisma.Department$teachersArgs<ExtArgs>
+  teacherApplications?: boolean | Prisma.Department$teacherApplicationsArgs<ExtArgs>
   programs?: boolean | Prisma.Department$programsArgs<ExtArgs>
   courses?: boolean | Prisma.Department$coursesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
@@ -640,6 +744,7 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Department"
   objects: {
     teachers: Prisma.$TeacherPayload<ExtArgs>[]
+    teacherApplications: Prisma.$TeacherApplicationPayload<ExtArgs>[]
     programs: Prisma.$ProgramPayload<ExtArgs>[]
     courses: Prisma.$CoursePayload<ExtArgs>[]
   }
@@ -1044,6 +1149,7 @@ readonly fields: DepartmentFieldRefs;
 export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   teachers<T extends Prisma.Department$teachersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$teachersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  teacherApplications<T extends Prisma.Department$teacherApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$teacherApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   programs<T extends Prisma.Department$programsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$programsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   courses<T extends Prisma.Department$coursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1494,6 +1600,30 @@ export type Department$teachersArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.TeacherScalarFieldEnum | Prisma.TeacherScalarFieldEnum[]
+}
+
+/**
+ * Department.teacherApplications
+ */
+export type Department$teacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TeacherApplication
+   */
+  select?: Prisma.TeacherApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TeacherApplication
+   */
+  omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  where?: Prisma.TeacherApplicationWhereInput
+  orderBy?: Prisma.TeacherApplicationOrderByWithRelationInput | Prisma.TeacherApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.TeacherApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TeacherApplicationScalarFieldEnum | Prisma.TeacherApplicationScalarFieldEnum[]
 }
 
 /**

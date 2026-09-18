@@ -470,6 +470,23 @@ export type EnumStudentSemesterStatusWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumStudentSemesterStatusFilter<$PrismaModel>
 }
 
+export type EnumTeacherApplicationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.TeacherApplicationStatus | Prisma.EnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel> | $Enums.TeacherApplicationStatus
+}
+
+export type EnumTeacherApplicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TeacherApplicationStatus | Prisma.EnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTeacherApplicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.TeacherApplicationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel>
+}
+
 export type EnumTransactionTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.TransactionType | Prisma.EnumTransactionTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TransactionType[] | Prisma.ListEnumTransactionTypeFieldRefInput<$PrismaModel>
@@ -994,6 +1011,23 @@ export type NestedEnumStudentSemesterStatusWithAggregatesFilter<$PrismaModel = n
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumStudentSemesterStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumStudentSemesterStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumTeacherApplicationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.TeacherApplicationStatus | Prisma.EnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel> | $Enums.TeacherApplicationStatus
+}
+
+export type NestedEnumTeacherApplicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TeacherApplicationStatus | Prisma.EnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TeacherApplicationStatus[] | Prisma.ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTeacherApplicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.TeacherApplicationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTeacherApplicationStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumTransactionTypeFilter<$PrismaModel = never> = {

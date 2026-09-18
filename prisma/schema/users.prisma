@@ -11,11 +11,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  student       Student?
-  teacher       Teacher?
-  admissions    Admission[]
-  transaction   Transaction[]
-  notifications Notification[]
+  student                     Student?
+  teacher                     Teacher?
+  teacherApplications         TeacherApplication[]
+  reviewedTeacherApplications TeacherApplication[] @relation("TeacherApplicationReviewer")
+  admissions                  Admission[]
+  transaction                 Transaction[]
+  notifications               Notification[]
 
   @@index([role])
   @@index([status])

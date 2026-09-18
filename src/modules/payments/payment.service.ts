@@ -12,11 +12,12 @@ import {
 } from "../../utils/email.js";
 import {
   AdmissionStatus,
+  EnrollmentStatus,
   TransactionStatus,
   TransactionType,
   StudentSemesterStatus,
 } from "../../../generated/prisma/enums.js";
-import {
+import type {
   BkashCallbackParams,
   CreateAdmissionPaymentParams,
   ExecutePaymentParams,
@@ -226,6 +227,11 @@ const finalizeSuccessfulPayment = async (
     amount?: string;
   },
 ) => {
+  const bkashTrxId = bkashResult.trxID;
+  if (!bkashTrxId) {
+    throw new AppError(502, "bKash did not return a transaction ID.");
+  }
+
   const result = await prisma.$transaction(async (tx) => {
     const currentTransaction = await tx.transaction.findUnique({
       where: {
@@ -248,6 +254,7 @@ const finalizeSuccessfulPayment = async (
 
     if (currentTransaction.status === TransactionStatus.SUCCESS) {
       return {
+        alreadyFinalized: true,
         transaction: currentTransaction,
         admissionId: currentTransaction.admissionId,
         studentSemester: currentTransaction.studentSemester,
@@ -281,7 +288,7 @@ const finalizeSuccessfulPayment = async (
           },
           data: {
             status: TransactionStatus.SUCCESS,
-            bkashTrxId: bkashResult.trxID!,
+            bkashTrxId,
             paidAt: new Date(),
           },
         });
@@ -297,6 +304,7 @@ const finalizeSuccessfulPayment = async (
         });
 
         return {
+          alreadyFinalized: false,
           transaction: updatedTransaction,
           studentSemester: null,
           admissionId: currentTransaction.admission.id,
@@ -318,7 +326,7 @@ const finalizeSuccessfulPayment = async (
           },
           data: {
             status: TransactionStatus.SUCCESS,
-            bkashTrxId: bkashResult.trxID!,
+            bkashTrxId,
             paidAt: new Date(),
           },
         });
@@ -334,6 +342,7 @@ const finalizeSuccessfulPayment = async (
         });
 
         return {
+          alreadyFinalized: false,
           transaction: updatedTransaction,
           studentSemester: currentTransaction.studentSemester,
           user: currentTransaction.user,
@@ -354,7 +363,7 @@ const finalizeSuccessfulPayment = async (
           },
           data: {
             status: TransactionStatus.SUCCESS,
-            bkashTrxId: bkashResult.trxID!,
+            bkashTrxId,
             paidAt: new Date(),
           },
         });
@@ -362,14 +371,15 @@ const finalizeSuccessfulPayment = async (
         await tx.courseEnrollment.updateMany({
           where: {
             studentSemesterId: currentTransaction.studentSemesterId,
-            status: "PENDING",
+            status: EnrollmentStatus.PENDING,
           },
           data: {
-            status: "ENROLLED",
+            status: EnrollmentStatus.ENROLLED,
           },
         });
 
         return {
+          alreadyFinalized: false,
           transaction: updatedTransaction,
           studentSemester: currentTransaction.studentSemester,
           user: currentTransaction.user,
@@ -382,6 +392,7 @@ const finalizeSuccessfulPayment = async (
   });
 
   if (
+    !result.alreadyFinalized &&
     result.transaction.type === TransactionType.ADMISSION &&
     result.admissionId
   ) {
@@ -395,6 +406,7 @@ const finalizeSuccessfulPayment = async (
       student.studentId,
     );
   } else if (
+    !result.alreadyFinalized &&
     result.transaction.type === TransactionType.SEMESTER_REGISTRATION
   ) {
     await sendSemesterRegistrationEmail(
@@ -402,7 +414,10 @@ const finalizeSuccessfulPayment = async (
       result.user.name,
       `${result.studentSemester?.year ?? "current"}-${result.studentSemester?.semester ?? "semester"}`,
     );
-  } else if (result.transaction.type === TransactionType.COURSE_REGISTRATION) {
+  } else if (
+    !result.alreadyFinalized &&
+    result.transaction.type === TransactionType.COURSE_REGISTRATION
+  ) {
     await sendCourseRegistrationEmail(
       result.user.email,
       result.user.name,

@@ -4,6 +4,12 @@ enum Role {
   SUPER_ADMIN
 }
 
+enum TeacherApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 enum UserStatus {
   ACTIVE
   SUSPENDED

@@ -3,8 +3,10 @@ import { prisma } from "../../lib/prisma.js";
 import {
   EnrollmentStatus,
   StudentSemesterStatus,
+  TransactionStatus,
+  TransactionType,
 } from "../../../generated/prisma/enums.js";
-import {
+import type {
   CourseRegistrationParams,
   RegisterCourseParams,
 } from "./courseRegistration.interface.js";
@@ -45,6 +47,23 @@ const getOwnedSemester = async ({
   return studentSemester;
 };
 
+const ensureNoPendingPayment = async (studentSemesterId: string) => {
+  const pendingPayment = await prisma.transaction.findFirst({
+    where: {
+      studentSemesterId,
+      type: TransactionType.COURSE_REGISTRATION,
+      status: TransactionStatus.PENDING,
+    },
+  });
+
+  if (pendingPayment) {
+    throw new AppError(
+      409,
+      "Course selections cannot be changed while a payment is pending.",
+    );
+  }
+};
+
 export const getAvailableCourseOfferings = async (
   params: CourseRegistrationParams,
 ) => {
@@ -81,6 +100,7 @@ export const registerCourse = async ({
 }: RegisterCourseParams) => {
   const studentSemester = await getOwnedSemester({ studentSemesterId, userId });
   await ensureRegistrationPeriod();
+  await ensureNoPendingPayment(studentSemesterId);
 
   const offering = await prisma.courseOffering.findUnique({
     where: { id: courseOfferingId },
@@ -164,6 +184,7 @@ export const dropCourse = async ({
 }: RegisterCourseParams) => {
   await getOwnedSemester({ studentSemesterId, userId });
   await ensureRegistrationPeriod();
+  await ensureNoPendingPayment(studentSemesterId);
 
   const enrollment = await prisma.courseEnrollment.findUnique({
     where: {

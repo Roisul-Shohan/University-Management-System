@@ -18,3 +18,26 @@ model Teacher {
   @@index([isDeptAdmin])
   @@map("teachers")
 }
+
+model TeacherApplication {
+  id              String                   @id @default(uuid())
+  userId          String
+  departmentId    String
+  joiningYear     Int
+  status          TeacherApplicationStatus @default(PENDING)
+  reviewedById    String?
+  reviewedAt      DateTime?
+  rejectionReason String?
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department Department @relation(fields: [departmentId], references: [id])
+  reviewedBy User?      @relation("TeacherApplicationReviewer", fields: [reviewedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([departmentId, status])
+  @@index([status])
+  @@map("teacher_applications")
+}

@@ -423,6 +423,7 @@ export const ModelName = {
   StudentAnswer: 'StudentAnswer',
   StudentSemester: 'StudentSemester',
   Teacher: 'Teacher',
+  TeacherApplication: 'TeacherApplication',
   Transaction: 'Transaction',
   User: 'User'
 } as const
@@ -440,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "creditFee" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "semesterFee" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "transaction" | "user"
+    modelProps: "academicPeriod" | "admission" | "admissionFee" | "attendanceRecord" | "attendanceSession" | "classSession" | "course" | "courseEnrollment" | "courseOffering" | "coursePrerequisite" | "creditFee" | "curriculumCourse" | "department" | "exam" | "examAttempt" | "examQuestion" | "gradingScale" | "notification" | "program" | "questionOption" | "result" | "semesterFee" | "student" | "studentAnswer" | "studentSemester" | "teacher" | "teacherApplication" | "transaction" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2368,6 +2369,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TeacherApplication: {
+      payload: Prisma.$TeacherApplicationPayload<ExtArgs>
+      fields: Prisma.TeacherApplicationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TeacherApplicationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TeacherApplicationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        findFirst: {
+          args: Prisma.TeacherApplicationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TeacherApplicationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        findMany: {
+          args: Prisma.TeacherApplicationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>[]
+        }
+        create: {
+          args: Prisma.TeacherApplicationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        createMany: {
+          args: Prisma.TeacherApplicationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TeacherApplicationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>[]
+        }
+        delete: {
+          args: Prisma.TeacherApplicationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        update: {
+          args: Prisma.TeacherApplicationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        deleteMany: {
+          args: Prisma.TeacherApplicationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TeacherApplicationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TeacherApplicationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>[]
+        }
+        upsert: {
+          args: Prisma.TeacherApplicationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeacherApplicationPayload>
+        }
+        aggregate: {
+          args: Prisma.TeacherApplicationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeacherApplication>
+        }
+        groupBy: {
+          args: Prisma.TeacherApplicationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeacherApplicationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TeacherApplicationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeacherApplicationCountAggregateOutputType> | number
+        }
+      }
+    }
     Transaction: {
       payload: Prisma.$TransactionPayload<ExtArgs>
       fields: Prisma.TransactionFieldRefs
@@ -2903,6 +2978,22 @@ export const TeacherScalarFieldEnum = {
 export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
 
 
+export const TeacherApplicationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  departmentId: 'departmentId',
+  joiningYear: 'joiningYear',
+  status: 'status',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeacherApplicationScalarFieldEnum = (typeof TeacherApplicationScalarFieldEnum)[keyof typeof TeacherApplicationScalarFieldEnum]
+
+
 export const TransactionScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
@@ -3200,6 +3291,20 @@ export type ListEnumStudentSemesterStatusFieldRefInput<$PrismaModel> = FieldRefI
 
 
 /**
+ * Reference to a field of type 'TeacherApplicationStatus'
+ */
+export type EnumTeacherApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeacherApplicationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TeacherApplicationStatus[]'
+ */
+export type ListEnumTeacherApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeacherApplicationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'TransactionType'
  */
 export type EnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType'>
@@ -3431,6 +3536,7 @@ export type GlobalOmitConfig = {
   studentAnswer?: Prisma.StudentAnswerOmit
   studentSemester?: Prisma.StudentSemesterOmit
   teacher?: Prisma.TeacherOmit
+  teacherApplication?: Prisma.TeacherApplicationOmit
   transaction?: Prisma.TransactionOmit
   user?: Prisma.UserOmit
 }

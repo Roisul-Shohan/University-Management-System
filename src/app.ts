@@ -21,6 +21,7 @@ import {
   courseRegistrationFeeRoutes,
 } from "./modules/creditFee/creditFee.route.js";
 import { courseRegistrationRoutes } from "./modules/courseRegistration/courseRegistration.route.js";
+import { teacherRoutes } from "./modules/teachers/teacher.route.js";
 
 const app: Application = express();
 
@@ -47,6 +48,7 @@ app.use("/api/semester-fees", semesterFeeRoutes);
 app.use("/api/credit-fees", creditFeeRoutes);
 app.use("/api/course-registration-fees", courseRegistrationFeeRoutes);
 app.use("/api/course-registrations", courseRegistrationRoutes);
+app.use("/api/teachers", teacherRoutes);
 
 app.use(notFound);
 

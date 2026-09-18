@@ -172,6 +172,11 @@ export type StudentSemester = Prisma.StudentSemesterModel
  */
 export type Teacher = Prisma.TeacherModel
 /**
+ * Model TeacherApplication
+ * 
+ */
+export type TeacherApplication = Prisma.TeacherApplicationModel
+/**
  * Model Transaction
  * 
  */

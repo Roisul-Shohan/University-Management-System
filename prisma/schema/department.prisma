@@ -3,9 +3,10 @@ model Department {
   name String @unique
   code String @unique
 
-  teachers Teacher[]
-  programs Program[]
-  courses  Course[]
+  teachers            Teacher[]
+  teacherApplications TeacherApplication[]
+  programs            Program[]
+  courses             Course[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
