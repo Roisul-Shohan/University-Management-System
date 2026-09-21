@@ -746,13 +746,15 @@ export const handleBkashCallback = async ({
   }
 
   /*
-   * The callback status itself is not treated
-   * as proof of successful payment.
-   *
-   * We still ask bKash for the actual payment
-   * result before updating our database.
+   * A successful Tokenized Checkout callback must be followed by
+   * Execute Payment. Querying the payment here only returns the
+   * pre-execution state (`Initiated`, with no trxID), which leaves
+   * the local transaction pending forever.
    */
-  const bkashResult = await queryBkashPayment(paymentID);
+  const callbackSucceeded = status?.toLowerCase() === "success";
+  const bkashResult = callbackSucceeded
+    ? await executeBkashPayment(paymentID)
+    : await queryBkashPayment(paymentID);
 
   if (!bkashResult) {
     throw new AppError(502, "Invalid response received from bKash.");
