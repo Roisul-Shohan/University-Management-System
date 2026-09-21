@@ -1,14 +1,16 @@
 import { z } from "zod";
 
 export const getNotificationsQuerySchema = z.object({
-	page: z.coerce.number().int().min(1).default(1),
+	query: z.object({
+		page: z.coerce.number().int().min(1).default(1),
 
-	limit: z.coerce.number().int().min(1).max(100).default(10),
+		limit: z.coerce.number().int().min(1).max(100).default(10),
 
-	isRead: z
-		.enum(["true", "false"])
-		.transform((value) => value === "true")
-		.optional(),
+		isRead: z
+			.enum(["true", "false"])
+			.transform((value) => value === "true")
+			.optional(),
+	}),
 });
 
 export const getNotificationByIdSchema = z.object({

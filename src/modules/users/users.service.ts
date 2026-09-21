@@ -6,183 +6,183 @@ import { prisma } from "../../lib/prisma.js";
 import { GetUsersQuery, UpdateProfileInput } from "./users.interface.js";
 
 export const getUsers = async (query: GetUsersQuery) => {
-	const { page, limit, search, role, status, sortBy, sortOrder } = query;
+  const { page, limit, search, role, status, sortBy, sortOrder } = query;
 
-	const skip = (page - 1) * limit;
+  const skip = (page - 1) * limit;
 
-	// OR conditions → searching
-	const OR = [];
+  // OR conditions → searching
+  const OR = [];
 
-	if (search) {
-		OR.push(
-			{
-				name: {
-					contains: search,
-					mode: "insensitive" as const,
-				},
-			},
-			{
-				email: {
-					contains: search,
-					mode: "insensitive" as const,
-				},
-			},
-		);
-	}
+  if (search) {
+    OR.push(
+      {
+        name: {
+          contains: search,
+          mode: "insensitive" as const,
+        },
+      },
+      {
+        email: {
+          contains: search,
+          mode: "insensitive" as const,
+        },
+      },
+    );
+  }
 
-	// AND conditions → filtering
-	const AND = [];
+  // AND conditions → filtering
+  const AND = [];
 
-	if (role) {
-		AND.push({
-			role,
-		});
-	}
+  if (role) {
+    AND.push({
+      role,
+    });
+  }
 
-	if (status) {
-		AND.push({
-			status,
-		});
-	}
+  if (status) {
+    AND.push({
+      status,
+    });
+  }
 
-	const whereCondition = {
-		AND,
-		OR,
-	};
+  const whereCondition = {
+    ...(AND.length > 0 ? { AND } : {}),
+    ...(OR.length > 0 ? { OR } : {}),
+  };
 
-	const [users, total] = await Promise.all([
-		prisma.user.findMany({
-			where: whereCondition,
-			skip,
-			take: limit,
+  const [users, total] = await Promise.all([
+    prisma.user.findMany({
+      where: whereCondition,
+      skip,
+      take: limit,
 
-			omit: {
-				password: true,
-			},
+      omit: {
+        password: true,
+      },
 
-			orderBy: {
-				[sortBy]: sortOrder,
-			},
-		}),
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+    }),
 
-		prisma.user.count({
-			where: whereCondition,
-		}),
-	]);
+    prisma.user.count({
+      where: whereCondition,
+    }),
+  ]);
 
-	return {
-		users,
-		meta: {
-			page,
-			limit,
-			total,
-		},
-	};
+  return {
+    users,
+    meta: {
+      page,
+      limit,
+      total,
+    },
+  };
 };
 export const getUserById = async (userId: string) => {
-	const user = await prisma.user.findUnique({
-		where: {
-			id: userId,
-		},
-		omit: {
-			password: true,
-		},
-	});
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    omit: {
+      password: true,
+    },
+  });
 
-	if (!user) {
-		throw new AppError(404, "User not found.");
-	}
+  if (!user) {
+    throw new AppError(404, "User not found.");
+  }
 
-	return user;
+  return user;
 };
 
 export const updateProfile = async (
-	userId: string,
-	data: UpdateProfileInput,
+  userId: string,
+  data: UpdateProfileInput,
 ) => {
-	const user = await prisma.user.findUnique({
-		where: {
-			id: userId,
-		},
-	});
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
 
-	if (!user) {
-		throw new AppError(404, "User not found.");
-	}
+  if (!user) {
+    throw new AppError(404, "User not found.");
+  }
 
-	const updateData: {
-		name?: string;
-		address?: string;
-		email?: string;
-		password?: string;
-	} = {};
+  const updateData: {
+    name?: string;
+    address?: string;
+    email?: string;
+    password?: string;
+  } = {};
 
-	if (data.name !== undefined) {
-		updateData.name = data.name;
-	}
+  if (data.name !== undefined) {
+    updateData.name = data.name;
+  }
 
-	if (data.address !== undefined) {
-		updateData.address = data.address;
-	}
+  if (data.address !== undefined) {
+    updateData.address = data.address;
+  }
 
-	if (data.email !== undefined) {
-		if (data.email !== user.email) {
-			const existingUser = await prisma.user.findUnique({
-				where: {
-					email: data.email,
-				},
-			});
+  if (data.email !== undefined) {
+    if (data.email !== user.email) {
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          email: data.email,
+        },
+      });
 
-			if (existingUser) {
-				throw new AppError(409, "An account with this email already exists.");
-			}
+      if (existingUser) {
+        throw new AppError(409, "An account with this email already exists.");
+      }
 
-			updateData.email = data.email;
-		}
-	}
+      updateData.email = data.email;
+    }
+  }
 
-	if (data.password !== undefined) {
-		updateData.password = await bcrypt.hash(data.password, 12);
-	}
+  if (data.password !== undefined) {
+    updateData.password = await bcrypt.hash(data.password, 12);
+  }
 
-	const updatedUser = await prisma.user.update({
-		where: {
-			id: userId,
-		},
-		data: updateData,
-		omit: {
-			password: true,
-		},
-	});
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: updateData,
+    omit: {
+      password: true,
+    },
+  });
 
-	return updatedUser;
+  return updatedUser;
 };
 
 export const updateUserStatus = async (
-	userId: string,
-	status: "ACTIVE" | "SUSPENDED" | "DISABLED",
+  userId: string,
+  status: "ACTIVE" | "SUSPENDED" | "DISABLED",
 ) => {
-	const user = await prisma.user.findUnique({
-		where: {
-			id: userId,
-		},
-	});
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
 
-	if (!user) {
-		throw new AppError(404, "User not found.");
-	}
+  if (!user) {
+    throw new AppError(404, "User not found.");
+  }
 
-	const updatedUser = await prisma.user.update({
-		where: {
-			id: userId,
-		},
-		data: {
-			status,
-		},
-		omit: {
-			password: true,
-		},
-	});
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      status,
+    },
+    omit: {
+      password: true,
+    },
+  });
 
-	return updatedUser;
+  return updatedUser;
 };

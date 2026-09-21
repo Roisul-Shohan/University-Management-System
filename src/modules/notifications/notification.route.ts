@@ -27,6 +27,12 @@ router.get(
 );
 
 router.get(
+	"/unread-count",
+	auth(Role.STUDENT, Role.TEACHER, Role.SUPER_ADMIN),
+	getUnreadNotificationCountController,
+);
+
+router.get(
 	"/:id",
 	auth(Role.STUDENT, Role.TEACHER, Role.SUPER_ADMIN),
 	validateRequest(getNotificationByIdSchema),
@@ -44,12 +50,6 @@ router.patch(
 	"/read-all",
 	auth(Role.STUDENT, Role.TEACHER, Role.SUPER_ADMIN),
 	markAllNotificationsAsReadController,
-);
-
-router.get(
-	"/unread-count",
-	auth(Role.STUDENT, Role.TEACHER, Role.SUPER_ADMIN),
-	getUnreadNotificationCountController,
 );
 
 export const notificationRouter = router;
