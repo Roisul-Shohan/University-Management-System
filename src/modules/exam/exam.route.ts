@@ -2,6 +2,7 @@ import { Router } from "express";
 import { Role } from "../../../generated/prisma/enums.js";
 import { auth } from "../../middlewares/auth.js";
 import validateRequest from "../../middlewares/validateRequest.js";
+import { examQuestionRoutes } from "../examQuestion/examQuestion.route.js";
 import * as controller from "./exam.controller.js";
 import {
 	createExamValidation,
@@ -11,6 +12,8 @@ import {
 } from "./exam.validation.js";
 
 const router = Router();
+
+router.use("/:examId/questions", examQuestionRoutes);
 
 router.get("/", auth(), validateRequest(examsQueryValidation), controller.list);
 router.get("/:id", auth(), validateRequest(examIdValidation), controller.get);
