@@ -250,6 +250,8 @@ All paths below are relative to `/api`. For complete schemas and examples, open 
 | Attendance                | `GET`                     | `/attendance/sessions/:id`                                            | Authenticated user       |
 | Attendance                | `POST`                    | `/attendance/sessions`, `/attendance/sessions/:id/mark`               | `TEACHER` / `STUDENT`    |
 | Attendance                | `PATCH`                   | `/attendance/sessions/:id/close`, `/attendance/sessions/:sessionId/records/:recordId` | `TEACHER`, `SUPER_ADMIN` |
+| Exams                     | `GET`                     | `/exams`, `/exams/:id`                                                | Authenticated user       |
+| Exams                     | `POST`, `PATCH`, `DELETE` | `/exams`, `/exams/:id`, `/exams/:id/publish`, `/exams/:id/close`       | `TEACHER`, `SUPER_ADMIN` |
 | Curriculum courses        | `GET`                     | `/curriculum-courses`, `/curriculum-courses/:id`                     | Authenticated user       |
 | Curriculum courses        | `POST`, `PATCH`, `DELETE` | `/curriculum-courses`, `/curriculum-courses/:id`                     | `TEACHER`, `SUPER_ADMIN` |
 | Course registration       | `GET`                     | `/course-registrations/:studentSemesterId/offerings`                 | `STUDENT`                |
