@@ -7,6 +7,7 @@ import {
   Role,
   TransactionType,
 } from "../../../generated/prisma/enums.js";
+import type { Prisma } from "../../../generated/prisma/client.js";
 import {
   CreateAdmissionParams,
   ReviewAdmissionParams,
@@ -179,11 +180,22 @@ export const approveAdmission = async ({
     );
   }
 
-  return prisma.admission.update({
-    where: { id: admissionId },
+  const updated = await prisma.admission.updateMany({
+    where: {
+      id: admissionId,
+      status: AdmissionStatus.PENDING,
+    },
     data: {
       status: AdmissionStatus.APPROVED,
     },
+  });
+
+  if (updated.count === 0) {
+    throw new AppError(409, "Only pending admissions can be approved.");
+  }
+
+  return prisma.admission.findUniqueOrThrow({
+    where: { id: admissionId },
   });
 };
 
@@ -248,11 +260,22 @@ export const rejectAdmission = async ({
     );
   }
 
-  return prisma.admission.update({
-    where: { id: admissionId },
+  const updated = await prisma.admission.updateMany({
+    where: {
+      id: admissionId,
+      status: AdmissionStatus.PENDING,
+    },
     data: {
       status: AdmissionStatus.REJECTED,
     },
+  });
+
+  if (updated.count === 0) {
+    throw new AppError(409, "Only pending admissions can be rejected.");
+  }
+
+  return prisma.admission.findUniqueOrThrow({
+    where: { id: admissionId },
   });
 };
 
@@ -426,7 +449,7 @@ export const getAdmissions = async ({
     throw new AppError(404, "User not found.");
   }
 
-  const where: any = {};
+  const where: Prisma.AdmissionWhereInput = {};
 
   if (status) {
     where.status = status;
