@@ -26,6 +26,7 @@ import { courseRoutes } from "./modules/courses/course.route.js";
 import { programRoutes } from "./modules/programs/program.route.js";
 import { courseOfferingRoutes } from "./modules/courseOffering/courseOffering.route.js";
 import { classSessionRoutes } from "./modules/classSession/classSession.route.js";
+import { attendanceRoutes } from "./modules/attendance/attendance.route.js";
 
 const app: Application = express();
 
@@ -57,6 +58,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/programs", programRoutes);
 app.use("/api/course-offerings", courseOfferingRoutes);
 app.use("/api/class-sessions", classSessionRoutes);
+app.use("/api/attendance", attendanceRoutes);
 
 app.use(notFound);
 
