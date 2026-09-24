@@ -245,6 +245,8 @@ All paths below are relative to `/api`. For complete schemas and examples, open 
 | Courses                   | `POST`, `PATCH`, `DELETE` | `/courses`, `/courses/:id`                                           | `TEACHER`, `SUPER_ADMIN` |
 | Course offerings          | `GET`                     | `/course-offerings`, `/course-offerings/:id`                         | Authenticated user       |
 | Course offerings          | `POST`, `PATCH`, `DELETE` | `/course-offerings`, `/course-offerings/:id`                         | `TEACHER`, `SUPER_ADMIN` |
+| Class sessions            | `GET`                     | `/class-sessions`, `/class-sessions/:id`                              | Authenticated user       |
+| Class sessions            | `POST`, `PATCH`, `DELETE` | `/class-sessions`, `/class-sessions/:id`                              | `TEACHER`, `SUPER_ADMIN` |
 | Curriculum courses        | `GET`                     | `/curriculum-courses`, `/curriculum-courses/:id`                     | Authenticated user       |
 | Curriculum courses        | `POST`, `PATCH`, `DELETE` | `/curriculum-courses`, `/curriculum-courses/:id`                     | `TEACHER`, `SUPER_ADMIN` |
 | Course registration       | `GET`                     | `/course-registrations/:studentSemesterId/offerings`                 | `STUDENT`                |
