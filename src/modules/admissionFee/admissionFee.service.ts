@@ -6,28 +6,33 @@ import type {
 } from "./admissionFee.interface.js";
 
 export const createAdmissionFee = async (payload: ICreateAdmissionFee) => {
-  const programExists = await prisma.program.findUnique({
-    where: { id: payload.programId },
-  });
+  return prisma.$transaction(
+    async (tx) => {
+      const programExists = await tx.program.findUnique({
+        where: { id: payload.programId },
+      });
 
-  if (!programExists) {
-    throw new AppError(404, "Program not found.");
-  }
+      if (!programExists) {
+        throw new AppError(404, "Program not found.");
+      }
 
-  if (payload.isActive !== false) {
-    const existingFee = await prisma.admissionFee.findFirst({
-      where: { programId: payload.programId, isActive: true },
-    });
+      if (payload.isActive !== false) {
+        const existingFee = await tx.admissionFee.findFirst({
+          where: { programId: payload.programId, isActive: true },
+        });
 
-    if (existingFee) {
-      throw new AppError(
-        409,
-        "An active admission fee already exists for this program.",
-      );
-    }
-  }
+        if (existingFee) {
+          throw new AppError(
+            409,
+            "An active admission fee already exists for this program.",
+          );
+        }
+      }
 
-  return prisma.admissionFee.create({ data: payload });
+      return tx.admissionFee.create({ data: payload });
+    },
+    { isolationLevel: "Serializable" },
+  );
 };
 
 export const getAllAdmissionFees = async () =>
@@ -53,29 +58,34 @@ export const updateAdmissionFee = async (
   id: string,
   payload: IUpdateAdmissionFee,
 ) => {
-  const existing = await prisma.admissionFee.findUnique({ where: { id } });
-  if (!existing) {
-    throw new AppError(404, "Admission fee not found.");
-  }
+  return prisma.$transaction(
+    async (tx) => {
+      const existing = await tx.admissionFee.findUnique({ where: { id } });
+      if (!existing) {
+        throw new AppError(404, "Admission fee not found.");
+      }
 
-  if (payload.isActive === true && !existing.isActive) {
-    const active = await prisma.admissionFee.findFirst({
-      where: {
-        programId: existing.programId,
-        isActive: true,
-        NOT: { id },
-      },
-    });
+      if (payload.isActive === true && !existing.isActive) {
+        const active = await tx.admissionFee.findFirst({
+          where: {
+            programId: existing.programId,
+            isActive: true,
+            NOT: { id },
+          },
+        });
 
-    if (active) {
-      throw new AppError(
-        409,
-        "There is already an active admission fee for this program.",
-      );
-    }
-  }
+        if (active) {
+          throw new AppError(
+            409,
+            "There is already an active admission fee for this program.",
+          );
+        }
+      }
 
-  return prisma.admissionFee.update({ where: { id }, data: payload });
+      return tx.admissionFee.update({ where: { id }, data: payload });
+    },
+    { isolationLevel: "Serializable" },
+  );
 };
 
 export const deleteAdmissionFee = async (id: string) => {
