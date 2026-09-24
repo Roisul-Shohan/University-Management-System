@@ -16,7 +16,6 @@ import { paymentRoutes } from "./modules/payments/payment.route.js";
 import { studentRoutes } from "./modules/students/student.route.js";
 import { studentSemesterRoutes } from "./modules/studentSemester/studentSemester.routes.js";
 import { semesterFeeRoutes } from "./modules/semesterFee/semesterFee.route.js";
-import { admissionFeeRoutes } from "./modules/admissionFee/admissionFee.route.js";
 import {
   creditFeeRoutes,
   courseRegistrationFeeRoutes,
@@ -24,9 +23,7 @@ import {
 import { courseRegistrationRoutes } from "./modules/courseRegistration/courseRegistration.route.js";
 import { teacherRoutes } from "./modules/teachers/teacher.route.js";
 import { courseRoutes } from "./modules/courses/course.route.js";
-import { curriculumCourseRoutes } from "./modules/curriculumCourse/curriculumCourse.route.js";
 import { programRoutes } from "./modules/programs/program.route.js";
-import { courseOfferingRoutes } from "./modules/courseOffering/courseOffering.route.js";
 
 const app: Application = express();
 
@@ -46,19 +43,16 @@ app.use("/api/academic-periods", academicPeriodRouter);
 app.use("/api/notifications", notificationRouter);
 app.use("/api/departments", departmentRouter);
 app.use("/api/payments", paymentRoutes);
-app.use("/api/admissions", admissionRoutes);
+app.use("/admissions", admissionRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/student-semesters", studentSemesterRoutes);
 app.use("/api/semester-fees", semesterFeeRoutes);
-app.use("/api/admission-fees", admissionFeeRoutes);
 app.use("/api/credit-fees", creditFeeRoutes);
 app.use("/api/course-registration-fees", courseRegistrationFeeRoutes);
 app.use("/api/course-registrations", courseRegistrationRoutes);
 app.use("/api/teachers", teacherRoutes);
 app.use("/api/courses", courseRoutes);
-app.use("/api/curriculum-courses", curriculumCourseRoutes);
 app.use("/api/programs", programRoutes);
-app.use("/api/course-offerings", courseOfferingRoutes);
 
 app.use(notFound);
 
