@@ -1,5 +1,5 @@
-/** biome-ignore-all lint/style/useImportType: <explanation> */
-/** biome-ignore-all assist/source/organizeImports: <explanation> */
+/** biome-ignore-all lint/style/useImportType: preserve existing module import style */
+/** biome-ignore-all assist/source/organizeImports: preserve existing module import order */
 import { prisma } from "../../lib/prisma.js";
 import AppError from "../../errors/AppErrors.js";
 import {
@@ -37,6 +37,10 @@ const scheduleAcademicPeriodNotification = async (academicPeriod: {
 
 export const createAcademicPeriod = async (data: ICreateAcademicPeriod) => {
   const { type, startDate, endDate } = data;
+
+  if (startDate >= endDate) {
+    throw new AppError(400, "Start date must be before end date.");
+  }
 
   const existingPeriod = await prisma.academicPeriod.findFirst({
     where: {
