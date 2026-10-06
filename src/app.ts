@@ -17,8 +17,8 @@ import { studentRoutes } from "./modules/students/student.route.js";
 import { studentSemesterRoutes } from "./modules/studentSemester/studentSemester.routes.js";
 import { semesterFeeRoutes } from "./modules/semesterFee/semesterFee.route.js";
 import {
-	creditFeeRoutes,
-	courseRegistrationFeeRoutes,
+  creditFeeRoutes,
+  courseRegistrationFeeRoutes,
 } from "./modules/creditFee/creditFee.route.js";
 import { courseRegistrationRoutes } from "./modules/courseRegistration/courseRegistration.route.js";
 import { teacherRoutes } from "./modules/teachers/teacher.route.js";
@@ -28,6 +28,7 @@ import { courseOfferingRoutes } from "./modules/courseOffering/courseOffering.ro
 import { classSessionRoutes } from "./modules/classSession/classSession.route.js";
 import { attendanceRoutes } from "./modules/attendance/attendance.route.js";
 import { examRoutes } from "./modules/exam/exam.route.js";
+import { examAttemptRoutes } from "./modules/examAttempt/examAttempt.route.js";
 
 const app: Application = express();
 
@@ -38,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
-	res.send("Helllo");
+  res.send("Helllo");
 });
 
 app.use("/api/auth", authRoutes);
@@ -61,6 +62,7 @@ app.use("/api/course-offerings", courseOfferingRoutes);
 app.use("/api/class-sessions", classSessionRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/exams", examRoutes);
+app.use("/api", examAttemptRoutes);
 
 app.use(notFound);
 

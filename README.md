@@ -254,6 +254,8 @@ All paths below are relative to `/api`. For complete schemas and examples, open 
 | Exams                     | `POST`, `PATCH`, `DELETE` | `/exams`, `/exams/:id`, `/exams/:id/publish`, `/exams/:id/close`       | `TEACHER`, `SUPER_ADMIN` |
 | Exam questions            | `GET`                     | `/exams/:examId/questions`                                           | Authenticated user       |
 | Exam questions            | `POST`, `PATCH`, `DELETE` | `/exams/:examId/questions`, `/exams/:examId/questions/:questionId`   | `TEACHER`, `SUPER_ADMIN` |
+| Exam attempts             | `POST`                    | `/exams/:examId/start`, `/attempts/:attemptId/submit`                 | `STUDENT`                |
+| Exam attempts             | `GET`                     | `/attempts/:attemptId`                                                | `STUDENT`                |
 | Curriculum courses        | `GET`                     | `/curriculum-courses`, `/curriculum-courses/:id`                     | Authenticated user       |
 | Curriculum courses        | `POST`, `PATCH`, `DELETE` | `/curriculum-courses`, `/curriculum-courses/:id`                     | `TEACHER`, `SUPER_ADMIN` |
 | Course registration       | `GET`                     | `/course-registrations/:studentSemesterId/offerings`                 | `STUDENT`                |
