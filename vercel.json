@@ -1,4 +1,22 @@
 {
   "version": 2,
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "node",
+  "installCommand": "npm install",
+  "functions": {
+    "dist/server.js": {
+      "maxDuration": 30,
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
