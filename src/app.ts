@@ -36,7 +36,7 @@ const app: Application = express();
 
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: ["http://localhost:3000", "https://university-management-system-fronte-five.vercel.app"],
 		credentials: true,
 	}),
 );
