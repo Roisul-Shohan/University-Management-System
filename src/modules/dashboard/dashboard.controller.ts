@@ -1,10 +1,10 @@
-﻿import { Request, Response } from "express";
+﻿import { Request, Response, NextFunction } from "express";
 import catchAsync from "../../utils/catchAsync.js";
 import sendResponse from "../../utils/sendResponse.js";
 import { prisma } from "../../lib/prisma.js";
 import { AdmissionStatus, ExamStatus, EnrollmentStatus, StudentSemesterStatus, Role } from "../../../generated/prisma/enums.js";
 
-const getAdminDashboardStats = catchAsync(async (req: Request, res: Response) => {
+const getAdminDashboardStats = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const totalStudents = await prisma.student.count({ where: { isActive: true } });
     const activeCourses = await prisma.course.count();
     const pendingAdmissions = await prisma.admission.count({ where: { status: AdmissionStatus.PENDING } });
@@ -34,7 +34,7 @@ const getAdminDashboardStats = catchAsync(async (req: Request, res: Response) =>
     });
 });
 
-const getTeacherDashboardStats = catchAsync(async (req: Request, res: Response) => {
+const getTeacherDashboardStats = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const teacher = await prisma.teacher.findUnique({ where: { id: req.user!.userId } });
     if (!teacher) {
         return sendResponse(res, { statusCode: 200, success: true, message: "Teacher profile not found", data: {} });
@@ -76,7 +76,7 @@ const getTeacherDashboardStats = catchAsync(async (req: Request, res: Response) 
     });
 });
 
-const getStudentDashboardStats = catchAsync(async (req: Request, res: Response) => {
+const getStudentDashboardStats = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const student = await prisma.student.findUnique({ where: { id: req.user!.userId } });
     if (!student) {
         return sendResponse(res, { statusCode: 200, success: true, message: "Student profile not found", data: {} });
@@ -125,7 +125,7 @@ const getStudentDashboardStats = catchAsync(async (req: Request, res: Response) 
     });
 });
 
-const getAdminRecentActivity = catchAsync(async (req: Request, res: Response) => {
+const getAdminRecentActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const recentAdmissions = await prisma.admission.findMany({
         take: 3, orderBy: { createdAt: "desc" },
         include: { user: { select: { name: true } }, program: { include: { department: true } } }
@@ -148,7 +148,7 @@ const getAdminRecentActivity = catchAsync(async (req: Request, res: Response) =>
     sendResponse(res, { statusCode: 200, success: true, message: "Admin activity retrieved", data: activity });
 });
 
-const getTeacherRecentActivity = catchAsync(async (req: Request, res: Response) => {
+const getTeacherRecentActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const teacher = await prisma.teacher.findUnique({ where: { id: req.user!.userId } });
     if (!teacher) return sendResponse(res, { statusCode: 200, success: true, message: "Teacher not found", data: [] });
 
@@ -189,7 +189,7 @@ const getTeacherRecentActivity = catchAsync(async (req: Request, res: Response) 
     sendResponse(res, { statusCode: 200, success: true, message: "Teacher activity retrieved", data: activity });
 });
 
-const getStudentRecentActivity = catchAsync(async (req: Request, res: Response) => {
+const getStudentRecentActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const student = await prisma.student.findUnique({ where: { id: req.user!.userId } });
     if (!student) return sendResponse(res, { statusCode: 200, success: true, message: "Student not found", data: [] });
 
@@ -218,7 +218,7 @@ const getStudentRecentActivity = catchAsync(async (req: Request, res: Response) 
     sendResponse(res, { statusCode: 200, success: true, message: "Student activity retrieved", data: activity });
 });
 
-const getAdminSchedule = catchAsync(async (req: Request, res: Response) => {
+const getAdminSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const schedule = [
         { time: "09:00", period: "AM", title: "Admin meeting", detail: "Conference Room A", color: "blue" },
         { time: "11:00", period: "AM", title: "Admissions review", detail: "Review pending applications", color: "violet" },
@@ -227,7 +227,7 @@ const getAdminSchedule = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { statusCode: 200, success: true, message: "Admin schedule retrieved", data: schedule });
 });
 
-const getTeacherSchedule = catchAsync(async (req: Request, res: Response) => {
+const getTeacherSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const teacher = await prisma.teacher.findUnique({ where: { id: req.user!.userId } });
     if (!teacher) return sendResponse(res, { statusCode: 200, success: true, message: "Teacher not found", data: [] });
 
@@ -248,7 +248,7 @@ const getTeacherSchedule = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { statusCode: 200, success: true, message: "Teacher schedule retrieved", data: schedule });
 });
 
-const getStudentSchedule = catchAsync(async (req: Request, res: Response) => {
+const getStudentSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const student = await prisma.student.findUnique({ where: { id: req.user!.userId } });
     if (!student) return sendResponse(res, { statusCode: 200, success: true, message: "Student not found", data: [] });
 
@@ -287,7 +287,7 @@ const getStudentSchedule = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { statusCode: 200, success: true, message: "Student schedule retrieved", data: schedule });
 });
 
-const getCalendarEvents = catchAsync(async (req: Request, res: Response) => {
+const getCalendarEvents = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const role = req.user!.role;
 
     if (role === "STUDENT") {
@@ -420,27 +420,27 @@ const getCalendarEvents = catchAsync(async (req: Request, res: Response) => {
     return sendResponse(res, { statusCode: 200, success: true, message: "Unknown role", data: [] });
 });
 
-const getDashboardStats = catchAsync(async (req: Request, res: Response) => {
+const getDashboardStats = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const role = req.user!.role;
-    if (role === "SUPER_ADMIN") return getAdminDashboardStats(req, res);
-    if (role === "TEACHER") return getTeacherDashboardStats(req, res);
-    if (role === "STUDENT") return getStudentDashboardStats(req, res);
+    if (role === "SUPER_ADMIN") return getAdminDashboardStats(req, res, next);
+    if (role === "TEACHER") return getTeacherDashboardStats(req, res, next);
+    if (role === "STUDENT") return getStudentDashboardStats(req, res, next);
     return sendResponse(res, { statusCode: 200, success: true, message: "Unknown role", data: {} });
 });
 
-const getRecentActivity = catchAsync(async (req: Request, res: Response) => {
+const getRecentActivity = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const role = req.user!.role;
-    if (role === "SUPER_ADMIN") return getAdminRecentActivity(req, res);
-    if (role === "TEACHER") return getTeacherRecentActivity(req, res);
-    if (role === "STUDENT") return getStudentRecentActivity(req, res);
+    if (role === "SUPER_ADMIN") return getAdminRecentActivity(req, res, next);
+    if (role === "TEACHER") return getTeacherRecentActivity(req, res, next);
+    if (role === "STUDENT") return getStudentRecentActivity(req, res, next);
     return sendResponse(res, { statusCode: 200, success: true, message: "Unknown role", data: [] });
 });
 
-const getSchedule = catchAsync(async (req: Request, res: Response) => {
+const getSchedule = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const role = req.user!.role;
-    if (role === "SUPER_ADMIN") return getAdminSchedule(req, res);
-    if (role === "TEACHER") return getTeacherSchedule(req, res);
-    if (role === "STUDENT") return getStudentSchedule(req, res);
+    if (role === "SUPER_ADMIN") return getAdminSchedule(req, res, next);
+    if (role === "TEACHER") return getTeacherSchedule(req, res, next);
+    if (role === "STUDENT") return getStudentSchedule(req, res, next);
     return sendResponse(res, { statusCode: 200, success: true, message: "Unknown role", data: [] });
 });
 
