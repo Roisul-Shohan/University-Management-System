@@ -264,3 +264,10 @@ export const updateAttendanceRecord = async (
 		data: { status: payload.status },
 	});
 };
+
+export const listAttendanceSessions = async () => {
+	return prisma.attendanceSession.findMany({
+		orderBy: { openedAt: "desc" },
+		include: sessionInclude,
+	});
+};

@@ -195,3 +195,29 @@ export const submitExamAttempt = async (
 		});
 	});
 };
+
+export const listExamAttempts = async (userId: string) => {
+	const student = await prisma.student.findFirst({
+		where: { id: userId },
+		select: { id: true },
+	});
+	if (!student) throw new AppError(404, "Student profile not found.");
+
+	const studentSemesters = await prisma.studentSemester.findMany({
+		where: { studentId: student.id },
+		select: { id: true },
+	});
+	const studentSemesterIds = studentSemesters.map((s) => s.id);
+
+	return prisma.examAttempt.findMany({
+		where: { studentSemesterId: { in: studentSemesterIds } },
+		include: {
+			exam: {
+				include: {
+					courseOffering: { include: { course: true } },
+				},
+			},
+		},
+		orderBy: { startedAt: "desc" },
+	});
+};

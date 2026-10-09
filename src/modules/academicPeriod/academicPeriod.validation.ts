@@ -85,12 +85,17 @@ export const updateAcademicPeriodSchema = z
     startDate: academicPeriodDate.optional(),
 
     endDate: academicPeriodDate.optional(),
+
+    status: z
+      .enum(["UPCOMING", "ACTIVE", "COMPLETED"])
+      .optional(),
   })
   .refine(
     (data) =>
       data.type !== undefined ||
       data.startDate !== undefined ||
-      data.endDate !== undefined,
+      data.endDate !== undefined ||
+      data.status !== undefined,
     {
       message: "At least one field must be provided.",
     },

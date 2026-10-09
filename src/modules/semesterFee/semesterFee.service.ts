@@ -29,7 +29,7 @@ export const createSemesterFee = async (payload: ICreateSemesterFee) => {
 
 export const getAllSemesterFees = async () => {
     return prisma.semesterFee.findMany({
-        include: { program: true },
+        include: { program: { include: { department: true } } },
         orderBy: { createdAt: 'desc' }
     });
 };

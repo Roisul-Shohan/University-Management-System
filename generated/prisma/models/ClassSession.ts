@@ -214,8 +214,8 @@ export type ClassSessionWhereInput = {
   meetingLink?: Prisma.StringNullableFilter<"ClassSession"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ClassSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClassSession"> | Date | string
-  courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   attendanceSession?: Prisma.XOR<Prisma.AttendanceSessionNullableScalarRelationFilter, Prisma.AttendanceSessionWhereInput> | null
+  courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
 }
 
 export type ClassSessionOrderByWithRelationInput = {
@@ -228,8 +228,8 @@ export type ClassSessionOrderByWithRelationInput = {
   meetingLink?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  courseOffering?: Prisma.CourseOfferingOrderByWithRelationInput
   attendanceSession?: Prisma.AttendanceSessionOrderByWithRelationInput
+  courseOffering?: Prisma.CourseOfferingOrderByWithRelationInput
 }
 
 export type ClassSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -245,8 +245,8 @@ export type ClassSessionWhereUniqueInput = Prisma.AtLeast<{
   meetingLink?: Prisma.StringNullableFilter<"ClassSession"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ClassSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClassSession"> | Date | string
-  courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   attendanceSession?: Prisma.XOR<Prisma.AttendanceSessionNullableScalarRelationFilter, Prisma.AttendanceSessionWhereInput> | null
+  courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
 }, "id">
 
 export type ClassSessionOrderByWithAggregationInput = {
@@ -288,8 +288,8 @@ export type ClassSessionCreateInput = {
   meetingLink?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutClassSessionInput
   attendanceSession?: Prisma.AttendanceSessionCreateNestedOneWithoutClassSessionInput
+  courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutClassSessionInput
 }
 
 export type ClassSessionUncheckedCreateInput = {
@@ -314,8 +314,8 @@ export type ClassSessionUpdateInput = {
   meetingLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutClassSessionNestedInput
   attendanceSession?: Prisma.AttendanceSessionUpdateOneWithoutClassSessionNestedInput
+  courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutClassSessionNestedInput
 }
 
 export type ClassSessionUncheckedUpdateInput = {
@@ -664,8 +664,8 @@ export type ClassSessionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   meetingLink?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
   attendanceSession?: boolean | Prisma.ClassSession$attendanceSessionArgs<ExtArgs>
+  courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classSession"]>
 
 export type ClassSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -708,8 +708,8 @@ export type ClassSessionSelectScalar = {
 
 export type ClassSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseOfferingId" | "date" | "startTime" | "endTime" | "topic" | "meetingLink" | "createdAt" | "updatedAt", ExtArgs["result"]["classSession"]>
 export type ClassSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
   attendanceSession?: boolean | Prisma.ClassSession$attendanceSessionArgs<ExtArgs>
+  courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
 }
 export type ClassSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
@@ -721,8 +721,8 @@ export type ClassSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $ClassSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ClassSession"
   objects: {
-    courseOffering: Prisma.$CourseOfferingPayload<ExtArgs>
     attendanceSession: Prisma.$AttendanceSessionPayload<ExtArgs> | null
+    courseOffering: Prisma.$CourseOfferingPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1128,8 +1128,8 @@ readonly fields: ClassSessionFieldRefs;
  */
 export interface Prisma__ClassSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  courseOffering<T extends Prisma.CourseOfferingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseOfferingDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseOfferingClient<runtime.Types.Result.GetResult<Prisma.$CourseOfferingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   attendanceSession<T extends Prisma.ClassSession$attendanceSessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassSession$attendanceSessionArgs<ExtArgs>>): Prisma.Prisma__AttendanceSessionClient<runtime.Types.Result.GetResult<Prisma.$AttendanceSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  courseOffering<T extends Prisma.CourseOfferingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseOfferingDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseOfferingClient<runtime.Types.Result.GetResult<Prisma.$CourseOfferingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

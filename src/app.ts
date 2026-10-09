@@ -8,6 +8,7 @@ import { notFound } from "./middlewares/notFound.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
 import { usersRouter } from "./modules/users/users.route.js";
+import { dashboardRoutes } from "./modules/dashboard/dashboard.route.js";
 import { academicPeriodRouter } from "./modules/academicPeriod/academicPeriod.route.js";
 import { notificationRouter } from "./modules/notifications/notification.route.js";
 import { departmentRouter } from "./modules/department/department.route.js";
@@ -17,8 +18,8 @@ import { studentRoutes } from "./modules/students/student.route.js";
 import { studentSemesterRoutes } from "./modules/studentSemester/studentSemester.routes.js";
 import { semesterFeeRoutes } from "./modules/semesterFee/semesterFee.route.js";
 import {
-  creditFeeRoutes,
-  courseRegistrationFeeRoutes,
+	creditFeeRoutes,
+	courseRegistrationFeeRoutes,
 } from "./modules/creditFee/creditFee.route.js";
 import { courseRegistrationRoutes } from "./modules/courseRegistration/courseRegistration.route.js";
 import { teacherRoutes } from "./modules/teachers/teacher.route.js";
@@ -29,21 +30,28 @@ import { classSessionRoutes } from "./modules/classSession/classSession.route.js
 import { attendanceRoutes } from "./modules/attendance/attendance.route.js";
 import { examRoutes } from "./modules/exam/exam.route.js";
 import { examAttemptRoutes } from "./modules/examAttempt/examAttempt.route.js";
+import { curriculumCourseRoutes } from "./modules/curriculumCourse/curriculumCourse.route.js";
 
 const app: Application = express();
 
-app.use(cors());
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+		credentials: true,
+	}),
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Helllo");
+	res.send("Helllo");
 });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRouter);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/academic-periods", academicPeriodRouter);
 app.use("/api/notifications", notificationRouter);
 app.use("/api/departments", departmentRouter);
@@ -63,6 +71,7 @@ app.use("/api/class-sessions", classSessionRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/exams", examRoutes);
 app.use("/api", examAttemptRoutes);
+app.use("/api/curriculum-courses", curriculumCourseRoutes);
 
 app.use(notFound);
 

@@ -33,7 +33,7 @@ export const createCreditFee = async (payload: ICreateCreditFee) => {
 
 export const getAllCreditFees = async () => {
   return prisma.creditFee.findMany({
-    include: { program: true },
+    include: { program: { include: { department: true } } },
     orderBy: { createdAt: "desc" },
   });
 };
@@ -41,7 +41,7 @@ export const getAllCreditFees = async () => {
 export const getCreditFeeById = async (id: string) => {
   const fee = await prisma.creditFee.findUnique({
     where: { id },
-    include: { program: true },
+    include: { program: { include: { department: true } } },
   });
   if (!fee) {
     throw new AppError(404, "Credit fee not found.");

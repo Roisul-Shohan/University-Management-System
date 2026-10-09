@@ -236,8 +236,8 @@ export type CurriculumCourseWhereInput = {
   semester?: Prisma.IntFilter<"CurriculumCourse"> | number
   createdAt?: Prisma.DateTimeFilter<"CurriculumCourse"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurriculumCourse"> | Date | string
-  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
+  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
 }
 
 export type CurriculumCourseOrderByWithRelationInput = {
@@ -248,8 +248,8 @@ export type CurriculumCourseOrderByWithRelationInput = {
   semester?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  program?: Prisma.ProgramOrderByWithRelationInput
   course?: Prisma.CourseOrderByWithRelationInput
+  program?: Prisma.ProgramOrderByWithRelationInput
 }
 
 export type CurriculumCourseWhereUniqueInput = Prisma.AtLeast<{
@@ -264,8 +264,8 @@ export type CurriculumCourseWhereUniqueInput = Prisma.AtLeast<{
   semester?: Prisma.IntFilter<"CurriculumCourse"> | number
   createdAt?: Prisma.DateTimeFilter<"CurriculumCourse"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurriculumCourse"> | Date | string
-  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
+  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
 }, "id" | "programId_courseId">
 
 export type CurriculumCourseOrderByWithAggregationInput = {
@@ -302,8 +302,8 @@ export type CurriculumCourseCreateInput = {
   semester: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  program: Prisma.ProgramCreateNestedOneWithoutCurriculumCoursesInput
   course: Prisma.CourseCreateNestedOneWithoutCurriculumCoursesInput
+  program: Prisma.ProgramCreateNestedOneWithoutCurriculumCoursesInput
 }
 
 export type CurriculumCourseUncheckedCreateInput = {
@@ -322,8 +322,8 @@ export type CurriculumCourseUpdateInput = {
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutCurriculumCoursesNestedInput
   course?: Prisma.CourseUpdateOneRequiredWithoutCurriculumCoursesNestedInput
+  program?: Prisma.ProgramUpdateOneRequiredWithoutCurriculumCoursesNestedInput
 }
 
 export type CurriculumCourseUncheckedUpdateInput = {
@@ -686,8 +686,8 @@ export type CurriculumCourseSelect<ExtArgs extends runtime.Types.Extensions.Inte
   semester?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["curriculumCourse"]>
 
 export type CurriculumCourseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -698,8 +698,8 @@ export type CurriculumCourseSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   semester?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["curriculumCourse"]>
 
 export type CurriculumCourseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -710,8 +710,8 @@ export type CurriculumCourseSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   semester?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["curriculumCourse"]>
 
 export type CurriculumCourseSelectScalar = {
@@ -726,23 +726,23 @@ export type CurriculumCourseSelectScalar = {
 
 export type CurriculumCourseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "programId" | "courseId" | "year" | "semester" | "createdAt" | "updatedAt", ExtArgs["result"]["curriculumCourse"]>
 export type CurriculumCourseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 export type CurriculumCourseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 export type CurriculumCourseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
+  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
 }
 
 export type $CurriculumCoursePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CurriculumCourse"
   objects: {
-    program: Prisma.$ProgramPayload<ExtArgs>
     course: Prisma.$CoursePayload<ExtArgs>
+    program: Prisma.$ProgramPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1146,8 +1146,8 @@ readonly fields: CurriculumCourseFieldRefs;
  */
 export interface Prisma__CurriculumCourseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   course<T extends Prisma.CourseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseClient<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

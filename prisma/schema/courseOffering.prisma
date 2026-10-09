@@ -1,24 +1,17 @@
 model CourseOffering {
-  id String @id @default(uuid())
-
-  courseId  String
-  teacherId String
-
-  year     Int
-  semester Int
-
-  capacity Int?
-
-  course Course @relation(fields: [courseId], references: [id])
-
-  teacher Teacher @relation(fields: [teacherId], references: [id])
-
-  enrollments  CourseEnrollment[]
+  id           String             @id @default(uuid())
+  courseId     String
+  teacherId    String
+  year         Int
+  semester     Int
+  capacity     Int?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
   classSession ClassSession[]
+  enrollments  CourseEnrollment[]
+  course       Course             @relation(fields: [courseId], references: [id])
+  teacher      Teacher            @relation(fields: [teacherId], references: [id])
   exam         Exam[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@unique([courseId, teacherId, year, semester])
   @@index([courseId])

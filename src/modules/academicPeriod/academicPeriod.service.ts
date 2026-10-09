@@ -21,8 +21,8 @@ const scheduleAcademicPeriodNotification = async (academicPeriod: {
 
   await notificationQueue.remove(jobId);
 
-  const delay = Math.max(0, academicPeriod.startDate.getTime() - Date.now());
-
+  // Send notification immediately when period is activated (delay 0)
+  // The startDate controls when registration opens, not when notification is sent
   await notificationQueue.add(
     "academic-period-opened",
     {
@@ -30,7 +30,7 @@ const scheduleAcademicPeriodNotification = async (academicPeriod: {
     },
     {
       jobId,
-      delay,
+      delay: 0, // Send immediately when activated
     },
   );
 };
@@ -176,6 +176,10 @@ export const updateAcademicPeriod = async (
     );
   }
 
+  // Determine if status is changing to ACTIVE
+  const newStatus = data.status ?? existingPeriod.status;
+  const isActivating = newStatus === "ACTIVE" && existingPeriod.status !== "ACTIVE";
+
   const academicPeriod = await prisma.academicPeriod.update({
     where: {
       id,
@@ -184,10 +188,14 @@ export const updateAcademicPeriod = async (
       type: data.type,
       startDate: data.startDate,
       endDate: data.endDate,
+      status: data.status,
+      // Also update isActive based on status
+      isActive: data.status === "ACTIVE",
     },
   });
 
-  if (academicPeriod.isActive) {
+  // Schedule notification if status changed to ACTIVE
+  if (isActivating) {
     await scheduleAcademicPeriodNotification(academicPeriod);
   }
 

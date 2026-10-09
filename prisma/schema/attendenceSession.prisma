@@ -1,20 +1,14 @@
 model AttendanceSession {
-  id String @id @default(uuid())
-
-  classSessionId String @unique
-
-  qrToken   String   @unique
-  openedAt  DateTime
-  expiresAt DateTime
-
-  status AttendanceSessionStatus @default(OPEN)
-
-  classSession ClassSession @relation(fields: [classSessionId], references: [id], onDelete: Cascade)
-
+  id                String                  @id @default(uuid())
+  classSessionId    String                  @unique
+  qrToken           String                  @unique
+  openedAt          DateTime
+  expiresAt         DateTime
+  status            AttendanceSessionStatus @default(OPEN)
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
   attendanceRecords AttendanceRecord[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  classSession      ClassSession            @relation(fields: [classSessionId], references: [id], onDelete: Cascade)
 
   @@index([classSessionId])
   @@index([expiresAt])

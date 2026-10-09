@@ -11,6 +11,7 @@ import {
   teacherIdValidation,
   teachersQueryValidation,
   updateTeacherAdminValidation,
+  updateTeacherStatusValidation,
 } from "./teacher.validation.js";
 
 const router = Router();
@@ -56,6 +57,13 @@ router.patch(
   auth(Role.SUPER_ADMIN),
   validateRequest(updateTeacherAdminValidation),
   teacherController.updateTeacherAdminStatus,
+);
+
+router.patch(
+  "/:id/status",
+  auth(Role.TEACHER, Role.SUPER_ADMIN),
+  validateRequest(updateTeacherStatusValidation),
+  teacherController.updateTeacherStatus,
 );
 
 router.patch(

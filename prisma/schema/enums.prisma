@@ -42,10 +42,10 @@ enum AcademicPeriodType {
 
 enum AdmissionStatus {
   PENDING
-  APPROVED
   CONFIRMED
-  REJECTED
   CANCELLED
+  REJECTED
+  APPROVED
 }
 
 enum TransactionType {
@@ -59,8 +59,8 @@ enum TransactionStatus {
   PENDING
   SUCCESS
   FAILED
-  CANCELLED
   REFUNDED
+  CANCELLED
 }
 
 enum EnrollmentStatus {
@@ -109,4 +109,10 @@ enum StudentProgramStatus {
   ACTIVE
   COMPLETED
   DROPPED
+}
+
+enum AcademicPeriodStatus {
+  UPCOMING
+  ACTIVE
+  COMPLETED
 }

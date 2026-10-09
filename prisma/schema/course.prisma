@@ -1,21 +1,16 @@
 model Course {
-  id String @id @default(uuid())
-
-  code    String @unique
-  name    String
-  credits Float
-
-  departmentId String
-  department   Department @relation(fields: [departmentId], references: [id])
-
-  curriculumCourses CurriculumCourse[]
+  id                String               @id @default(uuid())
+  code              String               @unique
+  name              String
+  credits           Float
+  departmentId      String
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
   offerings         CourseOffering[]
-
-  prerequisites   CoursePrerequisite[] @relation("CoursePrerequisites")
-  prerequisiteFor CoursePrerequisite[] @relation("PrerequisiteFor")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  prerequisites     CoursePrerequisite[] @relation("CoursePrerequisites")
+  prerequisiteFor   CoursePrerequisite[] @relation("PrerequisiteFor")
+  department        Department           @relation(fields: [departmentId], references: [id])
+  curriculumCourses CurriculumCourse[]
 
   @@index([departmentId])
   @@map("courses")

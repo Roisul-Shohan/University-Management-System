@@ -1,18 +1,13 @@
 model CurriculumCourse {
-  id String @id @default(uuid())
-
+  id        String   @id @default(uuid())
   programId String
   courseId  String
-
-  year     Int
-  semester Int
-
-  program Program @relation(fields: [programId], references: [id])
-
-  course Course @relation(fields: [courseId], references: [id])
-
+  year      Int
+  semester  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  course    Course   @relation(fields: [courseId], references: [id])
+  program   Program  @relation(fields: [programId], references: [id])
 
   @@unique([programId, courseId])
   @@index([programId, year, semester])

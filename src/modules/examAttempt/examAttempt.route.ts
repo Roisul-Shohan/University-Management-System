@@ -11,6 +11,12 @@ import {
 
 const router = Router();
 
+router.get(
+	"/exam-attempts",
+	auth(Role.STUDENT),
+	controller.list,
+);
+
 router.post(
 	"/exams/:examId/start",
 	auth(Role.STUDENT),

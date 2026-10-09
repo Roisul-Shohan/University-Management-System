@@ -6,6 +6,7 @@ import {
 	refreshAccessToken,
 	registerUser,
 	resetPassword,
+	resendOtp,
 	verifyEmail,
 } from "./auth.service.js";
 import catchAsync from "../../utils/catchAsync.js";
@@ -24,6 +25,19 @@ export const register = catchAsync(async (req: Request, res: Response) => {
 		data: {},
 	});
 });
+
+export const resendOtpController = catchAsync(
+	async (req: Request, res: Response) => {
+		const result = await resendOtp(req.body);
+
+		sendResponse(res, {
+			statusCode: 200,
+			success: true,
+			message: result.message,
+			data: {},
+		});
+	},
+);
 
 export const verifyEmailController = catchAsync(
 	async (req: Request, res: Response) => {
@@ -81,34 +95,9 @@ export const verifyEmailController = catchAsync(
 
 export const loginController = catchAsync(
 	async (req: Request, res: Response) => {
-		const user = await loginUser(req.body);
+		const result = await loginUser(req.body);
 
-		const jwtPayload = {
-			userId: user.id,
-			name: user.name,
-			email: user.email,
-			role: user.role,
-		};
-
-		// Create access token
-		const accessToken = jwtUtils.createToken(
-			{
-				...jwtPayload,
-				tokenType: "access",
-			},
-			config.jwt_access_secret!,
-			config.jwt_access_expires_in,
-		);
-
-		// Create refresh token
-		const refreshToken = jwtUtils.createToken(
-			{
-				...jwtPayload,
-				tokenType: "refresh",
-			},
-			config.jwt_refresh_secret!,
-			config.jwt_refresh_expires_in,
-		);
+		const { user, accessToken, refreshToken } = result;
 
 		res.cookie("accessToken", accessToken, {
 			httpOnly: true,

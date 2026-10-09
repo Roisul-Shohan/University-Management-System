@@ -1,20 +1,14 @@
 model StudentAnswer {
-  id String @id @default(uuid())
-
+  id            String          @id @default(uuid())
   examAttemptId String
   questionId    String
   optionId      String?
-
-  answeredAt DateTime @default(now())
-
-  examAttempt ExamAttempt @relation(fields: [examAttemptId], references: [id], onDelete: Cascade)
-
-  question ExamQuestion @relation(fields: [questionId], references: [id])
-
-  option QuestionOption? @relation(fields: [optionId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  answeredAt    DateTime        @default(now())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  examAttempt   ExamAttempt     @relation(fields: [examAttemptId], references: [id], onDelete: Cascade)
+  option        QuestionOption? @relation(fields: [optionId], references: [id])
+  question      ExamQuestion    @relation(fields: [questionId], references: [id])
 
   @@unique([examAttemptId, questionId])
   @@index([questionId])

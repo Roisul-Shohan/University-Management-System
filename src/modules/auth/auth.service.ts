@@ -6,6 +6,7 @@ import {
   PendingRegistration,
   RegisterUserInput,
   ResetPasswordInput,
+  ResendOtpInput,
   VerifyEmailInput,
 } from "./auth.interface.js";
 import { prisma } from "../../lib/prisma.js";
@@ -152,7 +153,6 @@ export const verifyEmail = async (data: VerifyEmailInput) => {
 export const loginUser = async (data: LoginUserInput) => {
   const { email, password } = data;
 
-  // Find user
   const user = await prisma.user.findUnique({
     where: { email },
   });
@@ -161,23 +161,37 @@ export const loginUser = async (data: LoginUserInput) => {
     throw new AppError(401, "Invalid email or password.");
   }
 
-  // Check account status
   if (user.status !== "ACTIVE") {
     throw new AppError(403, "Your account is not active.");
   }
 
-  // Compare password with stored hash
   const passwordMatched = await bcrypt.compare(password, user.password);
 
   if (!passwordMatched) {
     throw new AppError(401, "Invalid email or password.");
   }
 
+  const accessToken = jwtUtils.createToken(
+    { userId: user.id, email: user.email, role: user.role, type: "access" },
+    config.jwt_access_secret!,
+    "7d",
+  );
+
+  const refreshToken = jwtUtils.createToken(
+    { userId: user.id, email: user.email, role: user.role, type: "refresh" },
+    config.jwt_refresh_secret!,
+    "30d",
+  );
+
   return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+    accessToken,
+    refreshToken,
   };
 };
 
@@ -188,6 +202,18 @@ export const getMe = async (userId: string) => {
     },
     omit: {
       password: true,
+    },
+    include: {
+      teacher: {
+        include: { department: true },
+      },
+      student: {
+        include: {
+          program: {
+            include: { department: true },
+          },
+        },
+      },
     },
   });
 
@@ -330,6 +356,61 @@ export const resetPassword = async (data: ResetPasswordInput) => {
     });
 
     await redisClient.del(redisKey);
+  } finally {
+    await redisClient.del(lockKey);
+  }
+};
+
+export const resendOtp = async (data: ResendOtpInput) => {
+  const { email } = data;
+
+  const redisKey = `email-verification:${email}`;
+  const lockKey = `email-verification-lock:${email}`;
+
+  const lockAcquired = await redisClient.set(lockKey, "1", {
+    expiration: {
+      type: "EX",
+      value: 30,
+    },
+    condition: "NX",
+  });
+
+  if (!lockAcquired) {
+    throw new AppError(
+      429,
+      "OTP resend is already being processed. Please try again.",
+    );
+  }
+
+  try {
+    const storedData = await redisClient.get(redisKey);
+
+    if (!storedData) {
+      throw new AppError(
+        400,
+        "Registration session expired. Please register again.",
+      );
+    }
+
+    const pendingRegistration = JSON.parse(storedData) as PendingRegistration;
+
+    const otp = randomInt(100000, 1000000).toString();
+    const otpHash = await bcrypt.hash(otp, 10);
+
+    pendingRegistration.otpHash = otpHash;
+
+    await redisClient.set(redisKey, JSON.stringify(pendingRegistration), {
+      expiration: {
+        type: "EX",
+        value: OTP_EXPIRATION,
+      },
+    });
+
+    await sendVerificationEmail(email, pendingRegistration.name, otp);
+
+    return {
+      message: "New verification code sent. Please check your email.",
+    };
   } finally {
     await redisClient.del(lockKey);
   }

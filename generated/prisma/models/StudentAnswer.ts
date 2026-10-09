@@ -199,8 +199,8 @@ export type StudentAnswerWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"StudentAnswer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentAnswer"> | Date | string
   examAttempt?: Prisma.XOR<Prisma.ExamAttemptScalarRelationFilter, Prisma.ExamAttemptWhereInput>
-  question?: Prisma.XOR<Prisma.ExamQuestionScalarRelationFilter, Prisma.ExamQuestionWhereInput>
   option?: Prisma.XOR<Prisma.QuestionOptionNullableScalarRelationFilter, Prisma.QuestionOptionWhereInput> | null
+  question?: Prisma.XOR<Prisma.ExamQuestionScalarRelationFilter, Prisma.ExamQuestionWhereInput>
 }
 
 export type StudentAnswerOrderByWithRelationInput = {
@@ -212,8 +212,8 @@ export type StudentAnswerOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   examAttempt?: Prisma.ExamAttemptOrderByWithRelationInput
-  question?: Prisma.ExamQuestionOrderByWithRelationInput
   option?: Prisma.QuestionOptionOrderByWithRelationInput
+  question?: Prisma.ExamQuestionOrderByWithRelationInput
 }
 
 export type StudentAnswerWhereUniqueInput = Prisma.AtLeast<{
@@ -229,8 +229,8 @@ export type StudentAnswerWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"StudentAnswer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentAnswer"> | Date | string
   examAttempt?: Prisma.XOR<Prisma.ExamAttemptScalarRelationFilter, Prisma.ExamAttemptWhereInput>
-  question?: Prisma.XOR<Prisma.ExamQuestionScalarRelationFilter, Prisma.ExamQuestionWhereInput>
   option?: Prisma.XOR<Prisma.QuestionOptionNullableScalarRelationFilter, Prisma.QuestionOptionWhereInput> | null
+  question?: Prisma.XOR<Prisma.ExamQuestionScalarRelationFilter, Prisma.ExamQuestionWhereInput>
 }, "id" | "examAttemptId_questionId">
 
 export type StudentAnswerOrderByWithAggregationInput = {
@@ -265,8 +265,8 @@ export type StudentAnswerCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   examAttempt: Prisma.ExamAttemptCreateNestedOneWithoutAnswersInput
-  question: Prisma.ExamQuestionCreateNestedOneWithoutStudentAnswersInput
   option?: Prisma.QuestionOptionCreateNestedOneWithoutStudentAnswersInput
+  question: Prisma.ExamQuestionCreateNestedOneWithoutStudentAnswersInput
 }
 
 export type StudentAnswerUncheckedCreateInput = {
@@ -285,8 +285,8 @@ export type StudentAnswerUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   examAttempt?: Prisma.ExamAttemptUpdateOneRequiredWithoutAnswersNestedInput
-  question?: Prisma.ExamQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
   option?: Prisma.QuestionOptionUpdateOneWithoutStudentAnswersNestedInput
+  question?: Prisma.ExamQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
 }
 
 export type StudentAnswerUncheckedUpdateInput = {
@@ -502,8 +502,8 @@ export type StudentAnswerCreateWithoutExamAttemptInput = {
   answeredAt?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  question: Prisma.ExamQuestionCreateNestedOneWithoutStudentAnswersInput
   option?: Prisma.QuestionOptionCreateNestedOneWithoutStudentAnswersInput
+  question: Prisma.ExamQuestionCreateNestedOneWithoutStudentAnswersInput
 }
 
 export type StudentAnswerUncheckedCreateWithoutExamAttemptInput = {
@@ -656,8 +656,8 @@ export type StudentAnswerUpdateWithoutExamAttemptInput = {
   answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  question?: Prisma.ExamQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
   option?: Prisma.QuestionOptionUpdateOneWithoutStudentAnswersNestedInput
+  question?: Prisma.ExamQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
 }
 
 export type StudentAnswerUncheckedUpdateWithoutExamAttemptInput = {
@@ -761,8 +761,8 @@ export type StudentAnswerSelect<ExtArgs extends runtime.Types.Extensions.Interna
   createdAt?: boolean
   updatedAt?: boolean
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -774,8 +774,8 @@ export type StudentAnswerSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -787,8 +787,8 @@ export type StudentAnswerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectScalar = {
@@ -804,26 +804,26 @@ export type StudentAnswerSelectScalar = {
 export type StudentAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "examAttemptId" | "questionId" | "optionId" | "answeredAt" | "createdAt" | "updatedAt", ExtArgs["result"]["studentAnswer"]>
 export type StudentAnswerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }
 export type StudentAnswerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }
 export type StudentAnswerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   examAttempt?: boolean | Prisma.ExamAttemptDefaultArgs<ExtArgs>
-  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.StudentAnswer$optionArgs<ExtArgs>
+  question?: boolean | Prisma.ExamQuestionDefaultArgs<ExtArgs>
 }
 
 export type $StudentAnswerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudentAnswer"
   objects: {
     examAttempt: Prisma.$ExamAttemptPayload<ExtArgs>
-    question: Prisma.$ExamQuestionPayload<ExtArgs>
     option: Prisma.$QuestionOptionPayload<ExtArgs> | null
+    question: Prisma.$ExamQuestionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1228,8 +1228,8 @@ readonly fields: StudentAnswerFieldRefs;
 export interface Prisma__StudentAnswerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   examAttempt<T extends Prisma.ExamAttemptDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamAttemptDefaultArgs<ExtArgs>>): Prisma.Prisma__ExamAttemptClient<runtime.Types.Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  question<T extends Prisma.ExamQuestionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamQuestionDefaultArgs<ExtArgs>>): Prisma.Prisma__ExamQuestionClient<runtime.Types.Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   option<T extends Prisma.StudentAnswer$optionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentAnswer$optionArgs<ExtArgs>>): Prisma.Prisma__QuestionOptionClient<runtime.Types.Result.GetResult<Prisma.$QuestionOptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  question<T extends Prisma.ExamQuestionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExamQuestionDefaultArgs<ExtArgs>>): Prisma.Prisma__ExamQuestionClient<runtime.Types.Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

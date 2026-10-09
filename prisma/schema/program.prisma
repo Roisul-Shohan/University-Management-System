@@ -1,19 +1,16 @@
 model Program {
-  id           String     @id @default(uuid())
-  degreeType   DegreeType
-  departmentId String
-
-  department Department @relation(fields: [departmentId], references: [id])
-
-  students          Student[]
-  curriculumCourses CurriculumCourse[]
-  admissions        Admission[]
+  id                String             @id @default(uuid())
+  degreeType        DegreeType
+  departmentId      String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
   admissionFees     AdmissionFee[]
-  semesterFees      SemesterFee[]
+  admissions        Admission[]
   creditFees        CreditFee[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  curriculumCourses CurriculumCourse[]
+  department        Department         @relation(fields: [departmentId], references: [id])
+  semesterFees      SemesterFee[]
+  students          Student[]
 
   @@unique([departmentId, degreeType])
   @@index([departmentId])

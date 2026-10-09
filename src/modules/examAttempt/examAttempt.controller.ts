@@ -48,3 +48,13 @@ export const submit = catchAsync(async (req: Request, res: Response) => {
 		data,
 	});
 });
+
+export const list = catchAsync(async (req: Request, res: Response) => {
+	const data = await service.listExamAttempts(userId(req));
+	sendResponse(res, {
+		statusCode: 200,
+		success: true,
+		message: "Exam attempts retrieved successfully.",
+		data,
+	});
+});

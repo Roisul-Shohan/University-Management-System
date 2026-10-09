@@ -71,10 +71,10 @@ export type AcademicPeriodType = (typeof AcademicPeriodType)[keyof typeof Academ
 
 export const AdmissionStatus = {
   PENDING: 'PENDING',
-  APPROVED: 'APPROVED',
   CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
   REJECTED: 'REJECTED',
-  CANCELLED: 'CANCELLED'
+  APPROVED: 'APPROVED'
 } as const
 
 export type AdmissionStatus = (typeof AdmissionStatus)[keyof typeof AdmissionStatus]
@@ -94,8 +94,8 @@ export const TransactionStatus = {
   PENDING: 'PENDING',
   SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
-  CANCELLED: 'CANCELLED',
-  REFUNDED: 'REFUNDED'
+  REFUNDED: 'REFUNDED',
+  CANCELLED: 'CANCELLED'
 } as const
 
 export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
@@ -168,3 +168,12 @@ export const StudentProgramStatus = {
 } as const
 
 export type StudentProgramStatus = (typeof StudentProgramStatus)[keyof typeof StudentProgramStatus]
+
+
+export const AcademicPeriodStatus = {
+  UPCOMING: 'UPCOMING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type AcademicPeriodStatus = (typeof AcademicPeriodStatus)[keyof typeof AcademicPeriodStatus]

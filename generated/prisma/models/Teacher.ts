@@ -39,9 +39,9 @@ export type TeacherMinAggregateOutputType = {
   teacherId: string | null
   joiningYear: number | null
   isDeptAdmin: boolean | null
-  departmentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  departmentId: string | null
 }
 
 export type TeacherMaxAggregateOutputType = {
@@ -49,9 +49,9 @@ export type TeacherMaxAggregateOutputType = {
   teacherId: string | null
   joiningYear: number | null
   isDeptAdmin: boolean | null
-  departmentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  departmentId: string | null
 }
 
 export type TeacherCountAggregateOutputType = {
@@ -59,9 +59,9 @@ export type TeacherCountAggregateOutputType = {
   teacherId: number
   joiningYear: number
   isDeptAdmin: number
-  departmentId: number
   createdAt: number
   updatedAt: number
+  departmentId: number
   _all: number
 }
 
@@ -79,9 +79,9 @@ export type TeacherMinAggregateInputType = {
   teacherId?: true
   joiningYear?: true
   isDeptAdmin?: true
-  departmentId?: true
   createdAt?: true
   updatedAt?: true
+  departmentId?: true
 }
 
 export type TeacherMaxAggregateInputType = {
@@ -89,9 +89,9 @@ export type TeacherMaxAggregateInputType = {
   teacherId?: true
   joiningYear?: true
   isDeptAdmin?: true
-  departmentId?: true
   createdAt?: true
   updatedAt?: true
+  departmentId?: true
 }
 
 export type TeacherCountAggregateInputType = {
@@ -99,9 +99,9 @@ export type TeacherCountAggregateInputType = {
   teacherId?: true
   joiningYear?: true
   isDeptAdmin?: true
-  departmentId?: true
   createdAt?: true
   updatedAt?: true
+  departmentId?: true
   _all?: true
 }
 
@@ -196,9 +196,9 @@ export type TeacherGroupByOutputType = {
   teacherId: string
   joiningYear: number
   isDeptAdmin: boolean
-  departmentId: string
   createdAt: Date
   updatedAt: Date
+  departmentId: string
   _count: TeacherCountAggregateOutputType | null
   _avg: TeacherAvgAggregateOutputType | null
   _sum: TeacherSumAggregateOutputType | null
@@ -229,9 +229,9 @@ export type TeacherWhereInput = {
   teacherId?: Prisma.StringFilter<"Teacher"> | string
   joiningYear?: Prisma.IntFilter<"Teacher"> | number
   isDeptAdmin?: Prisma.BoolFilter<"Teacher"> | boolean
-  departmentId?: Prisma.StringFilter<"Teacher"> | string
   createdAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
+  departmentId?: Prisma.StringFilter<"Teacher"> | string
   offerings?: Prisma.CourseOfferingListRelationFilter
   department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -242,9 +242,9 @@ export type TeacherOrderByWithRelationInput = {
   teacherId?: Prisma.SortOrder
   joiningYear?: Prisma.SortOrder
   isDeptAdmin?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   offerings?: Prisma.CourseOfferingOrderByRelationAggregateInput
   department?: Prisma.DepartmentOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
@@ -258,9 +258,9 @@ export type TeacherWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TeacherWhereInput | Prisma.TeacherWhereInput[]
   joiningYear?: Prisma.IntFilter<"Teacher"> | number
   isDeptAdmin?: Prisma.BoolFilter<"Teacher"> | boolean
-  departmentId?: Prisma.StringFilter<"Teacher"> | string
   createdAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
+  departmentId?: Prisma.StringFilter<"Teacher"> | string
   offerings?: Prisma.CourseOfferingListRelationFilter
   department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -271,9 +271,9 @@ export type TeacherOrderByWithAggregationInput = {
   teacherId?: Prisma.SortOrder
   joiningYear?: Prisma.SortOrder
   isDeptAdmin?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   _count?: Prisma.TeacherCountOrderByAggregateInput
   _avg?: Prisma.TeacherAvgOrderByAggregateInput
   _max?: Prisma.TeacherMaxOrderByAggregateInput
@@ -289,9 +289,9 @@ export type TeacherScalarWhereWithAggregatesInput = {
   teacherId?: Prisma.StringWithAggregatesFilter<"Teacher"> | string
   joiningYear?: Prisma.IntWithAggregatesFilter<"Teacher"> | number
   isDeptAdmin?: Prisma.BoolWithAggregatesFilter<"Teacher"> | boolean
-  departmentId?: Prisma.StringWithAggregatesFilter<"Teacher"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Teacher"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Teacher"> | Date | string
+  departmentId?: Prisma.StringWithAggregatesFilter<"Teacher"> | string
 }
 
 export type TeacherCreateInput = {
@@ -310,9 +310,9 @@ export type TeacherUncheckedCreateInput = {
   teacherId: string
   joiningYear: number
   isDeptAdmin?: boolean
-  departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  departmentId: string
   offerings?: Prisma.CourseOfferingUncheckedCreateNestedManyWithoutTeacherInput
 }
 
@@ -332,9 +332,9 @@ export type TeacherUncheckedUpdateInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   joiningYear?: Prisma.IntFieldUpdateOperationsInput | number
   isDeptAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   offerings?: Prisma.CourseOfferingUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
@@ -343,9 +343,9 @@ export type TeacherCreateManyInput = {
   teacherId: string
   joiningYear: number
   isDeptAdmin?: boolean
-  departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  departmentId: string
 }
 
 export type TeacherUpdateManyMutationInput = {
@@ -361,9 +361,9 @@ export type TeacherUncheckedUpdateManyInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   joiningYear?: Prisma.IntFieldUpdateOperationsInput | number
   isDeptAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TeacherScalarRelationFilter = {
@@ -386,9 +386,9 @@ export type TeacherCountOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   joiningYear?: Prisma.SortOrder
   isDeptAdmin?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type TeacherAvgOrderByAggregateInput = {
@@ -400,9 +400,9 @@ export type TeacherMaxOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   joiningYear?: Prisma.SortOrder
   isDeptAdmin?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type TeacherMinOrderByAggregateInput = {
@@ -410,9 +410,9 @@ export type TeacherMinOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   joiningYear?: Prisma.SortOrder
   isDeptAdmin?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
 }
 
 export type TeacherSumOrderByAggregateInput = {
@@ -527,9 +527,9 @@ export type TeacherUncheckedCreateWithoutOfferingsInput = {
   teacherId: string
   joiningYear: number
   isDeptAdmin?: boolean
-  departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  departmentId: string
 }
 
 export type TeacherCreateOrConnectWithoutOfferingsInput = {
@@ -563,9 +563,9 @@ export type TeacherUncheckedUpdateWithoutOfferingsInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   joiningYear?: Prisma.IntFieldUpdateOperationsInput | number
   isDeptAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TeacherCreateWithoutDepartmentInput = {
@@ -622,9 +622,9 @@ export type TeacherScalarWhereInput = {
   teacherId?: Prisma.StringFilter<"Teacher"> | string
   joiningYear?: Prisma.IntFilter<"Teacher"> | number
   isDeptAdmin?: Prisma.BoolFilter<"Teacher"> | boolean
-  departmentId?: Prisma.StringFilter<"Teacher"> | string
   createdAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
+  departmentId?: Prisma.StringFilter<"Teacher"> | string
 }
 
 export type TeacherCreateWithoutUserInput = {
@@ -641,9 +641,9 @@ export type TeacherUncheckedCreateWithoutUserInput = {
   teacherId: string
   joiningYear: number
   isDeptAdmin?: boolean
-  departmentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  departmentId: string
   offerings?: Prisma.CourseOfferingUncheckedCreateNestedManyWithoutTeacherInput
 }
 
@@ -677,9 +677,9 @@ export type TeacherUncheckedUpdateWithoutUserInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   joiningYear?: Prisma.IntFieldUpdateOperationsInput | number
   isDeptAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   offerings?: Prisma.CourseOfferingUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
@@ -757,9 +757,9 @@ export type TeacherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   teacherId?: boolean
   joiningYear?: boolean
   isDeptAdmin?: boolean
-  departmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  departmentId?: boolean
   offerings?: boolean | Prisma.Teacher$offeringsArgs<ExtArgs>
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -771,9 +771,9 @@ export type TeacherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   teacherId?: boolean
   joiningYear?: boolean
   isDeptAdmin?: boolean
-  departmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  departmentId?: boolean
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacher"]>
@@ -783,9 +783,9 @@ export type TeacherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   teacherId?: boolean
   joiningYear?: boolean
   isDeptAdmin?: boolean
-  departmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  departmentId?: boolean
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacher"]>
@@ -795,12 +795,12 @@ export type TeacherSelectScalar = {
   teacherId?: boolean
   joiningYear?: boolean
   isDeptAdmin?: boolean
-  departmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  departmentId?: boolean
 }
 
-export type TeacherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "teacherId" | "joiningYear" | "isDeptAdmin" | "departmentId" | "createdAt" | "updatedAt", ExtArgs["result"]["teacher"]>
+export type TeacherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "teacherId" | "joiningYear" | "isDeptAdmin" | "createdAt" | "updatedAt" | "departmentId", ExtArgs["result"]["teacher"]>
 export type TeacherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   offerings?: boolean | Prisma.Teacher$offeringsArgs<ExtArgs>
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -828,9 +828,9 @@ export type $TeacherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     teacherId: string
     joiningYear: number
     isDeptAdmin: boolean
-    departmentId: string
     createdAt: Date
     updatedAt: Date
+    departmentId: string
   }, ExtArgs["result"]["teacher"]>
   composites: {}
 }
@@ -1261,9 +1261,9 @@ export interface TeacherFieldRefs {
   readonly teacherId: Prisma.FieldRef<"Teacher", 'String'>
   readonly joiningYear: Prisma.FieldRef<"Teacher", 'Int'>
   readonly isDeptAdmin: Prisma.FieldRef<"Teacher", 'Boolean'>
-  readonly departmentId: Prisma.FieldRef<"Teacher", 'String'>
   readonly createdAt: Prisma.FieldRef<"Teacher", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Teacher", 'DateTime'>
+  readonly departmentId: Prisma.FieldRef<"Teacher", 'String'>
 }
     
 

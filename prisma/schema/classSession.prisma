@@ -1,21 +1,15 @@
 model ClassSession {
-  id String @id @default(uuid())
-
-  courseOfferingId String
-
-  date      DateTime
-  startTime DateTime
-  endTime   DateTime
-
-  topic       String?
-  meetingLink String?
-
-  courseOffering CourseOffering @relation(fields: [courseOfferingId], references: [id])
-
+  id                String             @id @default(uuid())
+  courseOfferingId  String
+  date              DateTime
+  startTime         DateTime
+  endTime           DateTime
+  topic             String?
+  meetingLink       String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
   attendanceSession AttendanceSession?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  courseOffering    CourseOffering     @relation(fields: [courseOfferingId], references: [id])
 
   @@index([courseOfferingId])
   @@index([date])

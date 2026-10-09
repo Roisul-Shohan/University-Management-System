@@ -19,31 +19,31 @@ router.get("/", auth(), validateRequest(examsQueryValidation), controller.list);
 router.get("/:id", auth(), validateRequest(examIdValidation), controller.get);
 router.post(
 	"/",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(createExamValidation),
 	controller.create,
 );
 router.patch(
 	"/:id",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(updateExamValidation),
 	controller.update,
 );
 router.patch(
 	"/:id/publish",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(examIdValidation),
 	controller.publish,
 );
 router.patch(
 	"/:id/close",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(examIdValidation),
 	controller.close,
 );
 router.delete(
 	"/:id",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(examIdValidation),
 	controller.remove,
 );

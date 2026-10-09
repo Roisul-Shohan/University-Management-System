@@ -30,6 +30,7 @@ export type AcademicPeriodMinAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   isActive: boolean | null
+  status: $Enums.AcademicPeriodStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +41,7 @@ export type AcademicPeriodMaxAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   isActive: boolean | null
+  status: $Enums.AcademicPeriodStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +52,7 @@ export type AcademicPeriodCountAggregateOutputType = {
   startDate: number
   endDate: number
   isActive: number
+  status: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -62,6 +65,7 @@ export type AcademicPeriodMinAggregateInputType = {
   startDate?: true
   endDate?: true
   isActive?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +76,7 @@ export type AcademicPeriodMaxAggregateInputType = {
   startDate?: true
   endDate?: true
   isActive?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +87,7 @@ export type AcademicPeriodCountAggregateInputType = {
   startDate?: true
   endDate?: true
   isActive?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -165,6 +171,7 @@ export type AcademicPeriodGroupByOutputType = {
   startDate: Date
   endDate: Date
   isActive: boolean
+  status: $Enums.AcademicPeriodStatus
   createdAt: Date
   updatedAt: Date
   _count: AcademicPeriodCountAggregateOutputType | null
@@ -196,6 +203,7 @@ export type AcademicPeriodWhereInput = {
   startDate?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   endDate?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   isActive?: Prisma.BoolFilter<"AcademicPeriod"> | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFilter<"AcademicPeriod"> | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   notifications?: Prisma.NotificationListRelationFilter
@@ -207,6 +215,7 @@ export type AcademicPeriodOrderByWithRelationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
@@ -221,6 +230,7 @@ export type AcademicPeriodWhereUniqueInput = Prisma.AtLeast<{
   startDate?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   endDate?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   isActive?: Prisma.BoolFilter<"AcademicPeriod"> | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFilter<"AcademicPeriod"> | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AcademicPeriod"> | Date | string
   notifications?: Prisma.NotificationListRelationFilter
@@ -232,6 +242,7 @@ export type AcademicPeriodOrderByWithAggregationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AcademicPeriodCountOrderByAggregateInput
@@ -248,6 +259,7 @@ export type AcademicPeriodScalarWhereWithAggregatesInput = {
   startDate?: Prisma.DateTimeWithAggregatesFilter<"AcademicPeriod"> | Date | string
   endDate?: Prisma.DateTimeWithAggregatesFilter<"AcademicPeriod"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"AcademicPeriod"> | boolean
+  status?: Prisma.EnumAcademicPeriodStatusWithAggregatesFilter<"AcademicPeriod"> | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AcademicPeriod"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AcademicPeriod"> | Date | string
 }
@@ -258,6 +270,7 @@ export type AcademicPeriodCreateInput = {
   startDate: Date | string
   endDate: Date | string
   isActive?: boolean
+  status?: $Enums.AcademicPeriodStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   notifications?: Prisma.NotificationCreateNestedManyWithoutAcademicPeriodInput
@@ -269,6 +282,7 @@ export type AcademicPeriodUncheckedCreateInput = {
   startDate: Date | string
   endDate: Date | string
   isActive?: boolean
+  status?: $Enums.AcademicPeriodStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAcademicPeriodInput
@@ -280,6 +294,7 @@ export type AcademicPeriodUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notifications?: Prisma.NotificationUpdateManyWithoutAcademicPeriodNestedInput
@@ -291,6 +306,7 @@ export type AcademicPeriodUncheckedUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAcademicPeriodNestedInput
@@ -302,6 +318,7 @@ export type AcademicPeriodCreateManyInput = {
   startDate: Date | string
   endDate: Date | string
   isActive?: boolean
+  status?: $Enums.AcademicPeriodStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -312,6 +329,7 @@ export type AcademicPeriodUpdateManyMutationInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -322,6 +340,7 @@ export type AcademicPeriodUncheckedUpdateManyInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -332,6 +351,7 @@ export type AcademicPeriodCountOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -342,6 +362,7 @@ export type AcademicPeriodMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -352,6 +373,7 @@ export type AcademicPeriodMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -377,6 +399,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type EnumAcademicPeriodStatusFieldUpdateOperationsInput = {
+  set?: $Enums.AcademicPeriodStatus
+}
+
 export type AcademicPeriodCreateNestedOneWithoutNotificationsInput = {
   create?: Prisma.XOR<Prisma.AcademicPeriodCreateWithoutNotificationsInput, Prisma.AcademicPeriodUncheckedCreateWithoutNotificationsInput>
   connectOrCreate?: Prisma.AcademicPeriodCreateOrConnectWithoutNotificationsInput
@@ -399,6 +425,7 @@ export type AcademicPeriodCreateWithoutNotificationsInput = {
   startDate: Date | string
   endDate: Date | string
   isActive?: boolean
+  status?: $Enums.AcademicPeriodStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -409,6 +436,7 @@ export type AcademicPeriodUncheckedCreateWithoutNotificationsInput = {
   startDate: Date | string
   endDate: Date | string
   isActive?: boolean
+  status?: $Enums.AcademicPeriodStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -435,6 +463,7 @@ export type AcademicPeriodUpdateWithoutNotificationsInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -445,6 +474,7 @@ export type AcademicPeriodUncheckedUpdateWithoutNotificationsInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAcademicPeriodStatusFieldUpdateOperationsInput | $Enums.AcademicPeriodStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -486,6 +516,7 @@ export type AcademicPeriodSelect<ExtArgs extends runtime.Types.Extensions.Intern
   startDate?: boolean
   endDate?: boolean
   isActive?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   notifications?: boolean | Prisma.AcademicPeriod$notificationsArgs<ExtArgs>
@@ -498,6 +529,7 @@ export type AcademicPeriodSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   startDate?: boolean
   endDate?: boolean
   isActive?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["academicPeriod"]>
@@ -508,6 +540,7 @@ export type AcademicPeriodSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   startDate?: boolean
   endDate?: boolean
   isActive?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["academicPeriod"]>
@@ -518,11 +551,12 @@ export type AcademicPeriodSelectScalar = {
   startDate?: boolean
   endDate?: boolean
   isActive?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AcademicPeriodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "startDate" | "endDate" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["academicPeriod"]>
+export type AcademicPeriodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "startDate" | "endDate" | "isActive" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["academicPeriod"]>
 export type AcademicPeriodInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notifications?: boolean | Prisma.AcademicPeriod$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.AcademicPeriodCountOutputTypeDefaultArgs<ExtArgs>
@@ -541,6 +575,7 @@ export type $AcademicPeriodPayload<ExtArgs extends runtime.Types.Extensions.Inte
     startDate: Date
     endDate: Date
     isActive: boolean
+    status: $Enums.AcademicPeriodStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["academicPeriod"]>
@@ -972,6 +1007,7 @@ export interface AcademicPeriodFieldRefs {
   readonly startDate: Prisma.FieldRef<"AcademicPeriod", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"AcademicPeriod", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"AcademicPeriod", 'Boolean'>
+  readonly status: Prisma.FieldRef<"AcademicPeriod", 'AcademicPeriodStatus'>
   readonly createdAt: Prisma.FieldRef<"AcademicPeriod", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AcademicPeriod", 'DateTime'>
 }

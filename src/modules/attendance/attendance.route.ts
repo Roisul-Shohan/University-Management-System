@@ -18,15 +18,16 @@ router.get(
 	validateRequest(attendanceSessionIdValidation),
 	controller.get,
 );
+router.get("/sessions", auth(), controller.list);
 router.post(
 	"/sessions",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(openAttendanceValidation),
 	controller.open,
 );
 router.patch(
 	"/sessions/:id/close",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(attendanceSessionIdValidation),
 	controller.close,
 );
@@ -38,7 +39,7 @@ router.post(
 );
 router.patch(
 	"/sessions/:sessionId/records/:recordId",
-	auth(Role.TEACHER, Role.SUPER_ADMIN),
+	auth(Role.TEACHER),
 	validateRequest(updateAttendanceRecordValidation),
 	controller.updateRecord,
 );

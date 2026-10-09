@@ -14,6 +14,7 @@ import type {
 import type {
   GetTeachersQuery,
   UpdateTeacherAdminInput,
+  UpdateTeacherStatusInput,
 } from "./teacher.admin.interface.js";
 
 const getReviewer = async (reviewerId: string) => {
@@ -106,6 +107,7 @@ export const getMyTeacherApplication = async (userId: string) => {
     where: { userId },
     include: {
       department: true,
+      user: { select: { id: true, name: true, email: true, role: true } },
       reviewedBy: { select: { id: true, name: true } },
     },
     orderBy: { createdAt: "desc" },
@@ -189,6 +191,22 @@ export const updateTeacherAdminStatus = async ({
     where: { id: teacherId },
     data: { isDeptAdmin },
     include: { department: true },
+  });
+};
+
+export const updateTeacherStatus = async ({
+  teacherId,
+  status,
+}: UpdateTeacherStatusInput) => {
+  const teacher = await prisma.teacher.findUnique({
+    where: { id: teacherId },
+  });
+
+  if (!teacher) throw new AppError(404, "Teacher not found.");
+
+  return prisma.user.update({
+    where: { id: teacherId },
+    data: { status },
   });
 };
 

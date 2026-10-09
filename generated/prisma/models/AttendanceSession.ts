@@ -206,8 +206,8 @@ export type AttendanceSessionWhereInput = {
   status?: Prisma.EnumAttendanceSessionStatusFilter<"AttendanceSession"> | $Enums.AttendanceSessionStatus
   createdAt?: Prisma.DateTimeFilter<"AttendanceSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AttendanceSession"> | Date | string
-  classSession?: Prisma.XOR<Prisma.ClassSessionScalarRelationFilter, Prisma.ClassSessionWhereInput>
   attendanceRecords?: Prisma.AttendanceRecordListRelationFilter
+  classSession?: Prisma.XOR<Prisma.ClassSessionScalarRelationFilter, Prisma.ClassSessionWhereInput>
 }
 
 export type AttendanceSessionOrderByWithRelationInput = {
@@ -219,8 +219,8 @@ export type AttendanceSessionOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  classSession?: Prisma.ClassSessionOrderByWithRelationInput
   attendanceRecords?: Prisma.AttendanceRecordOrderByRelationAggregateInput
+  classSession?: Prisma.ClassSessionOrderByWithRelationInput
 }
 
 export type AttendanceSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -235,8 +235,8 @@ export type AttendanceSessionWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumAttendanceSessionStatusFilter<"AttendanceSession"> | $Enums.AttendanceSessionStatus
   createdAt?: Prisma.DateTimeFilter<"AttendanceSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AttendanceSession"> | Date | string
-  classSession?: Prisma.XOR<Prisma.ClassSessionScalarRelationFilter, Prisma.ClassSessionWhereInput>
   attendanceRecords?: Prisma.AttendanceRecordListRelationFilter
+  classSession?: Prisma.XOR<Prisma.ClassSessionScalarRelationFilter, Prisma.ClassSessionWhereInput>
 }, "id" | "classSessionId" | "qrToken">
 
 export type AttendanceSessionOrderByWithAggregationInput = {
@@ -275,8 +275,8 @@ export type AttendanceSessionCreateInput = {
   status?: $Enums.AttendanceSessionStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  classSession: Prisma.ClassSessionCreateNestedOneWithoutAttendanceSessionInput
   attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutAttendanceSessionInput
+  classSession: Prisma.ClassSessionCreateNestedOneWithoutAttendanceSessionInput
 }
 
 export type AttendanceSessionUncheckedCreateInput = {
@@ -299,8 +299,8 @@ export type AttendanceSessionUpdateInput = {
   status?: Prisma.EnumAttendanceSessionStatusFieldUpdateOperationsInput | $Enums.AttendanceSessionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  classSession?: Prisma.ClassSessionUpdateOneRequiredWithoutAttendanceSessionNestedInput
   attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutAttendanceSessionNestedInput
+  classSession?: Prisma.ClassSessionUpdateOneRequiredWithoutAttendanceSessionNestedInput
 }
 
 export type AttendanceSessionUncheckedUpdateInput = {
@@ -600,8 +600,8 @@ export type AttendanceSessionSelect<ExtArgs extends runtime.Types.Extensions.Int
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  classSession?: boolean | Prisma.ClassSessionDefaultArgs<ExtArgs>
   attendanceRecords?: boolean | Prisma.AttendanceSession$attendanceRecordsArgs<ExtArgs>
+  classSession?: boolean | Prisma.ClassSessionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AttendanceSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendanceSession"]>
 
@@ -642,8 +642,8 @@ export type AttendanceSessionSelectScalar = {
 
 export type AttendanceSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "classSessionId" | "qrToken" | "openedAt" | "expiresAt" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["attendanceSession"]>
 export type AttendanceSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  classSession?: boolean | Prisma.ClassSessionDefaultArgs<ExtArgs>
   attendanceRecords?: boolean | Prisma.AttendanceSession$attendanceRecordsArgs<ExtArgs>
+  classSession?: boolean | Prisma.ClassSessionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AttendanceSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AttendanceSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -656,8 +656,8 @@ export type AttendanceSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.
 export type $AttendanceSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AttendanceSession"
   objects: {
-    classSession: Prisma.$ClassSessionPayload<ExtArgs>
     attendanceRecords: Prisma.$AttendanceRecordPayload<ExtArgs>[]
+    classSession: Prisma.$ClassSessionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1062,8 +1062,8 @@ readonly fields: AttendanceSessionFieldRefs;
  */
 export interface Prisma__AttendanceSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  classSession<T extends Prisma.ClassSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassSessionClient<runtime.Types.Result.GetResult<Prisma.$ClassSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   attendanceRecords<T extends Prisma.AttendanceSession$attendanceRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AttendanceSession$attendanceRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classSession<T extends Prisma.ClassSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClassSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__ClassSessionClient<runtime.Types.Result.GetResult<Prisma.$ClassSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

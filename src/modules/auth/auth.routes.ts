@@ -7,6 +7,7 @@ import {
 	refreshTokenController,
 	register,
 	resetPasswordController,
+	resendOtpController,
 	verifyEmailController,
 } from "./auth.controller.js";
 import validateRequest from "../../middlewares/validateRequest.js";
@@ -14,6 +15,7 @@ import {
 	forgotPasswordSchema,
 	loginSchema,
 	registerSchema,
+	resendOtpSchema,
 	resetPasswordSchema,
 	verifyEmailSchema,
 } from "./auth.validation.js";
@@ -23,6 +25,12 @@ import { Role } from "../../../generated/prisma/enums.js";
 const router = Router();
 
 router.post("/register", validateRequest(registerSchema), register);
+
+router.post(
+	"/resend-otp",
+	validateRequest(resendOtpSchema),
+	resendOtpController,
+);
 
 router.post(
 	"/verify-email",

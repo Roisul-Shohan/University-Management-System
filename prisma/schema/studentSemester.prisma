@@ -1,24 +1,17 @@
 model StudentSemester {
-  id String @id @default(uuid())
-
-  studentId String
-
-  year     Int
-  semester Int
-
-  status StudentSemesterStatus @default(PENDING)
-
-  registeredAt DateTime?
-  completedAt  DateTime?
-
-  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
-
-  transactions      Transaction[]
+  id                String                @id @default(uuid())
+  studentId         String
+  year              Int
+  semester          Int
+  status            StudentSemesterStatus @default(PENDING)
+  registeredAt      DateTime?
+  completedAt       DateTime?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
   courseEnrollments CourseEnrollment[]
   examAttempt       ExamAttempt[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  student           Student               @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  transactions      Transaction[]
 
   @@unique([studentId, year, semester])
   @@index([studentId])

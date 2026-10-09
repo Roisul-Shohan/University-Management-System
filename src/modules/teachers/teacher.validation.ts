@@ -35,6 +35,17 @@ export const updateTeacherAdminValidation = z.object({
   }),
 });
 
+export const updateTeacherStatusValidation = z.object({
+  params: z.object({
+    id: z.string().min(1, "Teacher ID is required"),
+  }),
+  body: z.object({
+    status: z.enum(["ACTIVE", "DISABLED", "SUSPENDED"], {
+      message: "Status must be ACTIVE, DISABLED, or SUSPENDED",
+    }),
+  }),
+});
+
 export const teacherApplicationsQueryValidation = z.object({
   query: z.object({
     status: z.enum(["PENDING", "APPROVED", "REJECTED"]).optional(),

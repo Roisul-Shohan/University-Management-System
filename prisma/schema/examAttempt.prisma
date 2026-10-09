@@ -1,23 +1,16 @@
 model ExamAttempt {
-  id String @id @default(uuid())
-
+  id                String          @id @default(uuid())
   examId            String
   studentSemesterId String
-
-  startedAt   DateTime  @default(now())
-  submittedAt DateTime?
-  expiresAt   DateTime
-
-  score Decimal? @db.Decimal(5, 2)
-
-  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
-
-  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id])
-
-  answers StudentAnswer[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  startedAt         DateTime        @default(now())
+  submittedAt       DateTime?
+  expiresAt         DateTime
+  score             Decimal?        @db.Decimal(5, 2)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  exam              Exam            @relation(fields: [examId], references: [id], onDelete: Cascade)
+  studentSemester   StudentSemester @relation(fields: [studentSemesterId], references: [id])
+  answers           StudentAnswer[]
 
   @@unique([examId, studentSemesterId])
   @@index([examId])

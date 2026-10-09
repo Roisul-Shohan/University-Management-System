@@ -2,21 +2,17 @@ model Student {
   id              String               @id
   studentId       String               @unique
   admissionYear   Int
-  programId       String
-  currentYear     Int
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
   currentSemester Int
+  currentYear     Int
   isActive        Boolean              @default(true)
+  programId       String
   programStatus   StudentProgramStatus @default(ACTIVE)
-
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
-
-  program   Program           @relation(fields: [programId], references: [id])
-  semesters StudentSemester[]
-
-  transactions Transaction[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  semesters       StudentSemester[]
+  user            User                 @relation(fields: [id], references: [id], onDelete: Cascade)
+  program         Program              @relation(fields: [programId], references: [id])
+  transactions    Transaction[]
 
   @@index([admissionYear])
   @@index([programId])

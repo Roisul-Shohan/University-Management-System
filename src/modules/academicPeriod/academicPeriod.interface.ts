@@ -1,4 +1,4 @@
-import { AcademicPeriodType } from "../../../generated/prisma/enums.js";
+import { AcademicPeriodType, AcademicPeriodStatus } from "../../../generated/prisma/enums.js";
 
 export interface ICreateAcademicPeriod {
 	type: AcademicPeriodType;
@@ -19,6 +19,7 @@ export interface IUpdateAcademicPeriod {
 	type?: AcademicPeriodType;
 	startDate?: Date;
 	endDate?: Date;
+	status?: AcademicPeriodStatus;
 }
 export interface IUpdateAcademicPeriodStatus {
 	isActive: boolean;

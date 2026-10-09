@@ -31,3 +31,7 @@ export interface ResetPasswordInput {
 	otp: string;
 	newPassword: string;
 }
+
+export interface ResendOtpInput {
+	email: string;
+}

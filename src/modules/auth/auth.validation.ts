@@ -35,6 +35,16 @@ export const verifyEmailSchema = z.object({
 	}),
 });
 
+export const resendOtpSchema = z.object({
+	body: z.object({
+		email: z
+			.string()
+			.trim()
+			.email("Please provide a valid email address")
+			.toLowerCase(),
+	}),
+});
+
 export const loginSchema = z.object({
 	body: z.object({
 		email: z

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync.js";
 import sendResponse from "../../utils/sendResponse.js";
 import * as studentService from "./student.service.js";
+import { prisma } from "../../lib/prisma.js";
 
 
 
@@ -32,23 +33,31 @@ export const getStudent = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const getStudents = catchAsync(async (req: Request, res: Response) => {
+	const role = req.user!.role;
+	const userId = req.user!.userId;
+
+	let departmentId = req.query.departmentId as string | undefined;
+
+	// Teachers can only see students in their department
+	if (role === "TEACHER") {
+		const teacher = await prisma.teacher.findUnique({ where: { id: userId } });
+		if (teacher) {
+			departmentId = teacher.departmentId;
+		}
+	}
+
 	const result = await studentService.getStudents({
 		programId: req.query.programId as string | undefined,
-
-		departmentId: req.query.departmentId as string | undefined,
-
+		departmentId,
 		admissionYear: req.query.admissionYear
 			? Number(req.query.admissionYear)
 			: undefined,
-
 		currentYear: req.query.currentYear
 			? Number(req.query.currentYear)
 			: undefined,
-
 		currentSemester: req.query.currentSemester
 			? Number(req.query.currentSemester)
 			: undefined,
-
 		isActive:
 			req.query.isActive !== undefined
 				? req.query.isActive === "true"

@@ -72,3 +72,13 @@ export const updateRecord = catchAsync(async (req: Request, res: Response) => {
 		data,
 	});
 });
+
+export const list = catchAsync(async (_req: Request, res: Response) => {
+	const result = await service.listAttendanceSessions();
+	sendResponse(res, {
+		statusCode: 200,
+		success: true,
+		message: "Attendance sessions retrieved successfully.",
+		data: result,
+	});
+});

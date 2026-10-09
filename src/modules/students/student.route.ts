@@ -13,22 +13,21 @@ import {
 const router = Router();
 
 
-
 // Student views own profile
 router.get("/me", auth(Role.STUDENT), studentController.getMyStudentProfile);
 
-// Admin views all students
+// Admin/Teacher views all students
 router.get(
 	"/",
-	auth(Role.SUPER_ADMIN),
+	auth(Role.SUPER_ADMIN, Role.TEACHER),
 	validateRequest(getStudentsValidation),
 	studentController.getStudents,
 );
 
-// Admin views a specific student
+// Admin/Teacher views a specific student
 router.get(
 	"/:studentId",
-	auth(Role.SUPER_ADMIN),
+	auth(Role.SUPER_ADMIN, Role.TEACHER),
 	validateRequest(getStudentValidation),
 	studentController.getStudent,
 );

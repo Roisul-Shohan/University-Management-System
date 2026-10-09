@@ -96,6 +96,21 @@ export const updateTeacherAdminStatus = catchAsync(
   },
 );
 
+export const updateTeacherStatus = catchAsync(
+  async (req: Request, res: Response) => {
+    const teacher = await teacherService.updateTeacherStatus({
+      teacherId: req.params.id as string,
+      status: req.body.status,
+    });
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Teacher status updated successfully.",
+      data: teacher,
+    });
+  },
+);
+
 export const getTeacherApplications = catchAsync(
   async (req: Request, res: Response) => {
     const applications = await teacherService.getTeacherApplications({

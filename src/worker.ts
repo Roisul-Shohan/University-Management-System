@@ -7,11 +7,15 @@ import { NotificationType } from "../generated/prisma/enums.js";
 const worker = new Worker(
 	"notification-queue",
 	async (job) => {
+		console.log(`[Worker] Processing job: ${job.id}, name: ${job.name}, data:`, job.data);
+		
 		if (job.name !== "academic-period-opened") {
+			console.log(`[Worker] Skipping job ${job.id}: not academic-period-opened`);
 			return;
 		}
 
 		const { academicPeriodId } = job.data;
+		console.log(`[Worker] Processing academic period: ${academicPeriodId}`);
 
 		const academicPeriod = await prisma.academicPeriod.findUnique({
 			where: {
@@ -20,23 +24,24 @@ const worker = new Worker(
 		});
 
 		if (!academicPeriod) {
+			console.log(`[Worker] Academic period ${academicPeriodId} not found`);
 			throw new Error("Academic period not found.");
 		}
 
+		console.log(`[Worker] Found period: ${academicPeriod.type}, isActive: ${academicPeriod.isActive}, startDate: ${academicPeriod.startDate}, endDate: ${academicPeriod.endDate}`);
+
 		const now = new Date();
 
+		// Check if period is active and within date range (for actual opening)
 		const isCurrentlyOpen =
 			academicPeriod.isActive &&
 			academicPeriod.startDate <= now &&
 			academicPeriod.endDate >= now;
 
-		if (!isCurrentlyOpen) {
-			console.log(
-				`Academic period ${academicPeriod.id} is not currently open.`,
-			);
+		// Send notification immediately when period is activated, not wait for startDate
+		// The startDate controls when registration opens for students, not when notification is sent
 
-			return;
-		}
+		console.log(`[Worker] isCurrentlyOpen: ${isCurrentlyOpen}, now: ${now}, startDate: ${academicPeriod.startDate}, endDate: ${academicPeriod.endDate}`);
 
 		let users: any;
 

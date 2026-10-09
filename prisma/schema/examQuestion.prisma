@@ -1,19 +1,14 @@
 model ExamQuestion {
-  id String @id @default(uuid())
-
-  examId String
-
-  questionText String
-  marks        Int
-  order        Int
-
-  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
-
+  id             String           @id @default(uuid())
+  examId         String
+  questionText   String
+  marks          Int
+  order          Int
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  exam           Exam             @relation(fields: [examId], references: [id], onDelete: Cascade)
   options        QuestionOption[]
   studentAnswers StudentAnswer[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@unique([examId, order])
   @@index([examId])

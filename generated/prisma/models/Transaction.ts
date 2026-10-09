@@ -38,48 +38,48 @@ export type TransactionMinAggregateOutputType = {
   id: string | null
   studentId: string | null
   studentSemesterId: string | null
-  userId: string | null
-  admissionId: string | null
   type: $Enums.TransactionType | null
   amount: runtime.Decimal | null
   status: $Enums.TransactionStatus | null
   paidAt: Date | null
-  bkashPaymentId: string | null
-  bkashTrxId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  admissionId: string | null
+  userId: string | null
+  bkashPaymentId: string | null
+  bkashTrxId: string | null
 }
 
 export type TransactionMaxAggregateOutputType = {
   id: string | null
   studentId: string | null
   studentSemesterId: string | null
-  userId: string | null
-  admissionId: string | null
   type: $Enums.TransactionType | null
   amount: runtime.Decimal | null
   status: $Enums.TransactionStatus | null
   paidAt: Date | null
-  bkashPaymentId: string | null
-  bkashTrxId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  admissionId: string | null
+  userId: string | null
+  bkashPaymentId: string | null
+  bkashTrxId: string | null
 }
 
 export type TransactionCountAggregateOutputType = {
   id: number
   studentId: number
   studentSemesterId: number
-  userId: number
-  admissionId: number
   type: number
   amount: number
   status: number
   paidAt: number
-  bkashPaymentId: number
-  bkashTrxId: number
   createdAt: number
   updatedAt: number
+  admissionId: number
+  userId: number
+  bkashPaymentId: number
+  bkashTrxId: number
   _all: number
 }
 
@@ -96,48 +96,48 @@ export type TransactionMinAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
-  userId?: true
-  admissionId?: true
   type?: true
   amount?: true
   status?: true
   paidAt?: true
-  bkashPaymentId?: true
-  bkashTrxId?: true
   createdAt?: true
   updatedAt?: true
+  admissionId?: true
+  userId?: true
+  bkashPaymentId?: true
+  bkashTrxId?: true
 }
 
 export type TransactionMaxAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
-  userId?: true
-  admissionId?: true
   type?: true
   amount?: true
   status?: true
   paidAt?: true
-  bkashPaymentId?: true
-  bkashTrxId?: true
   createdAt?: true
   updatedAt?: true
+  admissionId?: true
+  userId?: true
+  bkashPaymentId?: true
+  bkashTrxId?: true
 }
 
 export type TransactionCountAggregateInputType = {
   id?: true
   studentId?: true
   studentSemesterId?: true
-  userId?: true
-  admissionId?: true
   type?: true
   amount?: true
   status?: true
   paidAt?: true
-  bkashPaymentId?: true
-  bkashTrxId?: true
   createdAt?: true
   updatedAt?: true
+  admissionId?: true
+  userId?: true
+  bkashPaymentId?: true
+  bkashTrxId?: true
   _all?: true
 }
 
@@ -231,16 +231,16 @@ export type TransactionGroupByOutputType = {
   id: string
   studentId: string | null
   studentSemesterId: string | null
-  userId: string
-  admissionId: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal
   status: $Enums.TransactionStatus
   paidAt: Date | null
-  bkashPaymentId: string | null
-  bkashTrxId: string | null
   createdAt: Date
   updatedAt: Date
+  admissionId: string | null
+  userId: string
+  bkashPaymentId: string | null
+  bkashTrxId: string | null
   _count: TransactionCountAggregateOutputType | null
   _avg: TransactionAvgAggregateOutputType | null
   _sum: TransactionSumAggregateOutputType | null
@@ -270,40 +270,40 @@ export type TransactionWhereInput = {
   id?: Prisma.StringFilter<"Transaction"> | string
   studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  userId?: Prisma.StringFilter<"Transaction"> | string
-  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
-  bkashPaymentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  bkashTrxId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
+  bkashPaymentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  bkashTrxId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   admission?: Prisma.XOR<Prisma.AdmissionNullableScalarRelationFilter, Prisma.AdmissionWhereInput> | null
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
+  studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrderInput | Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  bkashPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  bkashPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   admission?: Prisma.AdmissionOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
-  studentSemester?: Prisma.StudentSemesterOrderByWithRelationInput
   student?: Prisma.StudentOrderByWithRelationInput
+  studentSemester?: Prisma.StudentSemesterOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type TransactionWhereUniqueInput = Prisma.AtLeast<{
@@ -315,34 +315,34 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  userId?: Prisma.StringFilter<"Transaction"> | string
-  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
   admission?: Prisma.XOR<Prisma.AdmissionNullableScalarRelationFilter, Prisma.AdmissionWhereInput> | null
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
+  studentSemester?: Prisma.XOR<Prisma.StudentSemesterNullableScalarRelationFilter, Prisma.StudentSemesterWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "bkashPaymentId" | "bkashTrxId">
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrderInput | Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrderInput | Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  bkashPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  bkashPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TransactionCountOrderByAggregateInput
   _avg?: Prisma.TransactionAvgOrderByAggregateInput
   _max?: Prisma.TransactionMaxOrderByAggregateInput
@@ -357,16 +357,16 @@ export type TransactionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   studentId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
-  userId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
-  admissionId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeWithAggregatesFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalWithAggregatesFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusWithAggregatesFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Transaction"> | Date | string | null
-  bkashPaymentId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
-  bkashTrxId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+  admissionId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  userId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
+  bkashPaymentId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  bkashTrxId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
 }
 
 export type TransactionCreateInput = {
@@ -375,30 +375,30 @@ export type TransactionCreateInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
   admission?: Prisma.AdmissionCreateNestedOneWithoutTransactionsInput
-  user: Prisma.UserCreateNestedOneWithoutTransactionInput
-  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
   student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
 }
 
 export type TransactionUncheckedCreateInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateInput = {
@@ -407,46 +407,46 @@ export type TransactionUpdateInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admission?: Prisma.AdmissionUpdateOneWithoutTransactionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
-  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
   student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
+  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
 }
 
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateManyMutationInput = {
@@ -455,26 +455,26 @@ export type TransactionUpdateManyMutationInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionListRelationFilter = {
@@ -491,16 +491,16 @@ export type TransactionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  bkashPaymentId?: Prisma.SortOrder
-  bkashTrxId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  bkashPaymentId?: Prisma.SortOrder
+  bkashTrxId?: Prisma.SortOrder
 }
 
 export type TransactionAvgOrderByAggregateInput = {
@@ -511,32 +511,32 @@ export type TransactionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  bkashPaymentId?: Prisma.SortOrder
-  bkashTrxId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  bkashPaymentId?: Prisma.SortOrder
+  bkashTrxId?: Prisma.SortOrder
 }
 
 export type TransactionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   studentSemesterId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  admissionId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  bkashPaymentId?: Prisma.SortOrder
-  bkashTrxId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  admissionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  bkashPaymentId?: Prisma.SortOrder
+  bkashTrxId?: Prisma.SortOrder
 }
 
 export type TransactionSumOrderByAggregateInput = {
@@ -725,28 +725,28 @@ export type TransactionCreateWithoutAdmissionInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTransactionInput
-  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
   student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
 }
 
 export type TransactionUncheckedCreateWithoutAdmissionInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  userId: string
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionCreateOrConnectWithoutAdmissionInput = {
@@ -782,16 +782,16 @@ export type TransactionScalarWhereInput = {
   id?: Prisma.StringFilter<"Transaction"> | string
   studentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   studentSemesterId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  userId?: Prisma.StringFilter<"Transaction"> | string
-  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   type?: Prisma.EnumTransactionTypeFilter<"Transaction"> | $Enums.TransactionType
   amount?: Prisma.DecimalFilter<"Transaction"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
   paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
-  bkashPaymentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  bkashTrxId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  admissionId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  userId?: Prisma.StringFilter<"Transaction"> | string
+  bkashPaymentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  bkashTrxId?: Prisma.StringNullableFilter<"Transaction"> | string | null
 }
 
 export type TransactionCreateWithoutStudentInput = {
@@ -800,28 +800,28 @@ export type TransactionCreateWithoutStudentInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
   admission?: Prisma.AdmissionCreateNestedOneWithoutTransactionsInput
-  user: Prisma.UserCreateNestedOneWithoutTransactionInput
   studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
 }
 
 export type TransactionUncheckedCreateWithoutStudentInput = {
   id?: string
   studentSemesterId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionCreateOrConnectWithoutStudentInput = {
@@ -856,28 +856,28 @@ export type TransactionCreateWithoutStudentSemesterInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
   admission?: Prisma.AdmissionCreateNestedOneWithoutTransactionsInput
-  user: Prisma.UserCreateNestedOneWithoutTransactionInput
   student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  user: Prisma.UserCreateNestedOneWithoutTransactionInput
 }
 
 export type TransactionUncheckedCreateWithoutStudentSemesterInput = {
   id?: string
   studentId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionCreateOrConnectWithoutStudentSemesterInput = {
@@ -912,28 +912,28 @@ export type TransactionCreateWithoutUserInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
   admission?: Prisma.AdmissionCreateNestedOneWithoutTransactionsInput
-  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
   student?: Prisma.StudentCreateNestedOneWithoutTransactionsInput
+  studentSemester?: Prisma.StudentSemesterCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateWithoutUserInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionCreateOrConnectWithoutUserInput = {
@@ -966,15 +966,15 @@ export type TransactionCreateManyAdmissionInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  userId: string
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateWithoutAdmissionInput = {
@@ -983,58 +983,58 @@ export type TransactionUpdateWithoutAdmissionInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
-  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
+  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutAdmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyWithoutAdmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyStudentInput = {
   id?: string
   studentSemesterId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateWithoutStudentInput = {
@@ -1043,58 +1043,58 @@ export type TransactionUpdateWithoutStudentInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admission?: Prisma.AdmissionUpdateOneWithoutTransactionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
   studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyStudentSemesterInput = {
   id?: string
   studentId?: string | null
-  userId: string
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  userId: string
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateWithoutStudentSemesterInput = {
@@ -1103,58 +1103,58 @@ export type TransactionUpdateWithoutStudentSemesterInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admission?: Prisma.AdmissionUpdateOneWithoutTransactionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
   student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTransactionNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutStudentSemesterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyWithoutStudentSemesterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyUserInput = {
   id?: string
   studentId?: string | null
   studentSemesterId?: string | null
-  admissionId?: string | null
   type: $Enums.TransactionType
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.TransactionStatus
   paidAt?: Date | string | null
-  bkashPaymentId?: string | null
-  bkashTrxId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  admissionId?: string | null
+  bkashPaymentId?: string | null
+  bkashTrxId?: string | null
 }
 
 export type TransactionUpdateWithoutUserInput = {
@@ -1163,43 +1163,43 @@ export type TransactionUpdateWithoutUserInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admission?: Prisma.AdmissionUpdateOneWithoutTransactionsNestedInput
-  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
   student?: Prisma.StudentUpdateOneWithoutTransactionsNestedInput
+  studentSemester?: Prisma.StudentSemesterUpdateOneWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentSemesterId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  admissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1208,120 +1208,120 @@ export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
-  userId?: boolean
-  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
-  bkashPaymentId?: boolean
-  bkashTrxId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  admissionId?: boolean
+  userId?: boolean
+  bkashPaymentId?: boolean
+  bkashTrxId?: boolean
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
-  userId?: boolean
-  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
-  bkashPaymentId?: boolean
-  bkashTrxId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  admissionId?: boolean
+  userId?: boolean
+  bkashPaymentId?: boolean
+  bkashTrxId?: boolean
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
-  userId?: boolean
-  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
-  bkashPaymentId?: boolean
-  bkashTrxId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  admissionId?: boolean
+  userId?: boolean
+  bkashPaymentId?: boolean
+  bkashTrxId?: boolean
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectScalar = {
   id?: boolean
   studentId?: boolean
   studentSemesterId?: boolean
-  userId?: boolean
-  admissionId?: boolean
   type?: boolean
   amount?: boolean
   status?: boolean
   paidAt?: boolean
-  bkashPaymentId?: boolean
-  bkashTrxId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  admissionId?: boolean
+  userId?: boolean
+  bkashPaymentId?: boolean
+  bkashTrxId?: boolean
 }
 
-export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "studentSemesterId" | "userId" | "admissionId" | "type" | "amount" | "status" | "paidAt" | "bkashPaymentId" | "bkashTrxId" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "studentSemesterId" | "type" | "amount" | "status" | "paidAt" | "createdAt" | "updatedAt" | "admissionId" | "userId" | "bkashPaymentId" | "bkashTrxId", ExtArgs["result"]["transaction"]>
 export type TransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type TransactionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type TransactionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   admission?: boolean | Prisma.Transaction$admissionArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
   student?: boolean | Prisma.Transaction$studentArgs<ExtArgs>
+  studentSemester?: boolean | Prisma.Transaction$studentSemesterArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $TransactionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Transaction"
   objects: {
     admission: Prisma.$AdmissionPayload<ExtArgs> | null
-    user: Prisma.$UserPayload<ExtArgs>
-    studentSemester: Prisma.$StudentSemesterPayload<ExtArgs> | null
     student: Prisma.$StudentPayload<ExtArgs> | null
+    studentSemester: Prisma.$StudentSemesterPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     studentId: string | null
     studentSemesterId: string | null
-    userId: string
-    admissionId: string | null
     type: $Enums.TransactionType
     amount: runtime.Decimal
     status: $Enums.TransactionStatus
     paidAt: Date | null
-    bkashPaymentId: string | null
-    bkashTrxId: string | null
     createdAt: Date
     updatedAt: Date
+    admissionId: string | null
+    userId: string
+    bkashPaymentId: string | null
+    bkashTrxId: string | null
   }, ExtArgs["result"]["transaction"]>
   composites: {}
 }
@@ -1717,9 +1717,9 @@ readonly fields: TransactionFieldRefs;
 export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   admission<T extends Prisma.Transaction$admissionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$admissionArgs<ExtArgs>>): Prisma.Prisma__AdmissionClient<runtime.Types.Result.GetResult<Prisma.$AdmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  studentSemester<T extends Prisma.Transaction$studentSemesterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$studentSemesterArgs<ExtArgs>>): Prisma.Prisma__StudentSemesterClient<runtime.Types.Result.GetResult<Prisma.$StudentSemesterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   student<T extends Prisma.Transaction$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$studentArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  studentSemester<T extends Prisma.Transaction$studentSemesterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$studentSemesterArgs<ExtArgs>>): Prisma.Prisma__StudentSemesterClient<runtime.Types.Result.GetResult<Prisma.$StudentSemesterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1752,16 +1752,16 @@ export interface TransactionFieldRefs {
   readonly id: Prisma.FieldRef<"Transaction", 'String'>
   readonly studentId: Prisma.FieldRef<"Transaction", 'String'>
   readonly studentSemesterId: Prisma.FieldRef<"Transaction", 'String'>
-  readonly userId: Prisma.FieldRef<"Transaction", 'String'>
-  readonly admissionId: Prisma.FieldRef<"Transaction", 'String'>
   readonly type: Prisma.FieldRef<"Transaction", 'TransactionType'>
   readonly amount: Prisma.FieldRef<"Transaction", 'Decimal'>
   readonly status: Prisma.FieldRef<"Transaction", 'TransactionStatus'>
   readonly paidAt: Prisma.FieldRef<"Transaction", 'DateTime'>
-  readonly bkashPaymentId: Prisma.FieldRef<"Transaction", 'String'>
-  readonly bkashTrxId: Prisma.FieldRef<"Transaction", 'String'>
   readonly createdAt: Prisma.FieldRef<"Transaction", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Transaction", 'DateTime'>
+  readonly admissionId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly userId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly bkashPaymentId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly bkashTrxId: Prisma.FieldRef<"Transaction", 'String'>
 }
     
 
@@ -2182,25 +2182,6 @@ export type Transaction$admissionArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Transaction.studentSemester
- */
-export type Transaction$studentSemesterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the StudentSemester
-   */
-  select?: Prisma.StudentSemesterSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the StudentSemester
-   */
-  omit?: Prisma.StudentSemesterOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudentSemesterInclude<ExtArgs> | null
-  where?: Prisma.StudentSemesterWhereInput
-}
-
-/**
  * Transaction.student
  */
 export type Transaction$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2217,6 +2198,25 @@ export type Transaction$studentArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.StudentInclude<ExtArgs> | null
   where?: Prisma.StudentWhereInput
+}
+
+/**
+ * Transaction.studentSemester
+ */
+export type Transaction$studentSemesterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentSemester
+   */
+  select?: Prisma.StudentSemesterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudentSemester
+   */
+  omit?: Prisma.StudentSemesterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentSemesterInclude<ExtArgs> | null
+  where?: Prisma.StudentSemesterWhereInput
 }
 
 /**

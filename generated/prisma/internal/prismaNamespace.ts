@@ -2636,6 +2636,7 @@ export const AcademicPeriodScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   isActive: 'isActive',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2645,15 +2646,15 @@ export type AcademicPeriodScalarFieldEnum = (typeof AcademicPeriodScalarFieldEnu
 
 export const AdmissionScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   programId: 'programId',
   admissionYear: 'admissionYear',
-  admissionFee: 'admissionFee',
   status: 'status',
   appliedAt: 'appliedAt',
   confirmedAt: 'confirmedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  admissionFee: 'admissionFee',
+  userId: 'userId'
 } as const
 
 export type AdmissionScalarFieldEnum = (typeof AdmissionScalarFieldEnum)[keyof typeof AdmissionScalarFieldEnum]
@@ -2859,14 +2860,14 @@ export type GradingScaleScalarFieldEnum = (typeof GradingScaleScalarFieldEnum)[k
 
 export const NotificationScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  academicPeriodId: 'academicPeriodId',
   title: 'title',
   message: 'message',
   type: 'type',
-  isRead: 'isRead',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  academicPeriodId: 'academicPeriodId',
+  isRead: 'isRead',
+  userId: 'userId'
 } as const
 
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
@@ -2925,13 +2926,13 @@ export const StudentScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   admissionYear: 'admissionYear',
-  programId: 'programId',
-  currentYear: 'currentYear',
-  currentSemester: 'currentSemester',
-  isActive: 'isActive',
-  programStatus: 'programStatus',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  currentSemester: 'currentSemester',
+  currentYear: 'currentYear',
+  isActive: 'isActive',
+  programId: 'programId',
+  programStatus: 'programStatus'
 } as const
 
 export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
@@ -2970,9 +2971,9 @@ export const TeacherScalarFieldEnum = {
   teacherId: 'teacherId',
   joiningYear: 'joiningYear',
   isDeptAdmin: 'isDeptAdmin',
-  departmentId: 'departmentId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  departmentId: 'departmentId'
 } as const
 
 export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
@@ -2998,16 +2999,16 @@ export const TransactionScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   studentSemesterId: 'studentSemesterId',
-  userId: 'userId',
-  admissionId: 'admissionId',
   type: 'type',
   amount: 'amount',
   status: 'status',
   paidAt: 'paidAt',
-  bkashPaymentId: 'bkashPaymentId',
-  bkashTrxId: 'bkashTrxId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  admissionId: 'admissionId',
+  userId: 'userId',
+  bkashPaymentId: 'bkashPaymentId',
+  bkashTrxId: 'bkashTrxId'
 } as const
 
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
@@ -3021,9 +3022,9 @@ export const UserScalarFieldEnum = {
   address: 'address',
   role: 'role',
   status: 'status',
-  emailVerified: 'emailVerified',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  emailVerified: 'emailVerified'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -3109,6 +3110,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'AcademicPeriodStatus'
+ */
+export type EnumAcademicPeriodStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AcademicPeriodStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AcademicPeriodStatus[]'
+ */
+export type ListEnumAcademicPeriodStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AcademicPeriodStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3123,20 +3138,6 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Decimal'
- */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal[]'
- */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-/**
  * Reference to a field of type 'AdmissionStatus'
  */
 export type EnumAdmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdmissionStatus'>
@@ -3147,6 +3148,20 @@ export type EnumAdmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
  * Reference to a field of type 'AdmissionStatus[]'
  */
 export type ListEnumAdmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdmissionStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 

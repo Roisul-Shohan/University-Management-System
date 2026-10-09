@@ -1,22 +1,16 @@
 model CourseEnrollment {
-  id String @id @default(uuid())
-
+  id                String             @id @default(uuid())
   courseOfferingId  String
   studentSemesterId String
-
-  status EnrollmentStatus @default(PENDING)
-
-  enrolledAt DateTime  @default(now())
-  droppedAt  DateTime?
-
-  courseOffering CourseOffering @relation(fields: [courseOfferingId], references: [id])
-
-  studentSemester StudentSemester @relation(fields: [studentSemesterId], references: [id], onDelete: Cascade)
-  result          Result?
-
-  attendanceRecords AttendanceRecord[]
+  status            EnrollmentStatus   @default(PENDING)
+  enrolledAt        DateTime           @default(now())
+  droppedAt         DateTime?
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
+  attendanceRecords AttendanceRecord[]
+  courseOffering    CourseOffering     @relation(fields: [courseOfferingId], references: [id])
+  studentSemester   StudentSemester    @relation(fields: [studentSemesterId], references: [id], onDelete: Cascade)
+  result            Result?
 
   @@unique([studentSemesterId, courseOfferingId])
   @@index([studentSemesterId])

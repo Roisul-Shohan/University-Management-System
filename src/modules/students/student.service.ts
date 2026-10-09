@@ -429,6 +429,9 @@ export const getStudents = async (
 					department: true,
 				},
 			},
+			user: {
+				select: { id: true, name: true, email: true },
+			},
 		},
 
 		orderBy: {

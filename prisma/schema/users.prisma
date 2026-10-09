@@ -1,23 +1,21 @@
 model User {
-  id            String     @id @default(uuid())
-  email         String     @unique
-  password      String
-  name          String
-  address       String?
-  role          Role
-  status        UserStatus @default(ACTIVE)
-  emailVerified Boolean    @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  student                     Student?
-  teacher                     Teacher?
-  teacherApplications         TeacherApplication[]
-  reviewedTeacherApplications TeacherApplication[] @relation("TeacherApplicationReviewer")
+  id                          String               @id @default(uuid())
+  email                       String               @unique
+  password                    String
+  name                        String
+  address                     String?
+  role                        Role
+  status                      UserStatus           @default(ACTIVE)
+  createdAt                   DateTime             @default(now())
+  updatedAt                   DateTime             @updatedAt
+  emailVerified               Boolean              @default(false)
   admissions                  Admission[]
-  transaction                 Transaction[]
   notifications               Notification[]
+  student                     Student?
+  reviewedTeacherApplications TeacherApplication[] @relation("TeacherApplicationReviewer")
+  teacherApplications         TeacherApplication[]
+  teacher                     Teacher?
+  transaction                 Transaction[]
 
   @@index([role])
   @@index([status])

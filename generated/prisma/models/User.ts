@@ -32,9 +32,9 @@ export type UserMinAggregateOutputType = {
   address: string | null
   role: $Enums.Role | null
   status: $Enums.UserStatus | null
-  emailVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  emailVerified: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -45,9 +45,9 @@ export type UserMaxAggregateOutputType = {
   address: string | null
   role: $Enums.Role | null
   status: $Enums.UserStatus | null
-  emailVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  emailVerified: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -58,9 +58,9 @@ export type UserCountAggregateOutputType = {
   address: number
   role: number
   status: number
-  emailVerified: number
   createdAt: number
   updatedAt: number
+  emailVerified: number
   _all: number
 }
 
@@ -73,9 +73,9 @@ export type UserMinAggregateInputType = {
   address?: true
   role?: true
   status?: true
-  emailVerified?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -86,9 +86,9 @@ export type UserMaxAggregateInputType = {
   address?: true
   role?: true
   status?: true
-  emailVerified?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -99,9 +99,9 @@ export type UserCountAggregateInputType = {
   address?: true
   role?: true
   status?: true
-  emailVerified?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
   _all?: true
 }
 
@@ -185,9 +185,9 @@ export type UserGroupByOutputType = {
   address: string | null
   role: $Enums.Role
   status: $Enums.UserStatus
-  emailVerified: boolean
   createdAt: Date
   updatedAt: Date
+  emailVerified: boolean
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -219,16 +219,16 @@ export type UserWhereInput = {
   address?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
-  teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
-  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
-  reviewedTeacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   admissions?: Prisma.AdmissionListRelationFilter
-  transaction?: Prisma.TransactionListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
+  reviewedTeacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
+  transaction?: Prisma.TransactionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -239,16 +239,16 @@ export type UserOrderByWithRelationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  student?: Prisma.StudentOrderByWithRelationInput
-  teacher?: Prisma.TeacherOrderByWithRelationInput
-  teacherApplications?: Prisma.TeacherApplicationOrderByRelationAggregateInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationOrderByRelationAggregateInput
+  emailVerified?: Prisma.SortOrder
   admissions?: Prisma.AdmissionOrderByRelationAggregateInput
-  transaction?: Prisma.TransactionOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  student?: Prisma.StudentOrderByWithRelationInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationOrderByRelationAggregateInput
+  teacherApplications?: Prisma.TeacherApplicationOrderByRelationAggregateInput
+  teacher?: Prisma.TeacherOrderByWithRelationInput
+  transaction?: Prisma.TransactionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -262,16 +262,16 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
-  teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
-  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
-  reviewedTeacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
   admissions?: Prisma.AdmissionListRelationFilter
-  transaction?: Prisma.TransactionListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
+  reviewedTeacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  teacherApplications?: Prisma.TeacherApplicationListRelationFilter
+  teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
+  transaction?: Prisma.TransactionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -282,9 +282,9 @@ export type UserOrderByWithAggregationInput = {
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -301,9 +301,9 @@ export type UserScalarWhereWithAggregatesInput = {
   address?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
-  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -314,16 +314,16 @@ export type UserCreateInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -334,16 +334,16 @@ export type UserUncheckedCreateInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -354,16 +354,16 @@ export type UserUpdateInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -374,16 +374,16 @@ export type UserUncheckedUpdateInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -394,9 +394,9 @@ export type UserCreateManyInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -407,9 +407,9 @@ export type UserUpdateManyMutationInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -420,9 +420,9 @@ export type UserUncheckedUpdateManyInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserScalarRelationFilter = {
@@ -443,9 +443,9 @@ export type UserCountOrderByAggregateInput = {
   address?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -456,9 +456,9 @@ export type UserMaxOrderByAggregateInput = {
   address?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -469,9 +469,9 @@ export type UserMinOrderByAggregateInput = {
   address?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutAdmissionsInput = {
@@ -530,24 +530,16 @@ export type UserUpdateOneRequiredWithoutTeacherNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTeacherInput, Prisma.UserUpdateWithoutTeacherInput>, Prisma.UserUncheckedUpdateWithoutTeacherInput>
 }
 
-export type UserCreateNestedOneWithoutTeacherApplicationsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeacherApplicationsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
 export type UserCreateNestedOneWithoutReviewedTeacherApplicationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedTeacherApplicationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedTeacherApplicationsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutTeacherApplicationsNestedInput = {
+export type UserCreateNestedOneWithoutTeacherApplicationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeacherApplicationsInput
-  upsert?: Prisma.UserUpsertWithoutTeacherApplicationsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTeacherApplicationsInput, Prisma.UserUpdateWithoutTeacherApplicationsInput>, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
 }
 
 export type UserUpdateOneWithoutReviewedTeacherApplicationsNestedInput = {
@@ -558,6 +550,14 @@ export type UserUpdateOneWithoutReviewedTeacherApplicationsNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedTeacherApplicationsInput, Prisma.UserUpdateWithoutReviewedTeacherApplicationsInput>, Prisma.UserUncheckedUpdateWithoutReviewedTeacherApplicationsInput>
+}
+
+export type UserUpdateOneRequiredWithoutTeacherApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeacherApplicationsInput
+  upsert?: Prisma.UserUpsertWithoutTeacherApplicationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTeacherApplicationsInput, Prisma.UserUpdateWithoutTeacherApplicationsInput>, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
 }
 
 export type UserCreateNestedOneWithoutTransactionInput = {
@@ -590,15 +590,15 @@ export type UserCreateWithoutAdmissionsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
+  emailVerified?: boolean
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAdmissionsInput = {
@@ -609,15 +609,15 @@ export type UserUncheckedCreateWithoutAdmissionsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
+  emailVerified?: boolean
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAdmissionsInput = {
@@ -644,15 +644,15 @@ export type UserUpdateWithoutAdmissionsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAdmissionsInput = {
@@ -663,15 +663,15 @@ export type UserUncheckedUpdateWithoutAdmissionsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -682,14 +682,14 @@ export type UserCreateWithoutNotificationsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
@@ -701,14 +701,14 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -736,14 +736,14 @@ export type UserUpdateWithoutNotificationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
@@ -755,14 +755,14 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -774,15 +774,15 @@ export type UserCreateWithoutStudentInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStudentInput = {
@@ -793,15 +793,15 @@ export type UserUncheckedCreateWithoutStudentInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStudentInput = {
@@ -828,15 +828,15 @@ export type UserUpdateWithoutStudentInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentInput = {
@@ -847,15 +847,15 @@ export type UserUncheckedUpdateWithoutStudentInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTeacherInput = {
@@ -866,15 +866,15 @@ export type UserCreateWithoutTeacherInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTeacherInput = {
@@ -885,15 +885,15 @@ export type UserUncheckedCreateWithoutTeacherInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTeacherInput = {
@@ -920,15 +920,15 @@ export type UserUpdateWithoutTeacherInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTeacherInput = {
@@ -939,58 +939,15 @@ export type UserUncheckedUpdateWithoutTeacherInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutTeacherApplicationsInput = {
-  id?: string
-  email: string
-  password: string
-  name: string
-  address?: string | null
-  role: $Enums.Role
-  status?: $Enums.UserStatus
-  emailVerified?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
-  admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTeacherApplicationsInput = {
-  id?: string
-  email: string
-  password: string
-  name: string
-  address?: string | null
-  role: $Enums.Role
-  status?: $Enums.UserStatus
-  emailVerified?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
-  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTeacherApplicationsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedTeacherApplicationsInput = {
@@ -1001,15 +958,15 @@ export type UserCreateWithoutReviewedTeacherApplicationsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedTeacherApplicationsInput = {
@@ -1020,15 +977,15 @@ export type UserUncheckedCreateWithoutReviewedTeacherApplicationsInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
-  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedTeacherApplicationsInput = {
@@ -1036,53 +993,47 @@ export type UserCreateOrConnectWithoutReviewedTeacherApplicationsInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutReviewedTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutReviewedTeacherApplicationsInput>
 }
 
-export type UserUpsertWithoutTeacherApplicationsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTeacherApplicationsInput, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
+export type UserCreateWithoutTeacherApplicationsInput = {
+  id?: string
+  email: string
+  password: string
+  name: string
+  address?: string | null
+  role: $Enums.Role
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTeacherApplicationsInput = {
+  id?: string
+  email: string
+  password: string
+  name: string
+  address?: string | null
+  role: $Enums.Role
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
+  transaction?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTeacherApplicationsInput = {
+  where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTeacherApplicationsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTeacherApplicationsInput, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
-}
-
-export type UserUpdateWithoutTeacherApplicationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
-  admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTeacherApplicationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
-  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReviewedTeacherApplicationsInput = {
@@ -1104,15 +1055,15 @@ export type UserUpdateWithoutReviewedTeacherApplicationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedTeacherApplicationsInput = {
@@ -1123,15 +1074,64 @@ export type UserUncheckedUpdateWithoutReviewedTeacherApplicationsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
-  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutTeacherApplicationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTeacherApplicationsInput, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTeacherApplicationsInput, Prisma.UserUncheckedCreateWithoutTeacherApplicationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTeacherApplicationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTeacherApplicationsInput, Prisma.UserUncheckedUpdateWithoutTeacherApplicationsInput>
+}
+
+export type UserUpdateWithoutTeacherApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTeacherApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
+  transaction?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTransactionInput = {
@@ -1142,15 +1142,15 @@ export type UserCreateWithoutTransactionInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTransactionInput = {
@@ -1161,15 +1161,15 @@ export type UserUncheckedCreateWithoutTransactionInput = {
   address?: string | null
   role: $Enums.Role
   status?: $Enums.UserStatus
-  emailVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
-  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  emailVerified?: boolean
   admissions?: Prisma.AdmissionUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutReviewedByInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedCreateNestedManyWithoutUserInput
+  teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTransactionInput = {
@@ -1196,15 +1196,15 @@ export type UserUpdateWithoutTransactionInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTransactionInput = {
@@ -1215,15 +1215,15 @@ export type UserUncheckedUpdateWithoutTransactionInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
-  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
-  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admissions?: Prisma.AdmissionUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
+  reviewedTeacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutReviewedByNestedInput
+  teacherApplications?: Prisma.TeacherApplicationUncheckedUpdateManyWithoutUserNestedInput
+  teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -1232,19 +1232,19 @@ export type UserUncheckedUpdateWithoutTransactionInput = {
  */
 
 export type UserCountOutputType = {
-  teacherApplications: number
-  reviewedTeacherApplications: number
   admissions: number
-  transaction: number
   notifications: number
+  reviewedTeacherApplications: number
+  teacherApplications: number
+  transaction: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  teacherApplications?: boolean | UserCountOutputTypeCountTeacherApplicationsArgs
-  reviewedTeacherApplications?: boolean | UserCountOutputTypeCountReviewedTeacherApplicationsArgs
   admissions?: boolean | UserCountOutputTypeCountAdmissionsArgs
-  transaction?: boolean | UserCountOutputTypeCountTransactionArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  reviewedTeacherApplications?: boolean | UserCountOutputTypeCountReviewedTeacherApplicationsArgs
+  teacherApplications?: boolean | UserCountOutputTypeCountTeacherApplicationsArgs
+  transaction?: boolean | UserCountOutputTypeCountTransactionArgs
 }
 
 /**
@@ -1260,8 +1260,15 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTeacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TeacherApplicationWhereInput
+export type UserCountOutputTypeCountAdmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
 }
 
 /**
@@ -1274,8 +1281,8 @@ export type UserCountOutputTypeCountReviewedTeacherApplicationsArgs<ExtArgs exte
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAdmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AdmissionWhereInput
+export type UserCountOutputTypeCountTeacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TeacherApplicationWhereInput
 }
 
 /**
@@ -1283,13 +1290,6 @@ export type UserCountOutputTypeCountAdmissionsArgs<ExtArgs extends runtime.Types
  */
 export type UserCountOutputTypeCountTransactionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TransactionWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationWhereInput
 }
 
 
@@ -1301,16 +1301,16 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   address?: boolean
   role?: boolean
   status?: boolean
-  emailVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  student?: boolean | Prisma.User$studentArgs<ExtArgs>
-  teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
-  teacherApplications?: boolean | Prisma.User$teacherApplicationsArgs<ExtArgs>
-  reviewedTeacherApplications?: boolean | Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>
+  emailVerified?: boolean
   admissions?: boolean | Prisma.User$admissionsArgs<ExtArgs>
-  transaction?: boolean | Prisma.User$transactionArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  student?: boolean | Prisma.User$studentArgs<ExtArgs>
+  reviewedTeacherApplications?: boolean | Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>
+  teacherApplications?: boolean | Prisma.User$teacherApplicationsArgs<ExtArgs>
+  teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
+  transaction?: boolean | Prisma.User$transactionArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1322,9 +1322,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   address?: boolean
   role?: boolean
   status?: boolean
-  emailVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1335,9 +1335,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   address?: boolean
   role?: boolean
   status?: boolean
-  emailVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1348,20 +1348,20 @@ export type UserSelectScalar = {
   address?: boolean
   role?: boolean
   status?: boolean
-  emailVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name" | "address" | "role" | "status" | "emailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name" | "address" | "role" | "status" | "createdAt" | "updatedAt" | "emailVerified", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.User$studentArgs<ExtArgs>
-  teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
-  teacherApplications?: boolean | Prisma.User$teacherApplicationsArgs<ExtArgs>
-  reviewedTeacherApplications?: boolean | Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>
   admissions?: boolean | Prisma.User$admissionsArgs<ExtArgs>
-  transaction?: boolean | Prisma.User$transactionArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  student?: boolean | Prisma.User$studentArgs<ExtArgs>
+  reviewedTeacherApplications?: boolean | Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>
+  teacherApplications?: boolean | Prisma.User$teacherApplicationsArgs<ExtArgs>
+  teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
+  transaction?: boolean | Prisma.User$transactionArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1370,13 +1370,13 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    student: Prisma.$StudentPayload<ExtArgs> | null
-    teacher: Prisma.$TeacherPayload<ExtArgs> | null
-    teacherApplications: Prisma.$TeacherApplicationPayload<ExtArgs>[]
-    reviewedTeacherApplications: Prisma.$TeacherApplicationPayload<ExtArgs>[]
     admissions: Prisma.$AdmissionPayload<ExtArgs>[]
-    transaction: Prisma.$TransactionPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    student: Prisma.$StudentPayload<ExtArgs> | null
+    reviewedTeacherApplications: Prisma.$TeacherApplicationPayload<ExtArgs>[]
+    teacherApplications: Prisma.$TeacherApplicationPayload<ExtArgs>[]
+    teacher: Prisma.$TeacherPayload<ExtArgs> | null
+    transaction: Prisma.$TransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1386,9 +1386,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     address: string | null
     role: $Enums.Role
     status: $Enums.UserStatus
-    emailVerified: boolean
     createdAt: Date
     updatedAt: Date
+    emailVerified: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1783,13 +1783,13 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.User$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  teacher<T extends Prisma.User$teacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherArgs<ExtArgs>>): Prisma.Prisma__TeacherClient<runtime.Types.Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  teacherApplications<T extends Prisma.User$teacherApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviewedTeacherApplications<T extends Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   admissions<T extends Prisma.User$admissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$admissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  transaction<T extends Prisma.User$transactionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  student<T extends Prisma.User$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  reviewedTeacherApplications<T extends Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedTeacherApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  teacherApplications<T extends Prisma.User$teacherApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  teacher<T extends Prisma.User$teacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherArgs<ExtArgs>>): Prisma.Prisma__TeacherClient<runtime.Types.Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  transaction<T extends Prisma.User$transactionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1826,9 +1826,9 @@ export interface UserFieldRefs {
   readonly address: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
-  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
@@ -2222,6 +2222,54 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.admissions
+ */
+export type User$admissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Admission
+   */
+  select?: Prisma.AdmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Admission
+   */
+  omit?: Prisma.AdmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdmissionInclude<ExtArgs> | null
+  where?: Prisma.AdmissionWhereInput
+  orderBy?: Prisma.AdmissionOrderByWithRelationInput | Prisma.AdmissionOrderByWithRelationInput[]
+  cursor?: Prisma.AdmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdmissionScalarFieldEnum | Prisma.AdmissionScalarFieldEnum[]
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
  * User.student
  */
 export type User$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2238,49 +2286,6 @@ export type User$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   include?: Prisma.StudentInclude<ExtArgs> | null
   where?: Prisma.StudentWhereInput
-}
-
-/**
- * User.teacher
- */
-export type User$teacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Teacher
-   */
-  select?: Prisma.TeacherSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Teacher
-   */
-  omit?: Prisma.TeacherOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TeacherInclude<ExtArgs> | null
-  where?: Prisma.TeacherWhereInput
-}
-
-/**
- * User.teacherApplications
- */
-export type User$teacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TeacherApplication
-   */
-  select?: Prisma.TeacherApplicationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TeacherApplication
-   */
-  omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
-  where?: Prisma.TeacherApplicationWhereInput
-  orderBy?: Prisma.TeacherApplicationOrderByWithRelationInput | Prisma.TeacherApplicationOrderByWithRelationInput[]
-  cursor?: Prisma.TeacherApplicationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TeacherApplicationScalarFieldEnum | Prisma.TeacherApplicationScalarFieldEnum[]
 }
 
 /**
@@ -2308,27 +2313,46 @@ export type User$reviewedTeacherApplicationsArgs<ExtArgs extends runtime.Types.E
 }
 
 /**
- * User.admissions
+ * User.teacherApplications
  */
-export type User$admissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$teacherApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Admission
+   * Select specific fields to fetch from the TeacherApplication
    */
-  select?: Prisma.AdmissionSelect<ExtArgs> | null
+  select?: Prisma.TeacherApplicationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Admission
+   * Omit specific fields from the TeacherApplication
    */
-  omit?: Prisma.AdmissionOmit<ExtArgs> | null
+  omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AdmissionInclude<ExtArgs> | null
-  where?: Prisma.AdmissionWhereInput
-  orderBy?: Prisma.AdmissionOrderByWithRelationInput | Prisma.AdmissionOrderByWithRelationInput[]
-  cursor?: Prisma.AdmissionWhereUniqueInput
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  where?: Prisma.TeacherApplicationWhereInput
+  orderBy?: Prisma.TeacherApplicationOrderByWithRelationInput | Prisma.TeacherApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.TeacherApplicationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AdmissionScalarFieldEnum | Prisma.AdmissionScalarFieldEnum[]
+  distinct?: Prisma.TeacherApplicationScalarFieldEnum | Prisma.TeacherApplicationScalarFieldEnum[]
+}
+
+/**
+ * User.teacher
+ */
+export type User$teacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Teacher
+   */
+  select?: Prisma.TeacherSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Teacher
+   */
+  omit?: Prisma.TeacherOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherInclude<ExtArgs> | null
+  where?: Prisma.TeacherWhereInput
 }
 
 /**
@@ -2353,30 +2377,6 @@ export type User$transactionArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[]
-}
-
-/**
- * User.notifications
- */
-export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Notification
-   */
-  select?: Prisma.NotificationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Notification
-   */
-  omit?: Prisma.NotificationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NotificationInclude<ExtArgs> | null
-  where?: Prisma.NotificationWhereInput
-  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**

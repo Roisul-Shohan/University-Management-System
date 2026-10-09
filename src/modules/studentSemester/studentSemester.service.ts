@@ -53,7 +53,6 @@ export const initiateSemesterPayment = async ({
     where: {
       type: "SEMESTER_REGISTRATION",
       isActive: true,
-      startDate: { lte: now },
       endDate: { gte: now },
     },
   });
@@ -212,7 +211,6 @@ export const initiateCourseRegistrationPayment = async ({
     where: {
       type: "COURSE_REGISTRATION",
       isActive: true,
-      startDate: { lte: now },
       endDate: { gte: now },
     },
   });
