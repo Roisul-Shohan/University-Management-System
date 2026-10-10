@@ -1,173 +1,271 @@
-# Northstar University Management System - Backend API
+# Northstar University Management System — Backend API
 
-RESTful API for the Northstar University Management System. Built with Express.js, TypeScript, Prisma ORM, and PostgreSQL.
+> **Production:** https://university-management-system-peach.vercel.app  
+> **API Docs (Swagger):** https://university-management-system-peach.vercel.app/api-docs  
+> **Frontend App:** https://university-management-system-fronte-five.vercel.app  
+> **GitHub:** https://github.com/Roisul-Shohan/University-Management-System
 
-## Features
+---
 
-- **Authentication**: JWT-based with access/refresh tokens, role-based access control
-- **User Management**: Students, teachers, super admins
-- **Academic Management**: Departments, programs, courses, course offerings, semesters
-- **Admissions**: Student admission applications and review workflow
-- **Registration**: Semester registration, course registration
-- **Exams**: Exam creation, questions, attempts, grading
-- **Attendance**: Session-based attendance tracking
-- **Payments**: Fee management with bKash integration
-- **Notifications**: System notifications with unread counts
-- **Academic Periods**: Semesters, terms, registration periods
+## Overview
+
+A production-grade RESTful API for university administration. Handles authentication, academic management, admissions, examinations, attendance, payments, and notifications with role-based access control (RBAC) for **Super Admins**, **Teachers**, and **Students**.
+
+Built with **Express 5**, **TypeScript 5**, **Prisma ORM**, and **PostgreSQL**, deployed on **Vercel** with serverless functions.
+
+---
+
+## Key Features
+
+### Authentication & Authorization
+- JWT access (15 min) + refresh tokens (7 days) with httpOnly cookies
+- bcrypt password hashing (12 rounds)
+- Role-based access control: `SUPER_ADMIN` | `TEACHER` | `STUDENT`
+- Email verification, password reset, forgot password flows
+
+### Academic Management
+- Departments, Programs (BSC/MSC/PHD), Courses, Prerequisites
+- Course Offerings per semester with teacher assignment
+- Student semester enrollment & course registration
+- Academic periods (semesters, registration windows, exam periods)
+
+### Admissions
+- Multi-step application workflow
+- Program-specific admission fees
+- Status transitions: `PENDING` → `REVIEW` → `ACCEPTED/REJECTED`
+
+### Examinations
+- Exam creation with scheduling
+- Question banks (MCQ, essay) with options
+- Student exam attempts with auto-grading (MCQ) + manual grading
+- Grade publishing & transcript generation
+
+### Attendance
+- Class session scheduling
+- Student attendance tracking (present/absent/late/excused)
+- Session-wise and course-wise reports
+
+### Payments & Fees
+- Semester fees, credit fees, admission fees
+- bKash payment gateway integration
+- Transaction tracking with status management
+- Fee collection reports
+
+### Notifications
+- Real-time in-app notifications
+- Unread count badge
+- Mark-as-read, pagination
+
+---
 
 ## Tech Stack
 
-- **Runtime**: Node.js 22+ (ESM)
-- **Framework**: Express.js 5
-- **Language**: TypeScript 5 (NodeNext modules)
-- **Database**: PostgreSQL 15+ with Prisma ORM
-- **Auth**: JWT (jsonwebtoken) + bcryptjs
-- **Validation**: Zod
-- **Logging**: Console (extendable to Winston/Pino)
-- **Testing**: Jest (configured)
+| Layer | Technology |
+|-------|------------|
+| Runtime | Node.js 22+ (ESM) |
+| Framework | Express 5 |
+| Language | TypeScript 5 (NodeNext modules) |
+| Database | PostgreSQL 15+ (Neon/Supabase/managed) |
+| ORM | Prisma 7 |
+| Auth | jsonwebtoken + bcryptjs |
+| Validation | Zod 3 |
+| Logging | Console (extensible to Winston/Pino) |
+| Testing | Jest + Supertest |
+| Deployment | Vercel (serverless) / Docker |
+
+---
+
+## Live Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Super Admin** | `university@gmail.com` | `aaaaaaaa` |
+| **Teacher** | `roisul192@gmail.com` | `aaaaaa` |
+| **Student** | `raychabegum@gmail.com` | `aaaaaa` |
+
+---
 
 ## Quick Start
 
 ```bash
-# Clone and install
-git clone https://github.com/your-org/university-management-system.git
-cd university-management-system
+# 1. Clone & install
+git clone https://github.com/Roisul-Shohan/University-Management-System.git
+cd University-Management-System
 npm install
 
-# Environment setup
+# 2. Environment
 cp .env.example .env
-# Edit .env with your configuration
+# Edit .env with your DATABASE_URL, JWT secrets, etc.
 
-# Database
+# 3. Database
 npx prisma generate
 npx prisma migrate deploy
-npm run db:seed
+npm run db:seed   # creates super admin
 
-# Development
-npm run dev        # http://localhost:5000
-
-# Production build
-npm run build
-npm start          # Runs dist/server.js
+# 4. Development
+npm run dev       # http://localhost:5000
 ```
 
-## Environment Variables
+### Environment Variables (`.env`)
 
-See `.env.example` for all options. Required variables:
+```bash
+# Server
+PORT=5000
+NODE_ENV=development
 
-| Variable | Description |
-|----------|-------------|
-| `PORT` | Server port (default: 5000) |
-| `NODE_ENV` | `development` or `production` |
-| `DATABASE_URL` | PostgreSQL connection string |
-| `JWT_ACCESS_SECRET` | 32+ char secret for access tokens |
-| `JWT_REFRESH_SECRET` | 32+ char secret for refresh tokens |
-| `JWT_ACCESS_EXPIRES_IN` | Access token TTL (e.g., `15m`) |
-| `JWT_REFRESH_EXPIRES_IN` | Refresh token TTL (e.g., `7d`) |
-| `BCRYPT_SALT_ROUNDS` | Password hash rounds (default: 12) |
-| `SEED_ADMIN_EMAIL` | Initial admin email |
-| `SEED_ADMIN_PASSWORD` | Initial admin password |
+# Database (required)
+DATABASE_URL="postgresql://user:pass@host:5432/db?sslmode=require"
 
-Optional: Redis, SMTP, bKash, Resend email
+# Auth (required - 32+ char secrets)
+JWT_ACCESS_SECRET="your-super-secret-access-key-min-32-chars"
+JWT_REFRESH_SECRET="your-super-secret-refresh-key-min-32-chars"
+JWT_ACCESS_EXPIRES_IN="15m"
+JWT_REFRESH_EXPIRES_IN="7d"
+BCRYPT_SALT_ROUNDS=12
 
-## API Endpoints
+# Seed Admin (used by db:seed)
+SEED_ADMIN_EMAIL="admin@university.edu"
+SEED_ADMIN_PASSWORD="secure-password-here"
+
+# Optional: Redis, SMTP, bKash, Resend
+REDIS_HOST=
+REDIS_PORT=
+SMTP_USER=
+BKASH_APP_KEY=
+RESEND_API_KEY=
+```
+
+---
+
+## API Reference
+
+**Base URL:** `https://university-management-system-peach.vercel.app/api`  
+**Interactive Swagger:** `/api-docs`
 
 ### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login (returns tokens + sets cookies) |
-| GET | `/api/auth/me` | Get current user (requires auth) |
-| POST | `/api/auth/refresh-token` | Refresh access token |
-| POST | `/api/auth/logout` | Logout (clears cookies) |
-| POST | `/api/auth/forgot-password` | Request password reset |
-| POST | `/api/auth/reset-password` | Reset password |
-| POST | `/api/auth/verify-email` | Verify email |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/auth/register` | Public | Register new user |
+| POST | `/auth/login` | Public | Login (sets httpOnly cookies) |
+| GET | `/auth/me` | Bearer | Current user profile |
+| POST | `/auth/refresh-token` | Cookie | Refresh access token |
+| POST | `/auth/logout` | Cookie | Logout (clears cookies) |
+| POST | `/auth/forgot-password` | Public | Request password reset |
+| POST | `/auth/reset-password` | Public | Reset password |
+| POST | `/auth/verify-email` | Public | Verify email |
 
-### Modules (all require authentication)
-- `/api/admissions` - Admission applications
-- `/api/academic-periods` - Academic periods
-- `/api/departments` - Departments
-- `/api/programs` - Academic programs
-- `/api/courses` - Courses
-- `/api/course-offerings` - Course offerings
-- `/api/course-registrations` - Student course registration
-- `/api/students` - Student management
-- `/api/teachers` - Teacher management
-- `/api/class-sessions` - Class sessions
-- `/api/attendance` - Attendance records
-- `/api/exams` - Exams
-- `/api/exam-attempts` - Exam attempts
-- `/api/exam-questions` - Exam questions
-- `/api/payments` - Payments (bKash)
-- `/api/notifications` - Notifications
-- `/api/semester-fees` - Semester fees
-- `/api/credit-fees` - Credit fees
-- `/api/admission-fees` - Admission fees
-- `/api/student-semesters` - Student semester enrollment
+### Core Modules (require authentication)
+| Module | Base Path | Roles |
+|--------|-----------|-------|
+| Admissions | `/admissions` | STUDENT, SUPER_ADMIN, TEACHER |
+| Academic Periods | `/api/academic-periods` | SUPER_ADMIN |
+| Departments | `/api/departments` | SUPER_ADMIN |
+| Programs | `/api/programs` | SUPER_ADMIN, TEACHER |
+| Courses | `/api/courses` | SUPER_ADMIN, TEACHER |
+| Course Offerings | `/api/course-offerings` | SUPER_ADMIN, TEACHER |
+| Course Registrations | `/api/course-registrations` | STUDENT |
+| Students | `/api/students` | SUPER_ADMIN, TEACHER |
+| Teachers | `/api/teachers` | SUPER_ADMIN, TEACHER |
+| Class Sessions | `/api/class-sessions` | SUPER_ADMIN, TEACHER, STUDENT |
+| Attendance | `/api/attendance` | SUPER_ADMIN, TEACHER, STUDENT |
+| Exams | `/api/exams` | SUPER_ADMIN, TEACHER, STUDENT |
+| Exam Attempts | `/api/exam-attempts` | STUDENT |
+| Exam Questions | `/api/exam-questions` | SUPER_ADMIN, TEACHER |
+| Payments | `/api/payments` | STUDENT |
+| Notifications | `/api/notifications` | All |
+| Fees (semester/credit/admission) | `/api/*-fees` | SUPER_ADMIN, STUDENT |
+| Student Semesters | `/api/student-semesters` | STUDENT |
 
-### Roles
-- `SUPER_ADMIN`: Full access
-- `TEACHER`: Courses, exams, attendance, students
-- `STUDENT`: Own admissions, registration, exams, payments, attendance
+### Response Envelope
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Operation successful",
+  "data": { ... },
+  "meta": { "page": 1, "limit": 10, "total": 100 }
+}
+```
+
+### Error Format
+```json
+{
+  "success": false,
+  "statusCode": 400,
+  "message": "Validation failed",
+  "errors": [
+    { "field": "email", "message": "Invalid email format" }
+  ]
+}
+```
+
+---
 
 ## Project Structure
 
 ```
 src/
-├── app.ts                 # Express app, middleware, routes
+├── app.ts                 # Express setup, middleware, route registration
 ├── server.ts              # Entry point
-├── config/index.ts        # Validated env config
+├── config/index.ts        # Validated environment config
 ├── middlewares/
-│   ├── auth.ts            # JWT auth + RBAC
-│   ├── validateRequest.ts # Zod validation
+│   ├── auth.ts            # JWT verification + RBAC
+│   ├── validateRequest.ts # Zod request validation
 │   └── notFound.ts        # 404 handler
 ├── utils/
-│   ├── jwt.ts             # JWT helpers
-│   ├── catchAsync.ts      # Async wrapper
-│   ├── sendResponse.ts    # Standard responses
-│   └── AppError.ts        # Custom errors
-├── lib/prisma.ts          # Prisma client
-├── modules/               # Feature modules
-│   └── <module>/
-│       ├── *.interface.ts # Types
+│   ├── jwt.ts             # Token create/verify helpers
+│   ├── catchAsync.ts      # Async route wrapper
+│   ├── sendResponse.ts    # Standardized responses
+│   └── AppError.ts        # Custom error class
+├── lib/prisma.ts          # Prisma singleton
+├── modules/
+│   └── <feature>/
+│       ├── *.interface.ts # TypeScript types
 │       ├── *.validation.ts# Zod schemas
 │       ├── *.service.ts   # Business logic
 │       ├── *.controller.ts# Request handlers
 │       └── *.routes.ts    # Express router
-└── generated/prisma/      # Prisma types
+├── generated/prisma/      # Prisma client types
+└── worker.ts              # Background jobs (bullmq)
 ```
 
-## Database
+---
 
-Prisma schema in `prisma/schema/` (split by domain):
-- `users.prisma` - Users, roles, status
-- `academicPeriod.prisma` - Periods
-- `department.prisma` - Departments
-- `program.prisma` - Programs
-- `course.prisma` - Courses
-- `courseOffering.prisma` - Offerings
-- `courseEnrollment.prisma` - Enrollments
-- `exam.prisma` - Exams, questions, attempts
-- `attendenceRecord.prisma` - Attendance
-- `transaction.prisma` - Payments
-- `admission.prisma` - Admissions
-- `notification.prisma` - Notifications
-- `studentSemester.prisma` - Enrollment
+## Database Schema (Prisma)
+
+Split by domain in `prisma/schema/`:
+- `users.prisma` — Users, roles, status
+- `academicPeriod.prisma` — Periods
+- `department.prisma` — Departments
+- `program.prisma` — Programs
+- `course.prisma` — Courses, prerequisites
+- `courseOffering.prisma` — Offerings, enrollments
+- `exam.prisma` — Exams, questions, attempts
+- `attendanceRecord.prisma` — Attendance
+- `transaction.prisma` — Payments
+- `admission.prisma` — Admissions
+- `notification.prisma` — Notifications
+- `studentSemester.prisma` — Enrollment
+
+---
 
 ## Scripts
 
 ```bash
-npm run dev          # tsx watch mode
-npm run build        # tsc -> dist/
-npm start            # node dist/server.js
-npm run lint         # Biome lint
+npm run dev          # tsx watch mode (dev)
+npm run build        # tsc → dist/
+npm start            # node dist/server.js (prod)
+npm run lint         # Biome
 npm run typecheck    # tsc --noEmit
+npm run test         # Jest
 npm run db:seed      # Seed super admin
-npm run prisma:generate
-npm run prisma:migrate
-npm run prisma:studio
+npx prisma generate
+npx prisma migrate dev --name <name>
+npx prisma migrate deploy
+npx prisma studio
 ```
+
+---
 
 ## Deployment
 
@@ -184,8 +282,7 @@ npm run prisma:studio
   }
 }
 ```
-
-Set all env vars in Vercel dashboard. Ensure `DATABASE_URL` uses connection pooling (PgBouncer) for serverless.
+Set all env vars in Vercel dashboard. Use pooled connection string for `DATABASE_URL` (PgBouncer).
 
 ### Docker
 ```dockerfile
@@ -200,24 +297,44 @@ EXPOSE 5000
 CMD ["node", "dist/server.js"]
 ```
 
-### Traditional VM/PM2
+### Traditional VM (PM2)
 ```bash
 npm run build
 pm2 start dist/server.js --name "university-api"
-pm2 startup
-pm2 save
+pm2 startup && pm2 save
 ```
+
+---
 
 ## Security
 
-- Helmet.js for security headers
+- Helmet.js security headers
 - CORS restricted to frontend origin
-- httpOnly, secure, SameSite cookies
-- bcrypt password hashing (12 rounds)
-- JWT with short-lived access + long-lived refresh tokens
+- httpOnly, Secure, SameSite=Lax cookies
+- bcrypt 12-round password hashing
+- Short-lived access + long-lived refresh tokens
 - Role-based route protection
 - Zod validation on all inputs
+- Prisma prevents SQL injection
+
+---
+
+## API Documentation
+
+**Swagger UI:** https://university-management-system-peach.vercel.app/api-docs  
+**OpenAPI Spec:** https://university-management-system-peach.vercel.app/api-docs/json
+
+---
+
+## Contributing
+
+1. Fork → feature branch: `git checkout -b feature/your-feature`
+2. Conventional commits: `feat: add your feature`
+3. Run checks: `npm run lint && npm run typecheck && npm test`
+4. Push & open PR
+
+---
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE) file.
